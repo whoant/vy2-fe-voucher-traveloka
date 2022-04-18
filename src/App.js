@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import {Route, Routes} from 'react-router-dom'
+import SatisticPage from './pages/Satistic';
+import CreateVoucher from './pages/CreateVoucher';
+import CreateGift from './pages/CreateGift';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+        <Route path='/' element={
+          <div>Home</div>
+        }/>
+        <Route path='/satistic' element={<SatisticPage />}/>
+        <Route path='/createvoucher' element={<CreateVoucher />}/>
+        <Route path='/createGift' element={<CreateGift />}/>
+      </Routes>
   );
 }
 
