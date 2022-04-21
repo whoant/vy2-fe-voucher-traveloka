@@ -3,7 +3,85 @@ import PropTypes from 'prop-types';
 
 const SatisticPage = props => {
     return (
-        <div>123</div>
+        <div className='d-flex justify-content-center'>
+            <div className="card card-custom col-md-8">
+                <div className="card-header border-0 py-5">
+                    <h3 className="card-title align-items-start flex-column">
+                        <span className="card-label font-weight-bolder text-dark">Chi tiết voucher</span>
+                    </h3>
+                    <div className="card-toolbar">
+                        <a href="#" className="btn btn-danger font-weight-bolder font-size-sm">Tạo mới voucher</a>
+                    </div>
+                </div>
+                <div className="card-body pt-0 pb-3">
+                    <div className="tab-content">
+                        <div className="table-responsive">
+                            <table className="table table-head-custom table-head-bg table-borderless table-vertical-center">
+                                <thead>
+                                    <tr className="text-left text-uppercase">
+                                        <th style={{'min-width': '250px'}} className="pl-7">
+                                            <span className="text-dark-75">voucher</span>
+                                        </th>
+                                        <th style={{'min-width': '100px'}}>doang thu</th>
+                                        <th style={{'min-width': '100px'}}>lợi nhuận</th>
+                                        <th style={{'min-width': '100px'}}>hoa hồng</th>
+                                        <th style={{'min-width': '130px'}}>số lượng sử dụng</th>
+                                        <th style={{'min-width': '80px'}}></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <a href="#" className="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Voucher_1</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span className="text-dark-75 font-weight-bolder d-block font-size-lg">$8,000,000</span>
+                                        </td>
+                                        <td>
+                                            <span className="text-dark-75 font-weight-bolder d-block font-size-lg">$520</span>
+                                        </td>
+                                        <td>
+                                            <span className="text-dark-75 font-weight-bolder d-block font-size-lg">$190</span>
+                                        </td>
+                                        <td>
+                                            <span className="text-dark-75 font-weight-bolder d-block font-size-lg">100</span>
+                                        </td>
+                                        <td>
+                                            <a href="#" className="btn btn-light font-weight-bolder font-size-sm">Chi tiết</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <a href="#" className="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">Voucher_1</a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span className="text-dark-75 font-weight-bolder d-block font-size-lg">$8,000,000</span>
+                                        </td>
+                                        <td>
+                                            <span className="text-dark-75 font-weight-bolder d-block font-size-lg">$520</span>
+                                        </td>
+                                        <td>
+                                            <span className="text-dark-75 font-weight-bolder d-block font-size-lg">$190</span>
+                                        </td>
+                                        <td>
+                                            <span className="text-dark-75 font-weight-bolder d-block font-size-lg">100</span>
+                                        </td>
+                                        <td>
+                                            <a href="#" className="btn btn-light font-weight-bolder font-size-sm">Chi tiết</a>
+                                        </td>
+                                    </tr>    
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     );
 };
 
