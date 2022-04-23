@@ -12,8 +12,8 @@ const TableDetails = props => {
                     <span className="card-label font-weight-bolder text-dark">Chi tiết voucher</span>
                 </h3>
                 <div className="card-toolbar">
-                    <a href="#"
-                        className="btn btn-danger font-weight-bolder font-size-sm">Tạo mới voucher</a>
+                    <a href="/CreateVoucher"
+                        className="btn btn-danger font-weight-bolder font-size-sm">Tạo voucher mới</a>
                 </div>
             </div>
             <div className="card-body pt-0 pb-3">
