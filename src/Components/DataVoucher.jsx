@@ -2,7 +2,7 @@ import React from 'react'
 
 const DataVoucher = (props) => {
 
-    const { categories, series } = props;
+    const { categories, series, percent, Date } = props;
 
     return (
         <div className="container">
@@ -81,19 +81,19 @@ const DataVoucher = (props) => {
                                 <a href="#" className="text-primary pr-1">#xrs-54pq</a></p>
                             <div className="mb-7">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Budget:</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Số tiền giảm giá:</span>
                                     <a href="#" className="text-muted text-hover-primary">{series[0]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-cente my-1">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Expences:</span>
-                                    <a href="#" className="text-muted text-hover-primary">$76,810</a>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Phần trăm giảm giá:</span>
+                                    <a href="#" className="text-muted text-hover-primary">{percent[0]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Due Date:</span>
-                                    <span className="text-muted font-weight-bold">21.05.2016</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Ngày hết hạn:</span>
+                                    <span className="text-muted font-weight-bold">{Date}</span>
                                 </div>
                             </div>
-                            <a href="#" className="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">write message</a>
+                            <a href="#" className="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">Sử dụng</a>
                         </div>
                     </div>
                 </div>
@@ -169,19 +169,19 @@ const DataVoucher = (props) => {
                                 <a href="#" className="text-primary pr-1">#xrs-54pq</a></p>
                             <div className="mb-7">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Budget:</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Số tiền giảm giá:</span>
                                     <a href="#" className="text-muted text-hover-primary">{series[1]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-cente my-1">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Expences:</span>
-                                    <a href="#" className="text-muted text-hover-primary">$76,810</a>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Phần trăm giảm giá:</span>
+                                    <a href="#" className="text-muted text-hover-primary">{percent[1]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Due Date:</span>
-                                    <span className="text-muted font-weight-bold">21.05.2016</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Ngày hết hạn:</span>
+                                    <span className="text-muted font-weight-bold">{Date}</span>
                                 </div>
                             </div>
-                            <a href="#" className="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4">write message</a>
+                            <a href="#" className="btn btn-block btn-sm btn-light-danger font-weight-bolder text-uppercase py-4">Sử dụng</a>
                         </div>
                     </div>
                 </div>
@@ -262,19 +262,19 @@ const DataVoucher = (props) => {
                                 <a href="#" className="text-primary pr-1">#xrs-54pq</a></p>
                             <div className="mb-7">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Budget:</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Số tiền giảm giá:</span>
                                     <a href="#" className="text-muted text-hover-primary">{categories[3]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-cente my-1">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Expences:</span>
-                                    <a href="#" className="text-muted text-hover-primary">$76,810</a>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Phần trăm giảm giá:</span>
+                                    <a href="#" className="text-muted text-hover-primary">{percent[2]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Due Date:</span>
-                                    <span className="text-muted font-weight-bold">21.05.2016</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Ngày hết hạn:</span>
+                                    <span className="text-muted font-weight-bold">{Date}</span>
                                 </div>
                             </div>
-                            <a href="#" className="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4">write message</a>
+                            <a href="#" className="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4">Sử dụng</a>
                         </div>
                     </div>
                 </div>
@@ -354,19 +354,19 @@ const DataVoucher = (props) => {
                                 <a href="#" className="text-primary pr-1">#xrs-54pq</a></p>
                             <div className="mb-7">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Budget:</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Số tiền giảm giá:</span>
                                     <a href="#" className="text-muted text-hover-primary">{series[2]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-cente my-1">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Expences:</span>
-                                    <a href="#" className="text-muted text-hover-primary">$76,810</a>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Phần trăm giảm giá:</span>
+                                    <a href="#" className="text-muted text-hover-primary">{percent[3]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Due Date:</span>
-                                    <span className="text-muted font-weight-bold">21.05.2016</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Ngày hết hạn:</span>
+                                    <span className="text-muted font-weight-bold">{Date}</span>
                                 </div>
                             </div>
-                            <a href="#" className="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">write message</a>
+                            <a href="#" className="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">Sử dụng</a>
                         </div>
                     </div>
                 </div>
@@ -442,19 +442,19 @@ const DataVoucher = (props) => {
                                 <a href="#" className="text-primary pr-1">#xrs-54pq</a></p>
                             <div className="mb-7">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Budget:</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Số tiền giảm giá:</span>
                                     <a href="#" className="text-muted text-hover-primary">{series[3]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-cente my-1">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Expences:</span>
-                                    <a href="#" className="text-muted text-hover-primary">$76,810</a>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Phần trăm giảm giá:</span>
+                                    <a href="#" className="text-muted text-hover-primary">{percent[4]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Due Date:</span>
-                                    <span className="text-muted font-weight-bold">21.05.2016</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Ngày hết hạn:</span>
+                                    <span className="text-muted font-weight-bold">{Date}</span>
                                 </div>
                             </div>
-                            <a href="#" className="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4">write message</a>
+                            <a href="#" className="btn btn-block btn-sm btn-light-info font-weight-bolder text-uppercase py-4">Sử dụng</a>
                         </div>
                     </div>
                 </div>
@@ -535,19 +535,19 @@ const DataVoucher = (props) => {
                                 <a href="#" className="text-primary pr-1">#xrs-54pq</a></p>
                             <div className="mb-7">
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Budget:</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Số tiền giảm giá:</span>
                                     <a href="#" className="text-muted text-hover-primary">{series[4]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-cente my-1">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Expences:</span>
-                                    <a href="#" className="text-muted text-hover-primary">$76,810</a>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Phần trăm giảm giá:</span>
+                                    <a href="#" className="text-muted text-hover-primary">{percent[5]}</a>
                                 </div>
                                 <div className="d-flex justify-content-between align-items-center">
-                                    <span className="text-dark-75 font-weight-bolder mr-2">Due Date:</span>
-                                    <span className="text-muted font-weight-bold">21.05.2016</span>
+                                    <span className="text-dark-75 font-weight-bolder mr-2">Ngày hết hạn:</span>
+                                    <span className="text-muted font-weight-bold">{Date}</span>
                                 </div>
                             </div>
-                            <a href="#" className="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4">write message</a>
+                            <a href="#" className="btn btn-block btn-sm btn-light-warning font-weight-bolder text-uppercase py-4">Sử dụng</a>
                         </div>
                     </div>
                 </div>
