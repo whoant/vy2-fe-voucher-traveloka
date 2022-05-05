@@ -1,7 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 const CreateVoucher = props => {
+
+    const [visible, setVisible] = useState('hidden');
+    const HandleCharge = (e) => {
+        // setVisible(e.target.value)
+        if(e.target.value === 'Free'){
+            setVisible('hidden')
+        } else if (e.target.value === 'Charge'){
+            setVisible('number')
+        }
+
+    }
+
+    const {register, handleSubmit} = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
     return (
         <div className="row">
             <div className="col-md-8">
@@ -10,18 +28,25 @@ const CreateVoucher = props => {
                         <h3 className="card-title">Tạo voucher mới</h3>
                         
                     </div>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="card-body">
-                            
                             <div className="form-group">
-                                <label>Tên voucher
-                                <span className="text-danger">*</span></label>
-                                <input type="text" className="form-control" placeholder="Nhập tên voucher" />
+                                <label>
+                                    Tên voucher
+                                    <span className="text-danger">*</span>
+                                </label>
+                                <input type="text" className="form-control" placeholder="Nhập tên voucher" {...register('VoucherName')} required />
+                            </div>	
+                            <div className="form-group">
+                                <label>
+                                    Mã voucher
+                                    <span className="text-danger">*</span>
+                                </label>
+                                <input type="text" className="form-control" placeholder="Nhập mã voucher" {...register('VoucherCode')} required />
                             </div>														
                             <div className="form-group">
-                                <label for="exampleSelect1">Chọn loại
-                                <span className="text-danger">*</span></label>
-                                <select className="form-control" id="exampleSelect1">
+                                <label>Chọn loại dịch vụ</label>
+                                <select className="form-control" id="exampleSelect1" {...register("VoucherType")}>
                                     <option>Chuyến bay</option>
                                     <option>Khách sạn</option>
                                     <option>Đưa đón sân bay</option>
@@ -31,34 +56,74 @@ const CreateVoucher = props => {
                                     <option>Nhà hàng</option>
                                 </select>
                             </div>
+                            <div className="form-group">
+                                <label>
+                                    Chọn ảnh
+                                </label>
+                                <input type="file" className="form-control" accept=".png, .jpg, .jpeg*" {...register('VoucherImage')} />
+                            </div>
+                            <div className="form-group">
+                                <label>
+                                    Nội dung
+                                    <span className="text-danger">*</span>
+                                </label>
+                                <textarea className="form-control" placeholder="Nhập nội dung..." {...register('VoucherContent')} required />
+                            </div>
                             <div className="row">
                                 <div className="col-md-6">
                                     <div className="form-group">
-                                        <label>Số tiền tối đa được giảm</label>
+                                        <label>Số tiền tối đa được giảm
+                                            <span className="text-danger">*</span>
+                                        </label>
                                         <div className="input-group input-group-solid">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text">đ</span>
                                             </div>
-                                            <input type="text" className="form-control form-control-solid" placeholder="Nhập số tiền giảm" />
+                                            <input type="number" className="form-control form-control-solid" required placeholder="Nhập số tiền giảm" min='5000' {...register('MaxDiscount')} />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="form-group">
-                                        <label>Số phần trăm được giảm</label>
+                                        <label>Số phần trăm được giảm
+                                            <span className="text-danger">*</span>
+                                        </label>
                                         <div className="input-group input-group-solid">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text">%</span>
                                             </div>
-                                            <input type="text" className="form-control form-control-solid" placeholder="Nhập số phần trăm giảm" />
+                                            <input type="number" className="form-control form-control-solid" required placeholder="Nhập số phần trăm giảm" min='1' max='99' {...register('DiscountPercent')} />
                                         </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label>Số lượng sử dụng
+                                            <span className="text-danger">*</span>
+                                        </label>
+                                        <input type='number' className="form-control" required placeholder="Nhập số lượng sử dụng" min='10' {...register('UseLimit')} />
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="form-group">
+                                        <label for="exampleSelect1">    
+                                            Số tiền để mua voucher
+                                            <span className="text-danger">*</span>
+                                        </label>
+                                        <select className="form-control" onChange={HandleCharge} 
+                                            // {...register('Fee')} 
+                                        >
+                                            <option value='Free'>Free</option>
+                                            <option value='Charge'>Có tính phí</option>
+                                        </select>
+                                        <input type={visible} className="form-control" placeholder="Nhập số tiền..." min='10000' />
                                     </div>
                                 </div>
                             </div>
                             <div className="form-group row">
                                 <div className="col-md-4">
                                     <label>* Ngày bẳt đầu:</label>
-                                    <select className="form-control" name="billing_card_exp_month">
+                                    <select className="form-control" required name="billing_card_exp_day" {...register('StartDay')}>
                                         <option value="">Chọn</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -95,7 +160,7 @@ const CreateVoucher = props => {
                                 </div>
                                 <div className="col-md-4">
                                     <label>* Tháng bắt đầu:</label>
-                                    <select className="form-control" name="billing_card_exp_month">
+                                    <select className="form-control" required name="billing_card_exp_month" {...register('StartMonth')}>
                                         <option value="">Chọn</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -113,7 +178,7 @@ const CreateVoucher = props => {
                                 </div>
                                 <div className="col-md-4">
                                     <label>* Năm bắt đầu:</label>
-                                    <select className="form-control" name="billing_card_exp_year">
+                                    <select className="form-control" required name="billing_card_exp_year" {...register('StartYear')}>
                                         <option value="">Chọn</option>
                                         <option value="2018">2018</option>
                                         <option value="2019">2019</option>
@@ -129,7 +194,7 @@ const CreateVoucher = props => {
                             <div className="form-group row">
                                 <div className="col-md-4">
                                     <label>* Ngày hết hạn:</label>
-                                    <select className="form-control" name="billing_card_exp_month">
+                                    <select className="form-control" required name="billing_card_exp_day" {...register('EndDay')}>
                                         <option value="">Chọn</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -166,7 +231,7 @@ const CreateVoucher = props => {
                                 </div>
                                 <div className="col-md-4">
                                     <label>* Tháng hết hạn:</label>
-                                    <select className="form-control" name="billing_card_exp_month">
+                                    <select className="form-control" required name="billing_card_exp_month" {...register('EndMonth')}>
                                         <option value="">Chọn</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -184,7 +249,7 @@ const CreateVoucher = props => {
                                 </div>
                                 <div className="col-md-4">
                                     <label>* Năm hết hạn:</label>
-                                    <select className="form-control" name="billing_card_exp_year">
+                                    <select className="form-control" required name="billing_card_exp_year" {...register('EndYear')}>
                                         <option value="">Chọn</option>
                                         <option value="2018">2018</option>
                                         <option value="2019">2019</option>
@@ -200,8 +265,8 @@ const CreateVoucher = props => {
                         </div>
                         
                         <div className="card-footer">
-                            <button type="reset" className="btn btn-primary mr-2">Tạo Voucher</button>
-                            <button type="reset" className="btn btn-secondary">Hủy</button>
+                            <input type='submit' className="btn btn-primary mr-2" value='Tạo Voucher'/>
+                            <input type="reset" className="btn btn-danger" value='Hủy (Xóa thông tin đã nhập)'/>
                         </div>
                     </form>
                 </div>
