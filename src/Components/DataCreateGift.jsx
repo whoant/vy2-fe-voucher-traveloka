@@ -1,17 +1,42 @@
 import React from 'react'
 import { useState } from "react";
 const DataCreateGift = () => {
+
     const [nameGift, setGift] = useState("");
     const [money, setMoney] = useState("");
     const [Percent, setPercent] = useState("");
     const [Point, setPoint] = useState("");
-    const [Type, setType] = useState("");
+    const [Type, setType] = useState(getInitialState);
     const [startDay, setStartDay] = useState("");
     const [startMonth, setStartMonth] = useState("");
     const [startYear, setStartYear] = useState("");
     const [endDay, setEndDay] = useState("");
     const [endMonth, setEndMonth] = useState("");
     const [endYear, setEndYear] = useState("");
+    const [value, setValue] = useState("");
+    const [des, setDes] = useState("");
+    const [Code, setCode] = useState("");
+    const [imageName, setImage] = useState("");
+    const [type, setTypeDown] = useState(false);
+    const handleImageChange = (e) => {
+        setImage(e.target.value);
+    };
+    const handleDesChange = (e) => {
+        setDes(e.target.value);
+    };
+    const handleCodeChange = (e) => {
+        setCode(e.target.value);
+    };
+    const handleChange = (e) => {
+        if (e.target.value === "True") {
+            setValue(e.target.value);
+            setTypeDown(true);
+        } else {
+            setValue(e.target.value);
+            setTypeDown(false);
+        }
+    };
+
     const hanleTypeChange = (e) => {
         setType(e.target.value);
     };
@@ -49,11 +74,7 @@ const DataCreateGift = () => {
     };
 
     const handleCreate = () => {
-        if (nameGift === "" || Type === "" || money === "" || Percent === "" || Point === "" || startDay === "" || startMonth === "" || startYear === "" || endDay === "" || endMonth === "" || endYear === "") {
-            alert("null object");
-        } else {
-            console.log('{  NameGift:' + nameGift, 'Type:' + Type, 'Money:' + money, 'Percent:' + Percent, 'Point:' + Point, 'SDay:' + startDay, 'SMonth:' + startMonth, 'Syear:' + startYear, 'EDay:' + endDay, 'EMonth:' + endMonth, 'EYear:' + endYear);
-        }
+        console.log('{  NameGift:' + nameGift, 'des: ' + des, 'code: ' + Code, 'imageName: ' + imageName, 'Type:' + Type, 'Money:' + money, 'Percent:' + Percent, 'Point:' + Point, 'SDay:' + startDay, 'SMonth:' + startMonth, 'Syear:' + startYear, 'EDay:' + endDay, 'EMonth:' + endMonth, 'EYear:' + endYear + "}");
     };
     return (
         <form> <div className="card-body">
@@ -64,20 +85,44 @@ const DataCreateGift = () => {
                 <input type="text" className="form-control" placeholder="Nhập tên voucher" value={nameGift} onChange={handleNameGiftChange} />
             </div>
             <div className="form-group">
+                <label>Nội dung
+                    <span className="text-danger">*</span></label>
+                <textarea type="text" className="form-control" placeholder="Nhập nội dung voucher" value={des} onChange={handleDesChange} />
+            </div>
+            <div className="form-group">
+                <label>Mã gift
+                    <span className="text-danger">*</span></label>
+                <input type="text" className="form-control" placeholder="Nhập tên voucher" value={Code} onChange={handleCodeChange} />
+            </div>
+            <div className='form-group'>
+                <label>Ảnh
+                    <span className="text-danger">*</span>
+                </label>
+                <input type="file" className="form-control" accept=".png, .jpg, .jpeg*" value={imageName} onChange={handleImageChange} />
+            </div>
+            <div className="form-group">
                 <label htmlFor="exampleSelect1">Chọn loại
                     <span className="text-danger">*</span></label>
                 <select className="form-control" id="exampleSelect1" value={Type} onChange={hanleTypeChange}>
                     <option value="Chuyenbay" onChange={hanleTypeChange}>Chuyến bay</option>
-                    <option value={"Khachsan"} onChange={hanleTypeChange}>Khách sạn</option>
-                    <option value={"DuaDon"} onChange={hanleTypeChange}>Đưa đón sân bay</option>
-                    <option value={"BietThu"} onChange={hanleTypeChange}>Biệt thự và căn hộ</option>
-                    <option value={"TraiNghiem"} onChange={hanleTypeChange}>Tour du lịch(Trải nghiệm)</option>
-                    <option value={"Thuexe"} onChange={hanleTypeChange}>Thuê xe</option>
-                    <option value={"NhaHan"} onChange={hanleTypeChange}>Nhà hàng</option>
+                    <option value="Khachsan" onChange={hanleTypeChange}>Khách sạn</option>
+                    <option value="DuaDon" onChange={hanleTypeChange}>Đưa đón sân bay</option>
+                    <option value="BietThu" onChange={hanleTypeChange}>Biệt thự và căn hộ</option>
+                    <option value="TraiNghiem" onChange={hanleTypeChange}>Tour du lịch(Trải nghiệm)</option>
+                    <option value="Thuexe" onChange={hanleTypeChange}>Thuê xe</option>
+                    <option value="NhaHan" onChange={hanleTypeChange}>Nhà hàng</option>
+                </select>
+            </div>
+            <div className="form-group">
+                <label htmlFor="exampleSelect1">Chọn loại
+                    <span className="text-danger">*</span></label>
+                <select className="form-control" id="exampleSelect1" value={value} onChange={handleChange} >
+                    <option value="True" onChange={handleChange}>Monney Percent</option>
+                    <option value="False" onChange={handleChange}>Percent</option>
                 </select>
             </div>
             <div className="row">
-                <div className="col-md-6">
+                {type === true ? (<div className="col-md-6">
                     <div className="form-group">
                         <label>Số tiền tối đa được giảm</label>
                         <div className="input-group input-group-solid">
@@ -87,8 +132,7 @@ const DataCreateGift = () => {
                             <input type="text" className="form-control form-control-solid" placeholder="Nhập số tiền giảm" value={money} onChange={handleMoneyChange} />
                         </div>
                     </div>
-                </div>
-                <div className="col-md-6">
+                </div>) : (<div className="col-md-6">
                     <div className="form-group">
                         <label>Số phần trăm được giảm</label>
                         <div className="input-group input-group-solid">
@@ -98,7 +142,10 @@ const DataCreateGift = () => {
                             <input type="text" className="form-control form-control-solid" placeholder="Nhập số phần trăm giảm" value={Percent} onChange={handlePercentMoneyChange} />
                         </div>
                     </div>
-                </div><div className="col-md-6">
+                </div>)}
+
+
+                <div className="col-md-6">
                     <div className="form-group">
                         <label>Điểm để đổi gift card</label>
                         <div className="input-group input-group-solid">
@@ -260,6 +307,7 @@ const DataCreateGift = () => {
             </div>
         </form>
     )
+
 }
 
 export default DataCreateGift
