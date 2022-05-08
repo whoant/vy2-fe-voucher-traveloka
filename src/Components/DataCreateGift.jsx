@@ -18,6 +18,8 @@ const DataCreateGift = () => {
     const [Code, setCode] = useState("");
     const [imageName, setImage] = useState("");
     const [type, setTypeDown] = useState(false);
+
+
     const handleImageChange = (e) => {
         setImage(e.target.value);
     };
