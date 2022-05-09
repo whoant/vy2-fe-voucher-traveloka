@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 const CreateVoucher = props => {
 
     const [visible, setVisible] = useState('hidden');
-    const HandleCharge = (e) => {
+    const handleCharge = (e) => {
         // setVisible(e.target.value)
         if(e.target.value === 'Free'){
             setVisible('hidden')
@@ -17,6 +17,9 @@ const CreateVoucher = props => {
 
     const {register, handleSubmit} = useForm();
     const onSubmit = (data) => {
+        if (visible === 'hidden') {
+            data.Fee = 0;
+        }
         console.log(data);
     };
 
@@ -43,18 +46,6 @@ const CreateVoucher = props => {
                                     <span className="text-danger">*</span>
                                 </label>
                                 <input type="text" className="form-control" placeholder="Nhập mã voucher" {...register('VoucherCode')} required />
-                            </div>														
-                            <div className="form-group">
-                                <label>Chọn loại dịch vụ</label>
-                                <select className="form-control" id="exampleSelect1" {...register("VoucherType")}>
-                                    <option>Chuyến bay</option>
-                                    <option>Khách sạn</option>
-                                    <option>Đưa đón sân bay</option>
-                                    <option>Biệt thự và căn hộ</option>
-                                    <option>Tour du lịch(Trải nghiệm)</option>
-                                    <option>Thuê xe</option>
-                                    <option>Nhà hàng</option>
-                                </select>
                             </div>
                             <div className="form-group">
                                 <label>
@@ -110,13 +101,13 @@ const CreateVoucher = props => {
                                             Số tiền để mua voucher
                                             <span className="text-danger">*</span>
                                         </label>
-                                        <select className="form-control" onChange={HandleCharge} 
+                                        <select className="form-control" onChange={handleCharge}
                                             // {...register('Fee')} 
                                         >
                                             <option value='Free'>Free</option>
                                             <option value='Charge'>Có tính phí</option>
                                         </select>
-                                        <input type={visible} className="form-control" placeholder="Nhập số tiền..." min='10000' />
+                                        <input type={visible}  {...register('Fee')}className="form-control" placeholder="Nhập số tiền..." min='10000' />
                                     </div>
                                 </div>
                             </div>
