@@ -1,6 +1,7 @@
 import Layout from "./components/layout/Layout";
 import Partner from "./pages/Partner/Partner";
 import CreateVoucher from "./components/CreateVoucher/CreateVoucher";
+import Login from "./components/Login/Login";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -13,6 +14,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Partner />}/>
 				<Route path="/createvoucher" element={<CreateVoucher />} />
+				<Route path="/login" element={<Login />} />
 
 			</Routes>
 		</Layout>

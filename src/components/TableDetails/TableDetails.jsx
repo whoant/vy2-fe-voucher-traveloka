@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const TableDetails = props => {
     const {voucherDetails} = props;
@@ -12,8 +13,8 @@ const TableDetails = props => {
                     <span className="card-label font-weight-bolder text-dark">Chi tiết voucher</span>
                 </h3>
                 <div className="card-toolbar">
-                    <a href="/CreateVoucher"
-                        className="btn btn-danger font-weight-bolder font-size-sm">Tạo voucher mới</a>
+                    <Link to="/CreateVoucher"
+                        className="btn btn-danger font-weight-bolder font-size-sm">Tạo voucher mới</Link>
                 </div>
             </div>
             <div className="card-body pt-0 pb-3">
@@ -41,7 +42,7 @@ const TableDetails = props => {
                                                     
                                                 </div>
                                                 <div>
-                                                    <a href="#" className="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{voucherDetail.name}</a>
+                                                    <Link to="#" className="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">{voucherDetail.name}</Link>
                                                 </div>
                                             </div>
                                         </td>
@@ -58,7 +59,7 @@ const TableDetails = props => {
                                             <span className="text-dark-75 font-weight-bolder d-block font-size-lg">{voucherDetail.usedNumber}</span>
                                         </td>
                                         <td className="pr-0 text-right">
-                                            <a href="#" className="btn btn-light-success font-weight-bolder font-size-sm">Chi tiết</a>
+                                            <Link to="#" className="btn btn-light-success font-weight-bolder font-size-sm">Chi tiết</Link>
                                         </td>
                                     </tr>
 

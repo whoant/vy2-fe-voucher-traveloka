@@ -5,18 +5,21 @@ import { useForm } from 'react-hook-form';
 const CreateVoucher = props => {
 
     const [visible, setVisible] = useState('hidden');
-    const HandleCharge = (e) => {
+    const handleCharge = (e) => {
         // setVisible(e.target.value)
         if(e.target.value === 'Free'){
             setVisible('hidden')
         } else if (e.target.value === 'Charge'){
             setVisible('number')
         }
-
+        console.log(e.target.value);
     }
 
     const {register, handleSubmit} = useForm();
     const onSubmit = (data) => {
+        if (visible === 'hidden') {
+            data.Fee = 0;
+        }
         console.log(data);
     };
 
@@ -44,9 +47,9 @@ const CreateVoucher = props => {
                                 </label>
                                 <input type="text" className="form-control" placeholder="Nhập mã voucher" {...register('VoucherCode')} required />
                             </div>														
-                            <div className="form-group">
+                            {/* <div className="form-group">
                                 <label>Chọn loại dịch vụ</label>
-                                <select className="form-control" id="exampleSelect1" {...register("VoucherType")}>
+                                <select className="form-control" {...register("VoucherType")}>
                                     <option>Chuyến bay</option>
                                     <option>Khách sạn</option>
                                     <option>Đưa đón sân bay</option>
@@ -55,7 +58,7 @@ const CreateVoucher = props => {
                                     <option>Thuê xe</option>
                                     <option>Nhà hàng</option>
                                 </select>
-                            </div>
+                            </div> */}
                             <div className="form-group">
                                 <label>
                                     Chọn ảnh
@@ -110,157 +113,32 @@ const CreateVoucher = props => {
                                             Số tiền để mua voucher
                                             <span className="text-danger">*</span>
                                         </label>
-                                        <select className="form-control" onChange={HandleCharge} 
+                                        <select className="form-control" onChange={handleCharge} 
                                             // {...register('Fee')} 
                                         >
-                                            <option value='Free'>Free</option>
+                                            <option value='Free' >Free</option>
                                             <option value='Charge'>Có tính phí</option>
                                         </select>
-                                        <input type={visible} className="form-control" placeholder="Nhập số tiền..." min='10000' />
+                                        <input 
+                                            type={visible} 
+                                            {...register('Fee')} 
+                                            className="form-control"
+                                            placeholder="Nhập số tiền..." 
+                                            min='10000' />
                                     </div>
                                 </div>
                             </div>
                             <div className="form-group row">
-                                <div className="col-md-4">
-                                    <label>* Ngày bẳt đầu:</label>
-                                    <select className="form-control" required name="billing_card_exp_day" {...register('StartDay')}>
-                                        <option value="">Chọn</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                        <option value="28">28</option>
-                                        <option value="29">29</option>
-                                        <option value="30">30</option>
-                                        <option value="31">31</option>
-                                    </select>
+                                <label class="col-2 col-form-label">Ngày bắt đầu</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="date" {...register('StartDay')}  />
                                 </div>
-                                <div className="col-md-4">
-                                    <label>* Tháng bắt đầu:</label>
-                                    <select className="form-control" required name="billing_card_exp_month" {...register('StartMonth')}>
-                                        <option value="">Chọn</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                </div>
-                                <div className="col-md-4">
-                                    <label>* Năm bắt đầu:</label>
-                                    <select className="form-control" required name="billing_card_exp_year" {...register('StartYear')}>
-                                        <option value="">Chọn</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2019">2019</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                    </select>
-                                </div>
-                                
                             </div>
                             <div className="form-group row">
-                                <div className="col-md-4">
-                                    <label>* Ngày hết hạn:</label>
-                                    <select className="form-control" required name="billing_card_exp_day" {...register('EndDay')}>
-                                        <option value="">Chọn</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                        <option value="28">28</option>
-                                        <option value="29">29</option>
-                                        <option value="30">30</option>
-                                        <option value="31">31</option>
-                                    </select>
+                                <label class="col-2 col-form-label">Ngày hết hạn</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="date" {...register('EndDay')} />
                                 </div>
-                                <div className="col-md-4">
-                                    <label>* Tháng hết hạn:</label>
-                                    <select className="form-control" required name="billing_card_exp_month" {...register('EndMonth')}>
-                                        <option value="">Chọn</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                </div>
-                                <div className="col-md-4">
-                                    <label>* Năm hết hạn:</label>
-                                    <select className="form-control" required name="billing_card_exp_year" {...register('EndYear')}>
-                                        <option value="">Chọn</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2019">2019</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                    </select>
-                                </div>
-                                
                             </div>
                         </div>
                         
