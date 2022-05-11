@@ -46,7 +46,7 @@ const CreateVoucher = props => {
                                     <span className="text-danger">*</span>
                                 </label>
                                 <input type="text" className="form-control" placeholder="Nhập mã voucher" {...register('VoucherCode')} required />
-<<<<<<< HEAD
+
                             </div>														
                             {/* <div className="form-group">
                                 <label>Chọn loại dịch vụ</label>
@@ -60,9 +60,6 @@ const CreateVoucher = props => {
                                     <option>Nhà hàng</option>
                                 </select>
                             </div> */}
-=======
-                            </div>
->>>>>>> 39ed9cdbb6bbd2729315b3672fbe265f37ad94ff
                             <div className="form-group">
                                 <label>
                                     Chọn ảnh
@@ -117,26 +114,17 @@ const CreateVoucher = props => {
                                             Số tiền để mua voucher
                                             <span className="text-danger">*</span>
                                         </label>
-<<<<<<< HEAD
-                                        <select className="form-control" onChange={handleCharge} 
-=======
-                                        <select className="form-control" onChange={handleCharge}
->>>>>>> 39ed9cdbb6bbd2729315b3672fbe265f37ad94ff
-                                            // {...register('Fee')} 
-                                        >
+                                        <select className="form-control" onChange={handleCharge} >
                                             <option value='Free' >Free</option>
                                             <option value='Charge'>Có tính phí</option>
                                         </select>
-<<<<<<< HEAD
                                         <input 
                                             type={visible} 
                                             {...register('Fee')} 
                                             className="form-control"
                                             placeholder="Nhập số tiền..." 
                                             min='10000' />
-=======
                                         <input type={visible}  {...register('Fee')}className="form-control" placeholder="Nhập số tiền..." min='10000' />
->>>>>>> 39ed9cdbb6bbd2729315b3672fbe265f37ad94ff
                                     </div>
                                 </div>
                             </div>

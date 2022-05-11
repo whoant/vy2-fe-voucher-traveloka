@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 const Login = props => {
+
+    const {register, handleSubmit} = useForm();
+    const onSubmit = (data) => {
+
+        console.log(data);
+    };
 
 	return (
         <div className="row">
@@ -11,21 +18,21 @@ const Login = props => {
                         <h3 className="card-title">Đăng nhập tài khoản</h3>
                         
                     </div>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="card-body">
                             <div className="form-group">
                                 <label>
-                                    Email hoặc số di động
+                                    Email
                                     <span className="text-danger">*</span>
                                 </label>
-                                <input type="text" className="form-control" required />
+                                <input type='email' className="form-control" required {...register('Email')} />
                             </div>	
                             <div className="form-group">
                                 <label>
                                     Mật khẩu
                                     <span className="text-danger">*</span>
                                 </label>
-                                <input type="text" className="form-control" required />
+                                <input type="password" className="form-control" required {...register('Password')} />
                             </div>														
                             <div className='row'>
                                 <div className='col-md-3'>
@@ -33,7 +40,7 @@ const Login = props => {
                                 </div>
                                 <div className='col-md-9'>
                                     <div>Bạn chưa có tài khoản ?</div>
-                                    <Link to="/register">Đăng ký tài khoản</Link>
+                                    <Link to="#">Đăng ký tài khoản</Link>
                                 </div>
                             </div>
                         </div>
