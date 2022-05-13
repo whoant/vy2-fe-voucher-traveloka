@@ -1,14 +1,19 @@
 import React from 'react'
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
+import "react-toastify/dist/ReactToastify.min.css"
+import { toast, ToastContainer } from 'react-toastify';
 const DataCreateGift = () => {
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data) => {
+        toast.success("ban dang dang ki thanh cong");
         if (type === true) {
             data.PercentDiscount = 0;
         } else {
             data.MoneyDiscount = 0;
         }
+
         console.log(data);
     }
     const [type, setTypedown] = useState(true);
@@ -28,7 +33,7 @@ const DataCreateGift = () => {
                     <label>Tên gift card
                         <span className="text-danger">*</span></label>
                     <input type="text" className="form-control" placeholder="Nhập tên voucher" {...register("nameGift", { required: true })} />
-                    {errors.nameGift && <span>This field is required</span>}
+                    {errors.pointGift && <span>This field is required</span>}
                 </div>
                 <div className="form-group">
                     <label>Nội dung
