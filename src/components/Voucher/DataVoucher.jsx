@@ -6,7 +6,6 @@ const DataVoucher = props => {
 
     return (
         <div className="container">
-            <Link to="#">abc</Link>
             <div className="row">
                 <div className="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                     <div className="card card-custom gutter-b card-stretch">
