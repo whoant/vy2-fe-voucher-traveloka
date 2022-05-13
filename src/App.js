@@ -8,7 +8,6 @@ import { Route, Routes } from "react-router-dom";
 import './App.css';
 import './prismjs.css';
 import UserVoucher from "./pages/User/UserVoucher";
-import LoginPartner from "./pages/Partner/LoginPartner";
 import Gift from "./pages/Partner/Gift";
 import CreateGiftPartner from "./pages/Partner/CreateGiftPartner";
 
@@ -19,7 +18,6 @@ function App() {
 				<Route path="/" element={<Login />} />
 				<Route path="/createvoucher" element={<CreateVoucher />} />
 				<Route path="/main" element={<Partner />} />
-				<Route path="/loginpartner" element={<LoginPartner />} />
 				<Route path="/voucher" element={<UserVoucher />} />
 				<Route path="/listgiftpartner" element={<Gift />} />
 				<Route path="/creategiftpartner" element={<CreateGiftPartner />} />
