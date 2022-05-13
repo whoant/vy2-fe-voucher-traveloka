@@ -4,20 +4,19 @@ import { useForm } from 'react-hook-form';
 
 const CreateVoucher = props => {
 
-    const [visible, setVisible] = useState('hidden');
+    const [visible, setVisible] = useState(false);
     const handleCharge = (e) => {
         // setVisible(e.target.value)
         if(e.target.value === 'Free'){
-            setVisible('hidden')
+            setVisible(false)
         } else if (e.target.value === 'Charge'){
-            setVisible('number')
+            setVisible(true)
         }
-        console.log(e.target.value);
     }
 
     const {register, handleSubmit} = useForm();
     const onSubmit = (data) => {
-        if (visible === 'hidden') {
+        if (!visible) {
             data.Fee = 0;
         }
         console.log(data);
@@ -83,7 +82,7 @@ const CreateVoucher = props => {
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text">đ</span>
                                             </div>
-                                            <input type="number" className="form-control form-control-solid" required placeholder="Nhập số tiền giảm" min='5000' {...register('MaxDiscount')} />
+                                            <input type="number" className="form-control form-control-solid" required placeholder="Nhập số tiền giảm" min='0' {...register('MaxDiscount')} />
                                         </div>
                                     </div>
                                 </div>
@@ -96,18 +95,11 @@ const CreateVoucher = props => {
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text">%</span>
                                             </div>
-                                            <input type="number" className="form-control form-control-solid" required placeholder="Nhập số phần trăm giảm" min='1' max='99' {...register('DiscountPercent')} />
+                                            <input type="number" className="form-control form-control-solid" required placeholder="Nhập số phần trăm giảm" min='0' max='100' {...register('DiscountPercent')} />
                                         </div>
                                     </div>
                                 </div>
-                                <div className="col-md-6">
-                                    <div className="form-group">
-                                        <label>Số lượng sử dụng
-                                            <span className="text-danger">*</span>
-                                        </label>
-                                        <input type='number' className="form-control" required placeholder="Nhập số lượng sử dụng" min='10' {...register('UseLimit')} />
-                                    </div>
-                                </div>
+
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label for="exampleSelect1">    
@@ -118,14 +110,22 @@ const CreateVoucher = props => {
                                             <option value='Free' >Free</option>
                                             <option value='Charge'>Có tính phí</option>
                                         </select>
-                                        <input 
-                                            type={visible} 
-                                            {...register('Fee')} 
-                                            className="form-control"
-                                            placeholder="Nhập số tiền..." 
-                                            min='10000' />
-                                        <input type={visible}  {...register('Fee')}className="form-control" placeholder="Nhập số tiền..." min='10000' />
                                     </div>
+                                </div>
+                                <div className="col-md-6">
+                                    {
+                                        visible && (<div className="form-group">
+                                            <label htmlFor="exampleSelect1">
+                                                Số tiền để mua voucher
+                                                <span className="text-danger">*</span>
+                                            </label>
+                                            <input
+                                                {...register('Fee')}
+                                                className="form-control"
+                                                placeholder="Nhập số tiền..."
+                                                min='10000'/>
+                                        </div>)
+                                    }
                                 </div>
                             </div>
                             <div className="form-group row">
