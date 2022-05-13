@@ -51,12 +51,7 @@ const Layout = props => {
 									<li className="menu-item" aria-haspopup="true">
 										<Link to="/createvoucher" className="menu-link"><span className="menu-text">Create Voucher Partner</span></Link>
 									</li>
-									<li className="menu-item" aria-haspopup="true">
-										<Link to="/login" className="menu-link"><span className="menu-text">Login User</span></Link>
-									</li>
-									<li className="menu-item" aria-haspopup="true">
-										<Link to="/loginpartner" className="menu-link"><span className="menu-text">Login Partner</span></Link>
-									</li>
+
 									<li className="menu-item" aria-haspopup="true">
 										<Link to="/listgiftpartner" className="menu-link"><span className="menu-text">List Gift Partner</span></Link>
 									</li>

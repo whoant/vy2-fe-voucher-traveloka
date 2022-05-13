@@ -7,14 +7,14 @@ const CreateVoucher = props => {
     const [visible, setVisible] = useState(false);
     const handleCharge = (e) => {
         // setVisible(e.target.value)
-        if(e.target.value === 'Free'){
+        if (e.target.value === 'Free') {
             setVisible(false)
-        } else if (e.target.value === 'Charge'){
+        } else if (e.target.value === 'Charge') {
             setVisible(true)
         }
     }
 
-    const {register, handleSubmit} = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
         if (!visible) {
             data.Fee = 0;
@@ -24,11 +24,14 @@ const CreateVoucher = props => {
 
     return (
         <div className="row">
+            <div className='col-md-2'>
+
+            </div>
             <div className="col-md-8">
                 <div className="card card-custom gutter-b example example-compact">
                     <div className="card-header">
                         <h3 className="card-title">Tạo voucher mới</h3>
-                        
+
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="card-body">
@@ -38,7 +41,7 @@ const CreateVoucher = props => {
                                     <span className="text-danger">*</span>
                                 </label>
                                 <input type="text" className="form-control" placeholder="Nhập tên voucher" {...register('VoucherName')} required />
-                            </div>	
+                            </div>
                             <div className="form-group">
                                 <label>
                                     Mã voucher
@@ -46,7 +49,7 @@ const CreateVoucher = props => {
                                 </label>
                                 <input type="text" className="form-control" placeholder="Nhập mã voucher" {...register('VoucherCode')} required />
 
-                            </div>														
+                            </div>
                             {/* <div className="form-group">
                                 <label>Chọn loại dịch vụ</label>
                                 <select className="form-control" {...register("VoucherType")}>
@@ -102,7 +105,7 @@ const CreateVoucher = props => {
 
                                 <div className="col-md-6">
                                     <div className="form-group">
-                                        <label for="exampleSelect1">    
+                                        <label for="exampleSelect1">
                                             Số tiền để mua voucher
                                             <span className="text-danger">*</span>
                                         </label>
@@ -123,7 +126,7 @@ const CreateVoucher = props => {
                                                 {...register('Fee')}
                                                 className="form-control"
                                                 placeholder="Nhập số tiền..."
-                                                min='10000'/>
+                                                min='10000' />
                                         </div>)
                                     }
                                 </div>
@@ -131,7 +134,7 @@ const CreateVoucher = props => {
                             <div className="form-group row">
                                 <label class="col-2 col-form-label">Ngày bắt đầu</label>
                                 <div class="col-10">
-                                    <input class="form-control" type="date" {...register('StartDay')}  />
+                                    <input class="form-control" type="date" {...register('StartDay')} />
                                 </div>
                             </div>
                             <div className="form-group row">
@@ -141,20 +144,23 @@ const CreateVoucher = props => {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div className="card-footer">
-                            <input type='submit' className="btn btn-primary mr-2" value='Tạo Voucher'/>
-                            <input type="reset" className="btn btn-danger" value='Hủy (Xóa thông tin đã nhập)'/>
+                            <input type='submit' className="btn btn-primary mr-2" value='Tạo Voucher' />
+                            <input type="reset" className="btn btn-danger" value='Hủy (Xóa thông tin đã nhập)' />
                         </div>
                     </form>
                 </div>
+            </div>
+            <div className='col-md-2'>
+
             </div>
         </div>
     );
 };
 
 CreateVoucher.propTypes = {
-    
+
 };
 
 export default CreateVoucher;

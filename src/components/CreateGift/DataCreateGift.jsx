@@ -51,7 +51,6 @@ const DataCreateGift = () => {
                     <label htmlFor="exampleSelect1">Chọn loại
                         <span className="text-danger">*</span></label>
                     <select className="form-control" id="exampleSelect1" {...register("category", { required: true })}>
-                        <option value="" >Select....</option>
                         <option value="Chuyenbay" >Chuyến bay</option>
                         <option value="Khachsan" >Khách sạn</option>
                         <option value="DuaDon" >Đưa đón sân bay</option>

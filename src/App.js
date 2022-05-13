@@ -16,9 +16,9 @@ function App() {
 	return (
 		<Layout>
 			<Routes>
-				<Route path="/" element={<Partner />} />
+				<Route path="/" element={<Login />} />
 				<Route path="/createvoucher" element={<CreateVoucher />} />
-				<Route path="/login" element={<Login />} />
+				<Route path="/main" element={<Partner />} />
 				<Route path="/loginpartner" element={<LoginPartner />} />
 				<Route path="/voucher" element={<UserVoucher />} />
 				<Route path="/listgiftpartner" element={<Gift />} />
