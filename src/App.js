@@ -21,7 +21,7 @@ function App() {
 				<Route path="/login" element={<Login />} />
 				<Route path="/loginpartner" element={<LoginPartner />} />
 				<Route path="/voucher" element={<UserVoucher />} />
-				<Route path="/list	giftpartner" element={<Gift />} />
+				<Route path="/listgiftpartner" element={<Gift />} />
 				<Route path="/creategiftpartner" element={<CreateGiftPartner />} />
 			</Routes>
 		</Layout>
