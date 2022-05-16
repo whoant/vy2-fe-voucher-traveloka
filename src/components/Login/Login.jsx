@@ -1,15 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { toast } from "react-toastify";
+import AuthApi from "../../api/auth.api";
 
 const Login = props => {
-
     const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => {
-        if (data != null) {
+    const navigate = useNavigate();
 
+    const onSubmit = async body => {
+        if (!body) {
+            toast.error("Vui lòng kiểm tra lại thông tin !");
+            return;
         }
-        console.log(data);
+
+        try {
+            const { data } = await AuthApi.login(body);
+            localStorage.setItem('user', JSON.stringify(data.data));
+            navigate('/create-voucher', { replace: true });
+        } catch (e) {
+            console.log(e);
+            toast.error(e.response.data.message);
+        }
     };
 
     return (
@@ -24,21 +36,22 @@ const Login = props => {
                         <div className="card-body">
                             <div className="form-group">
                                 <label>
-                                    Email
+                                    Tài khoản
                                     <span className="text-danger">*</span>
                                 </label>
-                                <input type='email' className="form-control" required {...register('Email')} />
+                                <input type='text' className="form-control" required {...register('username')} />
                             </div>
                             <div className="form-group">
                                 <label>
                                     Mật khẩu
                                     <span className="text-danger">*</span>
                                 </label>
-                                <input type="password" className="form-control" required {...register('Password')} />
+                                <input type="password" className="form-control" required {...register('password')} />
                             </div>
                             <div className='row'>
                                 <div className='col-md-3'>
-                                    <Link to="/main"><input type='submit' className="btn btn-primary mr-2" value='Đăng nhập' /></Link>
+                                    <input type='submit' className="btn btn-primary mr-2"
+                                           value='Đăng nhập'/>
                                 </div>
                             </div>
                         </div>

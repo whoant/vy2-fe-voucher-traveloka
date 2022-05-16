@@ -1,10 +1,19 @@
 import axios from 'axios';
+import env from "react-dotenv";
 
 const instance = axios.create({
-    baseURL: 'http://45.76.145.238:2020/api/',
+    baseURL: env.END_POINT,
 });
 
 instance.interceptors.request.use(function (config) {
+    const storageUser = localStorage.getItem('user');
+    if (storageUser) {
+        const { token } = JSON.parse(storageUser);
+        config.headers = {
+            ...config.headers,
+            Authorization: `Bearer ${token}`
+        };
+    }
 
     return config;
 }, function (error) {
