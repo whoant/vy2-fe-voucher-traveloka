@@ -14,7 +14,12 @@ jobs:
       - name: Stop container
         continue-on-error: true
         run: docker-compose down
+
+      - name: Create .env.docker file
+        run: |
+          touch .env.docker
+          echo END_POINT=${{secrets.END_POINT}} > .env
       - name: Build image
-        run: docker-compose build --no-cache
+        run: docker-compose build
       - name: Start container
         run: docker-compose up -d

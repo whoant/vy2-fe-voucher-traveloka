@@ -16,6 +16,10 @@ jobs:
       - name: Stop container
         continue-on-error: true
         run: docker-compose down
+      - name: Create .env.docker file
+        run: |
+          touch .env.docker
+          echo PORT=${{secrets.PORT}} > .env
       - name: Build image
         run: docker-compose build --no-cache
       - name: Start container
