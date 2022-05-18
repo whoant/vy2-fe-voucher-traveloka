@@ -16,7 +16,7 @@ jobs:
         run: docker-compose down
       - name: Create .env.docker file
         run: |
-          touch .env.docker
+          touch .env
           echo END_POINT=${{secrets.END_POINT}} > .env
       - name: Build image
         run: docker-compose build
