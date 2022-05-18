@@ -2,7 +2,7 @@ import axios from 'axios';
 import env from "react-dotenv";
 
 const instance = axios.create({
-    baseURL: env.END_POINT,
+    baseURL: 'http://localhost:8080',
 });
 
 instance.interceptors.request.use(function (config) {

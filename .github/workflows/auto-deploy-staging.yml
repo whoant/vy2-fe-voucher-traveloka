@@ -1,12 +1,9 @@
-name: Auto deploy staging ReactJS
+name: Auto deploy develop ReactJS
 
 on:
   push:
     branches:
-      - staging
-  pull_request:
-    branches:
-      - staging
+      - develop
 
 jobs:
   build:

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from "react-toastify";
 import AuthApi from "../../api/auth.api";
@@ -52,6 +52,11 @@ const Login = props => {
                                 <div className='col-md-3'>
                                     <input type='submit' className="btn btn-primary mr-2"
                                            value='Đăng nhập'/>
+                                </div>
+                            </div>
+                            <div className='row'>
+                                <div className='col-md-3'>
+                                    <Link to='/register'>Tạo tài khoản</Link>
                                 </div>
                             </div>
                         </div>
