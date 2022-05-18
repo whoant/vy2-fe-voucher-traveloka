@@ -32,7 +32,7 @@ const Register = () => {
         }
 
     };
-    
+
     return (
         <div className="row">
             <div className='col-md-3'></div>
@@ -119,6 +119,11 @@ const Register = () => {
                             <div className='row'>
                                 <div className='col-md-3'>
                                     <input type='submit' className="btn btn-primary mr-2" value='Đăng kí'/>
+                                </div>
+                            </div>
+                            <div className='row'>
+                                <div className='col-md-3'>
+                                    <Link to='/auth'>Đã có tài khoản</Link>
                                 </div>
                             </div>
                         </div>
