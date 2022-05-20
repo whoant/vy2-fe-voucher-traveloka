@@ -20,7 +20,7 @@ function App() {
             <Route path="/" element={<Layout/>}>
                 <Route path="main" element={<Partner/>}/>
                 <Route path="create-voucher" element={<CreateVoucher/>}/>
-                <Route path="voucher" element={<UserVoucher/>}/>
+                <Route path="voucher/:typeVoucher" element={<UserVoucher/>}/>
                 <Route path="list-gift-partner" element={<Gift/>}/>
                 <Route path="create-gift-partner" element={<CreateGiftPartner/>}/>
             </Route>
