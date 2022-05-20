@@ -1,13 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { useNavigate } from "react-router-dom";
 
 VoucherItem.propTypes = {
     voucher: PropTypes.object
 };
 
 function VoucherItem(props) {
+    const { type } = props;
     const { imageUrl, title, voucherCode, amount, effectiveAt, expirationAt, description } = props.voucher;
+    const navigate = useNavigate();
+
+    const handleClickDetail = () => {
+        navigate(`/voucher/${type}/${voucherCode}`, { replace: true });
+    }
 
     return (
         <div className="col-xl-4 col-lg-6 col-md-6 col-sm-6">
@@ -48,7 +55,8 @@ function VoucherItem(props) {
                         </div>
                     </div>
                     <a href="#"
-                       className="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">Chi
+                       className="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4"
+                       onClick={handleClickDetail}>Chi
                         tiết</a>
                 </div>
             </div>
