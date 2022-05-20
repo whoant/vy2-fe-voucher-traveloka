@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import VoucherPartnerApi from "../../api/voucherPartner.api";
 import { toast } from "react-toastify";
 import VoucherItem from "../VoucherItem";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DataVoucher = props => {
+    let { typeVoucher } = useParams();
 
-    const [type, setType] = useState('');
+    const navigate = useNavigate();
     const [vouchers, setVouchers] = useState([]);
     const [isShow, setIsShow] = useState(false);
 
@@ -29,9 +31,9 @@ const DataVoucher = props => {
 
     useEffect(() => {
         const getVouchers = async () => {
-            if (!type) return;
+            if (!typeVoucher) return;
             try {
-                const { data } = await VoucherPartnerApi.getListVoucher(type);
+                const { data } = await VoucherPartnerApi.getListVoucher(typeVoucher);
                 setVouchers(data.data.vouchers);
                 toast.success(data.message);
             } catch (e) {
@@ -41,14 +43,14 @@ const DataVoucher = props => {
         };
         getVouchers();
 
-    }, [type]);
+    }, [typeVoucher]);
 
     const handleClickSelect = () => {
         setIsShow(prevState => !prevState);
     };
 
-    const handleClickType = (typeVoucher) => {
-        setType(typeVoucher);
+    const handleClickType = (newTypeVoucher) => {
+        navigate(`/voucher/${newTypeVoucher}`, { replace: true });
         setIsShow(false);
     }
 
