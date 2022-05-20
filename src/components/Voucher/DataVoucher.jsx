@@ -95,7 +95,7 @@ const DataVoucher = props => {
                         <div className="card-body pt-2">
                             <div className="row">
                                 {
-                                    vouchers && vouchers.map(voucher => <VoucherItem key={voucher.id}
+                                    vouchers && vouchers.map(voucher => <VoucherItem key={voucher.id} type={typeVoucher}
                                                                                      voucher={voucher}/>)
                                 }
                             </div>
