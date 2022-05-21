@@ -17,7 +17,7 @@ const Login = props => {
         try {
             const { data } = await AuthApi.login(body);
             localStorage.setItem('user', JSON.stringify(data.data));
-            navigate('/create-voucher', { replace: true });
+            navigate('/partner/create-voucher', { replace: true });
         } catch (e) {
             console.log(e);
             toast.error(e.response.data.message);
@@ -56,7 +56,7 @@ const Login = props => {
                             </div>
                             <div className='row'>
                                 <div className='col-md-3'>
-                                    <Link to='/register'>Tạo tài khoản</Link>
+                                    <Link to='/partner/register'>Tạo tài khoản</Link>
                                 </div>
                             </div>
                         </div>

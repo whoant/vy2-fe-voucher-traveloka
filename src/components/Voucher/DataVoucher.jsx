@@ -50,7 +50,7 @@ const DataVoucher = props => {
     };
 
     const handleClickType = (newTypeVoucher) => {
-        navigate(`/voucher/${newTypeVoucher}`, { replace: true });
+        navigate(`/partner/voucher/${newTypeVoucher}`, { replace: true });
         setIsShow(false);
     }
 
