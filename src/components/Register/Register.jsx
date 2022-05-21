@@ -123,7 +123,7 @@ const Register = () => {
                             </div>
                             <div className='row'>
                                 <div className='col-md-3'>
-                                    <Link to='/auth'>Đã có tài khoản</Link>
+                                    <Link to='/partner/auth'>Đã có tài khoản</Link>
                                 </div>
                             </div>
                         </div>

@@ -13,7 +13,7 @@ function VoucherItem(props) {
     const navigate = useNavigate();
 
     const handleClickDetail = () => {
-        navigate(`/voucher/${type}/${voucherCode}`, { replace: true });
+        navigate(`/partner/voucher/${type}/${voucherCode}`, { replace: true });
     }
 
     return (

@@ -16,9 +16,9 @@ import DetailVoucher from "./components/DetailVoucher";
 function App() {
     return (
         <Routes>
-            <Route path="/auth" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/" element={<Layout/>}>
+            <Route path="/partner/auth" element={<Login/>}/>
+            <Route path="/partner/register" element={<Register/>}/>
+            <Route path="/partner/" element={<Layout/>}>
                 <Route path="main" element={<Partner/>}/>
                 <Route path="create-voucher" element={<CreateVoucher/>}/>
                 <Route path="voucher/:typeVoucher" element={<UserVoucher/>}/>

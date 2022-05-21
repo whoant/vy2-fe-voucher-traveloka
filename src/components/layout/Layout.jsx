@@ -15,7 +15,7 @@ const Layout = props => {
     useEffect(() => {
         const storageUser = localStorage.getItem('user');
         if (!storageUser) {
-            navigate('/auth', { replace: true });
+            navigate('/partner/auth', { replace: true });
         }
         setUser(JSON.parse(storageUser));
     }, [])
@@ -24,7 +24,7 @@ const Layout = props => {
     const handleLogout = () => {
         localStorage.removeItem('user');
         toast.success("Đăng xuất thành công !");
-        navigate('/auth', { replace: true });
+        navigate('/partner/auth', { replace: true });
     };
 
     const handleShowQuickUser = () => {
@@ -70,17 +70,19 @@ const Layout = props => {
                                     </li>
 
                                     <li className="menu-item" aria-haspopup="true">
-                                        <Link to="/voucher" className="menu-link"><span className="menu-text">Danh sách voucher</span></Link>
+                                        <Link to="/partner/voucher" className="menu-link"><span className="menu-text">Danh sách voucher</span></Link>
                                     </li>
                                     <li className="menu-item" aria-haspopup="true">
-                                        <Link to="/create-voucher" className="menu-link"><span className="menu-text">Tạo voucher</span></Link>
+                                        <Link to="/partner/create-voucher" className="menu-link"><span
+                                            className="menu-text">Tạo voucher</span></Link>
                                     </li>
 
                                     <li className="menu-item" aria-haspopup="true">
-                                        <Link to="/list-gift-partner" className="menu-link"><span className="menu-text">List Gift Partner</span></Link>
+                                        <Link to="/partner/list-gift-partner" className="menu-link"><span
+                                            className="menu-text">List Gift Partner</span></Link>
                                     </li>
                                     <li className="menu-item" aria-haspopup="true">
-                                        <Link to="/create-gift-partner" className="menu-link"><span
+                                        <Link to="/partner/create-gift-partner" className="menu-link"><span
                                             className="menu-text">Create Gift Partner</span></Link>
                                     </li>
                                 </ul>
