@@ -16,9 +16,19 @@ const getDetailVoucher = (type, code) => {
     return axios.get(`/api/v1/partner/voucher/detail?type=${type}&code=${code}`);
 };
 
+const getAnalyzeVoucher = (type, code) => {
+    return axios.get(`/api/v1/partner/voucher/analyze?type=${type}&code=${code}`);
+};
+
+const getCountVoucher = () => {
+    return axios.get(`/api/v1/partner/voucher/count`);
+};
+
 export default {
     getListTypeVouchers,
     createVoucher,
     getListVoucher,
-    getDetailVoucher
+    getDetailVoucher,
+    getAnalyzeVoucher,
+    getCountVoucher
 };
