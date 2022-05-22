@@ -12,7 +12,6 @@ import Gift from "./pages/Partner/Gift";
 import CreateGiftPartner from "./pages/Partner/CreateGiftPartner";
 import Register from "./components/Register/Register";
 import DetailVoucher from "./components/DetailVoucher";
-import Home from "./components/Home";
 import Payment from "./components/Payment";
 
 function App() {
