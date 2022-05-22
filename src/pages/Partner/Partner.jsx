@@ -21,7 +21,7 @@ const Partner = () => {
 		profit: 520,
 		commission: 200,
 		usedNumber: 129
-	},{
+	}, {
 		name: 'Voucher_2',
 		sales: 8000000,
 		profit: 520,
@@ -32,10 +32,10 @@ const Partner = () => {
 	return (
 		<div className="row">
 			<div className="col-lg-12">
-				<ChartStistic categories={categories} series={series}/>
+				<ChartStistic categories={categories} series={series} />
 			</div>
 			<div className="col-lg-12">
-				<TableDetails voucherDetails={voucherDetails}/>
+				<TableDetails voucherDetails={voucherDetails} />
 			</div>
 		</div>
 	);
