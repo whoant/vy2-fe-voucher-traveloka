@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Home/style.css';
 
 const Home = props => {
     return (
@@ -194,7 +195,7 @@ const Home = props => {
                                                 <div dir="auto" className="css-901oao r-1yadl64 r-1vonz36 r-109y4c4 r-1cis278 r-1udh08x r-t60dpp r-u8s1d r-3s2u2q r-92ng3h">
                                                     Tìm thẻ tàu</div>
                                                 <div className="css-1dbjc4n r-1awozwy r-13awgt0 r-18u37iz r-1777fci" style={{ opacity: 1 }}>
-                                                    <div dir="auto" aria-hidden="true" className="css-901oao css-bfa6kz r-jwli3a r-1sixt3s r-1o4mh9l r-b88u0q r-f0eezp r-q4m81j">Tìm thẻ tàu</div>
+                                                    <div dir="auto" aria-hidden="true" className="css-901oao css-bfa6kz r-jwli3a r-1sixt3s r-1o4mh9l r-b88u0q r-f0eezp r-q4m81j">Tìm kiếm</div>
                                                 </div>
                                             </div>
                                         </div>
