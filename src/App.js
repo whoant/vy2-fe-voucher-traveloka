@@ -15,6 +15,7 @@ import DetailVoucher from "./components/DetailVoucher";
 import Home from "./components/Home/Home";
 import Payment from "./components/Payment";
 import Discounts from "./components/Discounts/Discounts";
+import LayoutHome from "./components/layout/LayoutHome";
 
 function App() {
     return (
@@ -31,8 +32,10 @@ function App() {
                 <Route path="create-gift-partner" element={<CreateGiftPartner/>}/>
             </Route>
             
-            <Route path="/discounts" element={<Discounts />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/costumer/" element={<LayoutHome/>}>
+                <Route path="discounts" element={<Discounts />} />
+                <Route path="home" element={<Home />} />
+            </Route>
             <Route path="/user/payment" element={<Payment/>}/>
         </Routes>
 
