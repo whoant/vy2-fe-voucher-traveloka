@@ -14,6 +14,7 @@ import Register from "./components/Register/Register";
 import DetailVoucher from "./components/DetailVoucher";
 import Home from "./components/Home/Home";
 import Payment from "./components/Payment";
+import Discounts from "./components/Discounts/Discounts";
 
 function App() {
     return (
@@ -29,7 +30,8 @@ function App() {
                 <Route path="list-gift-partner" element={<Gift/>}/>
                 <Route path="create-gift-partner" element={<CreateGiftPartner/>}/>
             </Route>
-
+            
+            <Route path="/discounts" element={<Discounts />} />
             <Route path="/home" element={<Home />} />
             <Route path="/user/payment" element={<Payment/>}/>
         </Routes>
