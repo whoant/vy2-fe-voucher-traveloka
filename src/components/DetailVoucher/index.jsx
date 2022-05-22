@@ -8,27 +8,16 @@ import moment from "moment";
 const DetailVoucher = props => {
     const { typeVoucher, code } = useParams();
     const [info, setInfo] = useState([]);
-    const voucherDetails = [{
-        voucher: 'Voucher_1',
-        countUsing: 12,
-        countBuy: 520,
-        sumMonney: 20000
-    }, {
-        voucher: 'Voucher_2',
-        countUsing: 200,
-        countBuy: 520,
-        sumMonney: 80000
-    }]
-    const handleSum = () => {
-        setInfo(voucherDetails);
-    };
+    const [countGift, setCountGift] = useState(1);
+    const [count, setCountVouchers] = useState(1);
+    const [sumMoney, setSumMonny] = useState(1);
+
     useEffect(() => {
         const getDetailVoucher = async () => {
             if (!typeVoucher) return;
             try {
                 const { data } = await VoucherPartnerApi.getDetailVoucher(typeVoucher, code);
                 setInfo(data.data.info);
-                handleSum();
                 toast.success(data.message);
             } catch (e) {
                 toast.error(e.response.data.message);
@@ -37,7 +26,6 @@ const DetailVoucher = props => {
         };
         getDetailVoucher();
     }, []);
-
 
 
     const numberFormat = (value) => {
@@ -50,6 +38,32 @@ const DetailVoucher = props => {
 
     return (
         <div>
+            <div className="card-deck">
+                <div className="card mb-3 overflow-hidden" style={{ minWidth: '12rem', color: 'black' }}>
+                    <div className="bg-holder bg-card" style={{ backgroundImage: 'url(/assets/img/illustrations/corner-1.png)' }}>
+                    </div>
+                    <div className="card-body position-relative">
+                        <h6>Tổng user sử dụng</h6>
+                        <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif text-warning" data-countup="{&quot;count&quot;:50,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{count}</div><a className="font-weight-semi-bold fs--1 text-nowrap" href="#!">Xem toàn bộ<span className="fas fa-angle-right ml-1" data-fa-transform="down-1" /></a>
+                    </div>
+                </div>
+                <div className="card mb-3 overflow-hidden" style={{ minWidth: '12rem' }}>
+                    <div className="bg-holder bg-card" style={{ backgroundImage: 'url(/assets/img/illustrations/corner-2.png)' }}>
+                    </div>
+                    <div className="card-body position-relative">
+                        <h6>Tổng user mua</h6>
+                        <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif text-info" data-countup="{&quot;count&quot;:25,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{countGift}</div><a className="font-weight-semi-bold fs--1 text-nowrap" href="#!">Xem toàn bộ<span className="fas fa-angle-right ml-1" data-fa-transform="down-1" /></a>
+                    </div>
+                </div>
+                <div className="card mb-3 overflow-hidden" style={{ minWidth: '12rem' }}>
+                    <div className="bg-holder bg-card" style={{ backgroundImage: 'url(/assets/img/illustrations/corner-3.png)' }}>
+                    </div>
+                    <div className="card-body position-relative">
+                        <h6>Tổng số tiền </h6>
+                        <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif" data-countup="{&quot;count&quot;:25,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{numberFormat(sumMoney)}</div><a className="font-weight-semi-bold fs--1 text-nowrap" href="#!">Xem toàn bộ<span className="fas fa-angle-right ml-1" data-fa-transform="down-1" /></a>
+                    </div>
+                </div>
+            </div>
             <div className="card card-custom">
 
                 <div className="card-header flex-wrap border-0 pt-6 pb-0">
@@ -70,14 +84,14 @@ const DetailVoucher = props => {
                                         className="datatable-cell-left datatable-cell datatable-cell-sort datatable-cell-sorted"
                                         data-sort="asc"><span style={{ width: '40px' }}>#<i className="flaticon2-arrow-up" /></span>
                                     </th>
-                                    <th data-field="Voucher" className="datatable-cell datatable-cell-sort"><span
-                                        style={{ width: '200px' }}>Voucher</span></th>
-                                    <th data-field="countUsing" className="datatable-cell datatable-cell-sort"><span
-                                        style={{ width: '110px' }}>Số lượt đã sử dụng</span></th>
-                                    <th data-field="countBuy" className="datatable-cell datatable-cell-sort"><span
-                                        style={{ width: '110px' }}>Số người mua</span></th>
-                                    <th data-field="sumMonney" className="datatable-cell datatable-cell-sort"><span
-                                        style={{ width: '150px' }}>Tổng số tiền</span></th>
+                                    <th data-field="Customer" className="datatable-cell datatable-cell-sort"><span
+                                        style={{ width: '200px' }}>Khách hàng</span></th>
+                                    <th data-field="Amount" className="datatable-cell datatable-cell-sort"><span
+                                        style={{ width: '110px' }}>Số tiền gốc</span></th>
+                                    <th data-field="AmountAfter" className="datatable-cell datatable-cell-sort"><span
+                                        style={{ width: '110px' }}>Số tiền sau</span></th>
+                                    <th data-field="" className="datatable-cell datatable-cell-sort"><span
+                                        style={{ width: '150px' }}>Ngày giao dịch</span></th>
                                 </tr>
                             </thead>
                             <tbody className="datatable-body" style={{}}>
@@ -101,22 +115,22 @@ const DetailVoucher = props => {
                                                         </div>
                                                         <div className="ml-4">
                                                             <div
-                                                                className="text-dark-75 font-weight-bolder font-size-lg mb-0">{item.voucher}
+                                                                className="text-dark-75 font-weight-bolder font-size-lg mb-0">{item.email}
                                                             </div>
                                                             <a href="#"
-                                                                className="text-muted font-weight-bold text-hover-primary">{item.voucher}</a>								</div>							</div></span>
+                                                                className="text-muted font-weight-bold text-hover-primary">{item.email}</a>								</div>							</div></span>
                                             </td>
                                             <td data-field="Country" aria-label="Brazil" className="datatable-cell"><span
                                                 style={{ width: '110px' }}><div
-                                                    className="font-weight-bolder font-size-lg mb-0">{item.countUsing}</div></span>
+                                                    className="font-weight-bolder font-size-lg mb-0">{numberFormat(item.amount)}</div></span>
                                             </td>
                                             <td data-field="Country" aria-label="Brazil" className="datatable-cell"><span
                                                 style={{ width: '110px' }}><div
-                                                    className="font-weight-bolder font-size-lg mb-0">{item.countBuy}</div></span>
+                                                    className="font-weight-bolder font-size-lg mb-0">{numberFormat(item.amountAfter)}</div></span>
                                             </td>
                                             <td data-field="ShipDate" aria-label="10/15/2017" className="datatable-cell"><span
                                                 style={{ width: '150px' }}><div
-                                                    className="font-weight-bolder text-primary mb-0">{numberFormat(item.sumMonney)}</div></span>
+                                                    className="font-weight-bolder text-primary mb-0">{moment(item.usedAt).format('DD/MM/yyyy')}</div></span>
                                             </td>
                                         </tr>);
                                     })
