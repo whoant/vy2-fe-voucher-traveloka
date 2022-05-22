@@ -8,13 +8,27 @@ import moment from "moment";
 const DetailVoucher = props => {
     const { typeVoucher, code } = useParams();
     const [info, setInfo] = useState([]);
-
+    const voucherDetails = [{
+        voucher: 'Voucher_1',
+        countUsing: 12,
+        countBuy: 520,
+        sumMonney: 20000
+    }, {
+        voucher: 'Voucher_2',
+        countUsing: 200,
+        countBuy: 520,
+        sumMonney: 80000
+    }]
+    const handleSum = () => {
+        setInfo(voucherDetails);
+    };
     useEffect(() => {
         const getDetailVoucher = async () => {
             if (!typeVoucher) return;
             try {
                 const { data } = await VoucherPartnerApi.getDetailVoucher(typeVoucher, code);
                 setInfo(data.data.info);
+                handleSum();
                 toast.success(data.message);
             } catch (e) {
                 toast.error(e.response.data.message);
@@ -23,6 +37,7 @@ const DetailVoucher = props => {
         };
         getDetailVoucher();
     }, []);
+
 
 
     const numberFormat = (value) => {
@@ -93,11 +108,11 @@ const DetailVoucher = props => {
                                             </td>
                                             <td data-field="Country" aria-label="Brazil" className="datatable-cell"><span
                                                 style={{ width: '110px' }}><div
-                                                    className="font-weight-bolder font-size-lg mb-0">{numberFormat(item.countUsing)}</div></span>
+                                                    className="font-weight-bolder font-size-lg mb-0">{item.countUsing}</div></span>
                                             </td>
                                             <td data-field="Country" aria-label="Brazil" className="datatable-cell"><span
                                                 style={{ width: '110px' }}><div
-                                                    className="font-weight-bolder font-size-lg mb-0">{numberFormat(item.countBuy)}</div></span>
+                                                    className="font-weight-bolder font-size-lg mb-0">{item.countBuy}</div></span>
                                             </td>
                                             <td data-field="ShipDate" aria-label="10/15/2017" className="datatable-cell"><span
                                                 style={{ width: '150px' }}><div
