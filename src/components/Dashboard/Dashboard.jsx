@@ -41,7 +41,7 @@ const Dashboard = props => {
 
     return (
         <div className="card-deck">
-            <div className="card mb-3 overflow-hidden" style={{ minWidth: '12rem' }}>
+            <div className="card mb-3 overflow-hidden" style={{ minWidth: '12rem', color: 'black' }}>
                 <div className="bg-holder bg-card" style={{ backgroundImage: 'url(/assets/img/illustrations/corner-1.png)' }}>
                 </div>
                 <div className="card-body position-relative">

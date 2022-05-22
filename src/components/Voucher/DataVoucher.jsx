@@ -35,7 +35,6 @@ const DataVoucher = props => {
             try {
                 const { data } = await VoucherPartnerApi.getListVoucher(typeVoucher);
                 setVouchers(data.data.vouchers);
-                console.log(data.data.vouchers);
                 toast.success(data.message);
             } catch (e) {
                 toast.error(e.response.data.message);
