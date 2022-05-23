@@ -5,10 +5,19 @@ import { useState } from 'react';
 
 const LayoutHome = props => {
 
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(false)
+    const [visibleRegister, setVisibleRegister] = useState(false)
 
     const handleClick = () => {
         setVisible(prev => !prev)
+        setVisibleRegister(false)
+    }
+    const handleShowLogout = () => {
+        setVisibleRegister(prev => !prev)
+    }
+    const handleChangeForm = () => {
+        setVisible(prev => !prev)
+        setVisibleRegister(prev => !prev)
     }
 
     return (
@@ -127,7 +136,7 @@ const LayoutHome = props => {
                                                                         <div dir="auto" className="css-901oao r-cwxd7f r-1sixt3s r-1b43r93 r-majxgm r-rjixqe r-fdjqy7">
                                                                             Bạn chưa có tài khoản?
                                                                         </div>
-                                                                        <a href="/vi-vn/register" className="css-4rbku5 r-1sixt3s r-1b43r93 r-majxgm r-rjixqe" style={{ color: 'rgb(2, 100, 200)' }}>Đăng ký</a>
+                                                                        <div className="css-4rbku5 r-1sixt3s r-1b43r93 r-majxgm r-rjixqe" style={{ color: 'rgb(2, 100, 200)', cursor: 'pointer' }} onClick={handleChangeForm}>Đăng ký</div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -138,8 +147,57 @@ const LayoutHome = props => {
                                         )
                                     }
 
+                                    {
+                                        visibleRegister && (
+                                            <div className="css-1dbjc4n r-1euycsn r-105ug2t r-u8s1d r-zchlnj r-j76wpu" style={{ marginTop: '4px' }}>
+                                                <div className="css-1dbjc4n r-kdyh1x r-b4qz5r r-1udh08x r-4k2abt r-1ep47lj r-1clhhh9 r-1ftll1t r-13qz1uu" style={{ backgroundColor: 'rgb(255, 255, 255)', transform: 'scaleY(1)' }}>
+                                                    <div className="css-1dbjc4n r-4k2abt r-1ep47lj r-1clhhh9 r-1ftll1t" style={{ opacity: 1, transform: 'translateY(0px)' }}>
+                                                        <div className="css-1dbjc4n" style={{ minWidth: '300px' }}>
+                                                            <div className="css-1dbjc4n r-nsbfu8">
+                                                                <h3 aria-level={3} dir="auto" role="heading" className="css-4rbku5 css-901oao r-cwxd7f r-1sixt3s r-ubezar r-b88u0q r-rjixqe r-fdjqy7" style={{ marginBottom: '20px' }}>Tạo tài khoản</h3>
+                                                                <div className="css-1dbjc4n"><label className="css-1dbjc4n r-18u37iz r-oyd9sg" id="loginInput">
+                                                                    <div dir="auto" className="css-901oao css-cens5h r-cwxd7f r-1sixt3s r-1b43r93 r-b88u0q r-rjixqe r-fdjqy7 r-13qz1uu" style={{ WebkitLineClamp: 2 }}>Email hoặc số di động</div>
+                                                                </label>
+                                                                    <div className="css-1dbjc4n r-1awozwy r-18u37iz r-1777fci r-edyy15">
+                                                                        <div className="css-1dbjc4n r-kdyh1x r-rs99b7 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-14qw7yl r-1wyyakw" style={{ backgroundColor: 'rgb(255, 255, 255)', borderColor: 'rgb(205, 208, 209)', transitionDelay: '0ms', transitionProperty: 'width, height, border-color, border-width, background-color', transitionTimingFunction: 'ease', willChange: 'width, height, border-color, border-width, background-color' }}>
+                                                                        </div><input aria-labelledby="loginInput" aria-invalid="false" autoCapitalize="sentences" autoComplete="on" autoCorrect="on" dir="auto" spellCheck="true" type="text" className="css-11aywtz r-cwxd7f r-13awgt0 r-1sixt3s r-ubezar r-135wba7 r-bcqeeo r-1ny4l3l r-10paoce r-13n6l4s" id="username" />
+                                                                    </div>
+                                                                    <div aria-live="polite" className="css-1dbjc4n" />
+                                                                </div>
+                                                                <div className="css-1dbjc4n" style={{ marginTop: '20px', marginBottom: '20px' }}>
+                                                                    <div className="css-1dbjc4n"><label className="css-1dbjc4n r-18u37iz r-oyd9sg" id="loginPassword">
+                                                                        <div dir="auto" className="css-901oao css-cens5h r-cwxd7f r-1sixt3s r-1b43r93 r-b88u0q r-rjixqe r-fdjqy7 r-13qz1uu" style={{ WebkitLineClamp: 2 }}>Mật khẩu</div>
+                                                                    </label>
+                                                                        <div className="css-1dbjc4n r-1awozwy r-18u37iz r-1777fci r-edyy15">
+                                                                            <div className="css-1dbjc4n r-kdyh1x r-rs99b7 r-1p0dtai r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-14qw7yl r-1wyyakw" style={{ backgroundColor: 'rgb(255, 255, 255)', borderColor: 'rgb(205, 208, 209)', transitionDelay: '0ms', transitionProperty: 'width, height, border-color, border-width, background-color', transitionTimingFunction: 'ease', willChange: 'width, height, border-color, border-width, background-color' }}>
+                                                                            </div>
+                                                                            <input aria-labelledby="loginPassword" aria-invalid="false" autoCapitalize="sentences" autoComplete="on" autoCorrect="on" dir="auto" spellCheck="true" type="password" className="css-11aywtz r-cwxd7f r-13awgt0 r-1sixt3s r-ubezar r-135wba7 r-bcqeeo r-1ny4l3l r-10paoce r-13n6l4s" id="password" />
+
+                                                                        </div>
+                                                                        <div aria-live="polite" className="css-1dbjc4n" />
+                                                                    </div>
+
+                                                                </div>
+                                                                <div className="css-1dbjc4n r-1awozwy r-18u37iz">
+                                                                    <div aria-live="polite" role="button" tabIndex={0} className="css-18t94o4 css-1dbjc4n r-kdyh1x r-1loqt21 r-10paoce r-1e081e0 r-5njf8e r-1otgn73 r-lrvibr" style={{ backgroundColor: 'rgb(255, 94, 31)' }}>
+                                                                        <div dir="auto" className="css-901oao r-1yadl64 r-1vonz36 r-109y4c4 r-1cis278 r-1udh08x r-t60dpp r-u8s1d r-3s2u2q r-92ng3h">
+                                                                            Đăng Ký</div>
+                                                                        <div className="css-1dbjc4n r-1awozwy r-13awgt0 r-18u37iz r-1777fci" style={{ opacity: 1 }}>
+                                                                            <div dir="auto" aria-hidden="true" className="css-901oao css-bfa6kz r-jwli3a r-1sixt3s r-cygvgh r-b88u0q r-1iukymi r-q4m81j">Đăng Ký</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+
                                 </div>
-                                <div aria-live="polite" role="button" tabIndex={0} className="css-18t94o4 css-1dbjc4n r-kdyh1x r-1loqt21 r-10paoce r-1otgn73 r-lrvibr" style={{ backgroundColor: 'rgba(1,148,243,1.00)', paddingRight: '16px', paddingLeft: '16px', paddingTop: '10px', paddingBottom: '10px' }}>
+                                <div onClick={handleShowLogout} aria-live="polite" role="button" tabIndex={0} className="css-18t94o4 css-1dbjc4n r-kdyh1x r-1loqt21 r-10paoce r-1otgn73 r-lrvibr" style={{ backgroundColor: 'rgba(1,148,243,1.00)', paddingRight: '16px', paddingLeft: '16px', paddingTop: '10px', paddingBottom: '10px' }}>
                                     <div dir="auto" className="css-901oao r-1yadl64 r-1vonz36 r-109y4c4 r-1cis278 r-1udh08x r-t60dpp r-u8s1d r-3s2u2q r-92ng3h">
                                         Đăng ký</div>
                                     <div className="css-1dbjc4n r-1awozwy r-18u37iz" style={{ WebkitFlex: 1, msFlex: '1 1 0%', flex: 1, WebkitJustifyContent: 'center', justifyContent: 'center', opacity: 1, msFlexPack: 'center', WebkitBoxPack: 'center' }}>
