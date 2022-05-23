@@ -51,7 +51,7 @@
     display: none !important;
 }
 
-.couponBox+.simple-text.fancy {
+.couponBox + .simple-text.fancy {
     margin-top: 56px;
 }
 
@@ -572,13 +572,13 @@ header h6 {
     counter-reset: super-decimal;
 }
 
-.contentWrapper ul>li {
+.contentWrapper ul > li {
     margin-top: 8px;
     margin-bottom: 8px;
     list-style: disc;
 }
 
-.contentWrapper ol>li {
+.contentWrapper ol > li {
     position: relative;
     margin-top: 8px;
     margin-bottom: 8px;
@@ -586,14 +586,14 @@ header h6 {
     counter-increment: super-decimal;
 }
 
-.contentWrapper ol>li:before {
+.contentWrapper ol > li:before {
     position: absolute;
     top: 0;
     left: 0;
     content: counter(super-decimal) ".";
 }
 
-.contentWrapper ol>ul>li {
+.contentWrapper ol > ul > li {
     margin-left: 16px;
 }
 
@@ -739,7 +739,7 @@ textarea.form-control {
     vertical-align: middle;
 }
 
-.input-icon+.form-control {
+.input-icon + .form-control {
     padding-left: 48px;
 }
 
@@ -905,8 +905,8 @@ button .close:hover {
     transition: all 0.2s ease-out;
 }
 
-.card>*:first-child,
-.card.card-body>*:first-child {
+.card > *:first-child,
+.card.card-body > *:first-child {
     margin-top: 0;
 }
 
@@ -1023,7 +1023,7 @@ button .close:hover {
     cursor: pointer;
 }
 
-.checkbox input[type="checkbox"]+label {
+.checkbox input[type="checkbox"] + label {
     position: relative;
     display: inline-block;
     padding-left: 24px;
@@ -1033,7 +1033,7 @@ button .close:hover {
     cursor: pointer;
 }
 
-.checkbox input[type="checkbox"]+label:before {
+.checkbox input[type="checkbox"] + label:before {
     position: absolute;
     top: 0;
     left: 0;
@@ -1050,7 +1050,7 @@ button .close:hover {
     transition: all 0.2s ease-out;
 }
 
-.checkbox input[type="checkbox"]+label:after {
+.checkbox input[type="checkbox"] + label:after {
     position: absolute;
     top: 2px;
     left: 5px;
@@ -1069,11 +1069,11 @@ button .close:hover {
     transform: rotate(45deg);
 }
 
-.checkbox input[type="checkbox"]:checked+label:after {
+.checkbox input[type="checkbox"]:checked + label:after {
     border-color: #FFF;
 }
 
-.checkbox input[type="checkbox"]:checked+label:before {
+.checkbox input[type="checkbox"]:checked + label:before {
     border-color: #0770CD;
     background: #0770CD;
 }
@@ -1161,14 +1161,14 @@ button .close:hover {
 }
 
 .rightContent {
-    width: 666px;
+    width: 960px;
 }
 
 .tv-landing-page-headerSection {
     height: 90px;
 }
 
-.rightContent>div>div>h1:first-child {
+.rightContent > div > div > h1:first-child {
     font-size: 22px;
     margin-top: 0;
     font-weight: 700;
@@ -1224,6 +1224,16 @@ button .close:hover {
     padding: 8px 16px 16px;
 }
 
+.promo-thumb .promo-thumb-amount {
+    color: rgb(249, 109, 1);
+    text-align: right;
+}
+
+.promo-thumb .promo-thumb-content {
+    color: #000;
+    font-size: 14px !important;
+}
+
 .promo-thumb .promo-thumb-desc {
     min-height: 45px;
 }
@@ -1232,7 +1242,6 @@ button .close:hover {
 .promo-thumb .promo-thumb-desc * {
     font-size: 12px !important;
     font-weight: normal;
-    margin-bottom: 8px;
     color: #434343;
 }
 
@@ -1395,9 +1404,9 @@ button .close:hover {
     font-family: MuseoSans;
     src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-db9dceebf1bfe5f24fe18640b1b9b4aa.eot);
     src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-db9dceebf1bfe5f24fe18640b1b9b4aa.eot?#iefix) format("embedded-opentype"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-b4fb17d8e5f5fcff2224b39e458d0f11.woff2) format("woff2"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-e8bbda10393938b6c27059fdf08efdbd.woff) format("woff"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-30c419fdb275d1a26c6358c33e17c719.ttf) format("truetype");
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-b4fb17d8e5f5fcff2224b39e458d0f11.woff2) format("woff2"),
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-e8bbda10393938b6c27059fdf08efdbd.woff) format("woff"),
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-30c419fdb275d1a26c6358c33e17c719.ttf) format("truetype");
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -1407,9 +1416,9 @@ button .close:hover {
     font-family: MuseoSans;
     src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-6d393e43fd957c3fbf07ca421fe98143.eot);
     src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-6d393e43fd957c3fbf07ca421fe98143.eot?#iefix) format("embedded-opentype"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-5024002329ddd97b9e5416fcb3840997.woff2) format("woff2"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-f700d980817210d2aed150e9fe9024ad.woff) format("woff"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-800795147bf5d888a953eb6918f85708.ttf) format("truetype");
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-5024002329ddd97b9e5416fcb3840997.woff2) format("woff2"),
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-f700d980817210d2aed150e9fe9024ad.woff) format("woff"),
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-800795147bf5d888a953eb6918f85708.ttf) format("truetype");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -1419,9 +1428,9 @@ button .close:hover {
     font-family: MuseoSans;
     src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-c975965a016be2af822b0d21829cc13e.eot);
     src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-c975965a016be2af822b0d21829cc13e.eot?#iefix) format("embedded-opentype"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-d16991a0d28821e10e461156a9fc319e.woff2) format("woff2"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-88f423ceb61a3ae4bae515160ac15c4c.woff) format("woff"),
-        url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-7df80f7c3dce10c92940be374898caa5.ttf) format("truetype");
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-d16991a0d28821e10e461156a9fc319e.woff2) format("woff2"),
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-88f423ceb61a3ae4bae515160ac15c4c.woff) format("woff"),
+    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-7df80f7c3dce10c92940be374898caa5.ttf) format("truetype");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -1444,7 +1453,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-[stylesheet-group="0"] {}
+[stylesheet-group="0"] {
+}
 
 html {
     -ms-text-size-adjust: 100%;
@@ -1471,13 +1481,15 @@ input::-webkit-search-results-decoration {
     display: none;
 }
 
-[stylesheet-group="0.1"] {}
+[stylesheet-group="0.1"] {
+}
 
 :focus:not([data-focusvisible-polyfill]) {
     outline: none;
 }
 
-[stylesheet-group="0.5"] {}
+[stylesheet-group="0.5"] {
+}
 
 .css-18t94o4 {
     cursor: pointer;
@@ -1496,7 +1508,8 @@ input::-webkit-search-results-decoration {
     text-decoration: none;
 }
 
-[stylesheet-group="1"] {}
+[stylesheet-group="1"] {
+}
 
 .css-1dbjc4n {
     -ms-flex-align: stretch;
@@ -1561,7 +1574,8 @@ input::-webkit-search-results-decoration {
     white-space: nowrap;
 }
 
-[stylesheet-group="2"] {}
+[stylesheet-group="2"] {
+}
 
 .r-kdyh1x {
     border-bottom-left-radius: 6px;
@@ -1680,7 +1694,8 @@ input::-webkit-search-results-decoration {
     border-top-width: 1px;
 }
 
-[stylesheet-group="2.1"] {}
+[stylesheet-group="2.1"] {
+}
 
 .r-1jgb5lz {
     margin-left: auto;
@@ -1717,7 +1732,8 @@ input::-webkit-search-results-decoration {
     margin-right: 24px;
 }
 
-[stylesheet-group="2.2"] {}
+[stylesheet-group="2.2"] {
+}
 
 .r-1xcajam {
     position: fixed;

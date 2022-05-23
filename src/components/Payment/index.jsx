@@ -3,7 +3,10 @@ import './style.css';
 
 const Payment = () => {
     return (
-        <div>
+        <div style={{
+            backgroundColor: '#e6eaed',
+            width: '100%'
+        }}>
             <header className='nav-bar'>
                 <div className="nav-bar-item">
                     <svg width={135} height={43} viewBox="0 0 135 43" className="p6l56" fill="none"
