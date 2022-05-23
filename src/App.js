@@ -31,10 +31,10 @@ function App() {
                 <Route path="list-gift-partner" element={<Gift/>}/>
                 <Route path="create-gift-partner" element={<CreateGiftPartner/>}/>
             </Route>
-            
-            <Route path="/costumer/" element={<LayoutHome/>}>
-                <Route path="discounts" element={<Discounts />} />
-                <Route path="home" element={<Home />} />
+
+            <Route path="/user/" element={<LayoutHome/>}>
+                <Route path="discounts/:typeVoucher" element={<Discounts/>}/>
+                <Route path="home" element={<Home/>}/>
             </Route>
             <Route path="/user/payment" element={<Payment/>}/>
         </Routes>
