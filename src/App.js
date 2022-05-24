@@ -17,19 +17,21 @@ import Payment from "./components/Payment";
 import Discounts from "./components/Discounts/Discounts";
 import LayoutHome from "./components/layout/LayoutHome";
 
+
 function App() {
     return (
         <Routes>
-            <Route path="/partner/auth" element={<Login/>}/>
-            <Route path="/partner/register" element={<Register/>}/>
-            <Route path="/partner/" element={<Layout/>}>
-                <Route path="main" element={<Partner/>}/>
-                <Route path="create-voucher" element={<CreateVoucher/>}/>
-                <Route path="voucher/:typeVoucher" element={<UserVoucher/>}/>
-                <Route path="voucher" element={<UserVoucher/>}/>
-                <Route path="voucher/:typeVoucher/:code" element={<DetailVoucher/>}/>
-                <Route path="list-gift-partner" element={<Gift/>}/>
-                <Route path="create-gift-partner" element={<CreateGiftPartner/>}/>
+            <Route path="/partner/auth" element={<Login />} />
+            <Route path="/partner/register" element={<Register />} />
+            <Route path="/partner/" element={<Layout />}>
+                <Route path="main" element={<Partner />} />
+                <Route path="create-voucher" element={<CreateVoucher />} />
+                <Route path="voucher/:typeVoucher" element={<UserVoucher />} />
+                <Route path="voucher" element={<UserVoucher />} />
+                <Route path="voucher/:typeVoucher/:code" element={<DetailVoucher />} />
+                <Route path="list-gift-partner" element={<Gift />} />
+                <Route path="dashboard" element={<Dashboard />} />
+                <Route path="create-gift-partner" element={<CreateGiftPartner />} />
             </Route>
 
             <Route path="/user/" element={<LayoutHome/>}>
@@ -37,6 +39,7 @@ function App() {
                 <Route path="home" element={<Home/>}/>
             </Route>
             <Route path="/user/payment" element={<Payment/>}/>
+
         </Routes>
 
     );

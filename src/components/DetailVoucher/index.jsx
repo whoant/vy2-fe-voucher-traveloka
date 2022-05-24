@@ -8,14 +8,23 @@ import moment from "moment";
 const DetailVoucher = props => {
     const { typeVoucher, code } = useParams();
     const [info, setInfo] = useState([]);
+    const [analyze, setAnalyze] = useState({
+        totalAmount: 0,
+        totalUsed: 0
+    });
 
     useEffect(() => {
         const getDetailVoucher = async () => {
             if (!typeVoucher) return;
             try {
-                const { data } = await VoucherPartnerApi.getDetailVoucher(typeVoucher, code);
-                setInfo(data.data.info);
-                toast.success(data.message);
+                const resp = await Promise.all([
+                    VoucherPartnerApi.getDetailVoucher(typeVoucher, code),
+                    VoucherPartnerApi.getAnalyzeVoucher(typeVoucher, code),
+                ]);
+                
+                setAnalyze(resp[1].data.data);
+                setInfo(resp[0].data.data.info);
+                toast.success(resp[0].data.message);
             } catch (e) {
                 toast.error(e.response.data.message);
                 console.error(e);
@@ -23,7 +32,6 @@ const DetailVoucher = props => {
         };
         getDetailVoucher();
     }, []);
-
 
     const numberFormat = (value) => {
         return new Intl.NumberFormat('vi-VN', {
@@ -35,6 +43,31 @@ const DetailVoucher = props => {
 
     return (
         <div>
+            <div className="card-deck">
+                <div className="card mb-6 overflow-hidden" style={{ minWidth: '12rem', color: 'black' }}>
+                    <div className="bg-holder bg-card"
+                         style={{ backgroundImage: 'url(/assets/img/illustrations/corner-1.png)' }}>
+                    </div>
+                    <div className="card-body position-relative">
+                        <h6>Tổng user sử dụng</h6>
+                        <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif text-warning"
+                             data-countup="{&quot;count&quot;:50,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{analyze.totalUse}</div>
+
+                    </div>
+                </div>
+                <div className="card mb-6 overflow-hidden" style={{ minWidth: '12rem' }}>
+                    <div className="bg-holder bg-card"
+                         style={{ backgroundImage: 'url(/assets/img/illustrations/corner-3.png)' }}>
+                    </div>
+                    <div className="card-body position-relative">
+                        <h6>Tổng số tiền </h6>
+                        <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif"
+                             data-countup="{&quot;count&quot;:25,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{numberFormat(analyze.totalAmount)}</div>
+                        <a className="font-weight-semi-bold fs--1 text-nowrap" href="#!">Xem toàn bộ<span
+                            className="fas fa-angle-right ml-1" data-fa-transform="down-1"/></a>
+                    </div>
+                </div>
+            </div>
             <div className="card card-custom">
 
                 <div className="card-header flex-wrap border-0 pt-6 pb-0">
@@ -76,20 +109,20 @@ const DetailVoucher = props => {
                                             data-field="RecordID" aria-label={1}><span style={{ width: '40px' }}><span
                                             className="font-weight-bolder">{item.index}</span></span></td>
                                         <td data-field="OrderID" aria-label="64616-103" className="datatable-cell">
-                                            <span
-                                                style={{ width: '200px' }}>
-                                                <div className="d-flex align-items-center">
-                                                    <div
-                                                        className="symbol symbol-40 symbol-light-danger flex-shrink-0">									<span
-                                                        className="symbol-label font-size-h4 font-weight-bold">H
-                                                </span>
-                                                </div>
-                                                    <div className="ml-4">
+                                                <span
+                                                    style={{ width: '200px' }}>
+                                                    <div className="d-flex align-items-center">
                                                         <div
-                                                            className="text-dark-75 font-weight-bolder font-size-lg mb-0">{item.email}
+                                                            className="symbol symbol-40 symbol-light-danger flex-shrink-0">									<span
+                                                            className="symbol-label font-size-h4 font-weight-bold">H
+                                                            </span>
                                                         </div>
-                                                        <a href="#"
-                                                           className="text-muted font-weight-bold text-hover-primary">{item.email}</a>								</div>							</div></span>
+                                                        <div className="ml-4">
+                                                            <div
+                                                                className="text-dark-75 font-weight-bolder font-size-lg mb-0">{item.email}
+                                                            </div>
+                                                            <a href="#"
+                                                               className="text-muted font-weight-bold text-hover-primary">{item.email}</a>								</div>							</div></span>
                                         </td>
                                         <td data-field="Country" aria-label="Brazil" className="datatable-cell"><span
                                             style={{ width: '110px' }}><div
