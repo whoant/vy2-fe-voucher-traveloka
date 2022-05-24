@@ -182,7 +182,7 @@ const CreateVoucher = props => {
                                                 <span className="text-danger">*</span>
                                             </label>
                                             <input
-                                                {...register('threshold')}
+                                                {...register('amount')}
                                                 className="form-control"
                                                 placeholder="Nhập số tiền..."
                                                 min='10000'/>
