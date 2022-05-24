@@ -12,8 +12,11 @@ import Gift from "./pages/Partner/Gift";
 import CreateGiftPartner from "./pages/Partner/CreateGiftPartner";
 import Register from "./components/Register/Register";
 import DetailVoucher from "./components/DetailVoucher";
+import Home from "./components/Home/Home";
 import Payment from "./components/Payment";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Discounts from "./components/Discounts/Discounts";
+import LayoutHome from "./components/layout/LayoutHome";
+
 
 function App() {
     return (
@@ -31,8 +34,12 @@ function App() {
                 <Route path="create-gift-partner" element={<CreateGiftPartner />} />
             </Route>
 
+            <Route path="/user/" element={<LayoutHome/>}>
+                <Route path="discounts/:typeVoucher" element={<Discounts/>}/>
+                <Route path="home" element={<Home/>}/>
+            </Route>
+            <Route path="/user/payment" element={<Payment/>}/>
 
-            <Route path="/user/payment" element={<Payment />} />
         </Routes>
 
     );

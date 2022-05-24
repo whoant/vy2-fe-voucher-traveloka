@@ -6,10 +6,12 @@ const instance = axios.create({
 
 instance.interceptors.request.use(function (config) {
     const storageUser = localStorage.getItem('user');
+    const userId = '456';
     if (storageUser) {
         const { token } = JSON.parse(storageUser);
         config.headers = {
             ...config.headers,
+            'user_id': userId,
             Authorization: `Bearer ${token}`
         };
     }
