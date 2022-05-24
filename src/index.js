@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter>
-            <App/>
-        </BrowserRouter>
+        <PayPalScriptProvider options={{ "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID }}>
+            <BrowserRouter>
+                <App/>
+            </BrowserRouter>
+        </PayPalScriptProvider>
         <ToastContainer
             position="top-right"
             autoClose={5000}

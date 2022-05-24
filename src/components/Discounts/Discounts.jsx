@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../Discounts/style.css';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import VoucherUserApi from "../../api/voucherUser.api";
 import Discount from "../Discount";
+import { toast } from "react-toastify";
 
 const Discounts = props => {
     const { typeVoucher } = useParams();
+    const navigate = useNavigate();
     const [vouchers, setVouchers] = useState([]);
 
     useEffect(() => {
@@ -16,12 +18,31 @@ const Discounts = props => {
 
                 setVouchers(data.data.vouchers);
             } catch (e) {
+                toast.error(e.response.data.message);
                 console.error(e);
             }
         };
 
         getVoucherCanBuy();
     }, []);
+
+    const handleClickBuy = async (voucher) => {
+        try {
+            const { data } = await VoucherUserApi.postPreBuyVoucher({
+                code: voucher.voucherCode,
+                typeVoucher,
+            }, {
+                partner_id: voucher.partnerId
+            });
+
+            navigate(`/user/payment/${data.data.transactionId}`, { replace: true });
+
+        } catch (e) {
+            toast.error(e.response.data.message);
+            console.error(e);
+        }
+
+    };
 
     return (
         <div className="oneColumnWebDesktop">
@@ -42,7 +63,8 @@ const Discounts = props => {
             <div className="contentWrapper">
                 <div className="mcp-placeholder" data-name="middleContent">
                     {
-                        vouchers && vouchers.map(voucher => <Discount key={voucher.id} info={voucher}/>)
+                        vouchers && vouchers.map(voucher => <Discount key={voucher.id} info={voucher}
+                                                                      buy={handleClickBuy}/>)
                     }
                 </div>
             </div>

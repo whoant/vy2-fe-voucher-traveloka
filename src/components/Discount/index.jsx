@@ -3,7 +3,20 @@ import '../Discounts/style.css';
 import moment from "moment";
 
 const Discount = props => {
-    const { imageUrl, voucherCode, id, effectiveAt, title, expirationAt, amount, description, content } = props.info;
+    const {
+        imageUrl,
+        voucherCode,
+        id,
+        effectiveAt,
+        title,
+        expirationAt,
+        amount,
+        description,
+        content,
+        partnerId
+    } = props.info;
+
+    const { buy } = props;
 
     const numberFormat = (value) => {
         return new Intl.NumberFormat('vi-VN', {
@@ -12,12 +25,16 @@ const Discount = props => {
         }).format(value);
     }
 
+    const voucher = {
+        voucherCode,
+        partnerId
+    };
+    
     return (
         <div className="promo-thumb" data-product=" flight attraction hotel"
              data-promo-type=" deal coupon" data-promotype=" deal coupon" data-payment="true"
              data-destination=" international" data-airline="true" data-deal="true">
-            <a href="/vi-vn/promotion/dulichquocte" data-tvxr="attribute"
-               data-promo-id="/promotion/dulichquocte" target="_blank"
+            <a href="#"
                className="buttonLinkPromotion">
                 <div className="promo-thumb-img">
                     <img className="promo-thumb-img-el"
@@ -33,7 +50,7 @@ const Discount = props => {
                         <p>Thời gian ưu đãi: từ
                             ngày {moment(effectiveAt).format('DD/MM/yy')} - {moment(expirationAt).format('DD/MM/yy')}</p>
                     </div>
-                    <span className="btn-secondary btn-block">Mua ngay</span>
+                    <span className="btn-secondary btn-block" onClick={() => buy(voucher)}>Mua ngay</span>
                 </div>
             </a>
         </div>

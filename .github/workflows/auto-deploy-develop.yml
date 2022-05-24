@@ -18,6 +18,7 @@ jobs:
         run: |
           touch .env
           echo REACT_APP_END_POINT=${{secrets.REACT_APP_END_POINT}} > .env
+          echo REACT_APP_PAYPAL_CLIENT_ID=${{secrets.REACT_APP_PAYPAL_CLIENT_ID}} > .env
       - name: Build image
         run: docker-compose build
       - name: Start container

@@ -1,7 +1,47 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './style.css';
+import { useNavigate, useParams } from "react-router-dom";
+import VoucherUserApi from "../../api/voucherUser.api";
+import { toast } from "react-toastify";
+import { useCountdown } from "../../hooks/useCountdown";
+import PaypalCheckoutButton from "../PaypalCheckoutButton";
 
 const Payment = () => {
+    const THREE_DAYS_IN_MS = 5 * 60 * 1000;
+    const NOW_IN_MS = new Date().getTime();
+
+    const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
+
+    console.log(dateTimeAfterThreeDays);
+
+    const { transactionId } = useParams();
+    const navigate = useNavigate();
+    const [paymentInfo, setPaymentInfo] = useState({ amount: 0, title: '', description: '', email: '' });
+
+    // const [days, hours, minutes, seconds] = useCountdown(dateTimeAfterThreeDays);
+
+    useEffect(() => {
+        const checkBuyVoucher = async () => {
+            try {
+                const { data } = await VoucherUserApi.postCheckBuyVoucher(transactionId);
+                setPaymentInfo(data.data);
+            } catch (e) {
+                toast.error(e.response.data.message);
+                navigate(-1);
+                console.error(e);
+            }
+        };
+
+        checkBuyVoucher();
+    }, []);
+
+    const numberFormat = (value) => {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(value);
+    }
+
     return (
         <div style={{
             backgroundColor: '#e6eaed',
@@ -103,9 +143,9 @@ const Payment = () => {
                     <div className="nav_bar_info">
                         <div className="nav_bar_info_count">
                             <span>
-                            Tiến hành thanh toán trong vòng 00:22:22
-<img className="_2tukb"
-     src="https://ik.imagekit.io/tvlk/image/imageResource/2018/07/16/1531740826838-b56ff1fbeebd63e65287af273888880d.png?tr=q-75"/>
+                            Tiến hành thanh toán trong vòng
+                                <img className="_2tukb"
+                                     src="https://ik.imagekit.io/tvlk/image/imageResource/2018/07/16/1531740826838-b56ff1fbeebd63e65287af273888880d.png?tr=q-75"/>
                             </span>
 
                         </div>
@@ -114,20 +154,16 @@ const Payment = () => {
                             <div className="nav_bar_info_detail">
                                 <span>Chi tiết giá</span>
                                 <div className="detail_item">
-                                    <span className="detail_item_name">Voucher giảm giá 50%232222222222222222222222222222222222</span>
-                                    <span className="detail_item_price">567.456 VND</span>
-                                </div>
-                                <div className="detail_item">
-                                    <span className="detail_item_name">Voucher giảm giá 50%232222222222222222222222222222222222</span>
-                                    <span className="detail_item_price">567.456 VND</span>
+                                    <span className="detail_item_name">{paymentInfo.title}</span>
+                                    <span className="detail_item_price">{numberFormat(paymentInfo.amount)}</span>
                                 </div>
                                 <div className="through"></div>
                                 <div className="detail_item_total">
                                     <span className="detail_item_name">Tổng giá tiền</span>
-                                    <span className="detail_item_price">567.456 VND</span>
+                                    <span className="detail_item_price">{numberFormat(paymentInfo.amount)}</span>
                                 </div>
                             </div>
-                            <div className="nav_bar_info_gift">Tài khoản (vovanhoangtuan4.2@gmail.com) sẽ nhận được 110
+                            <div className="nav_bar_info_gift">Tài khoản ({paymentInfo.email}) sẽ nhận được 110
                                 điểm
                             </div>
                             <div className="nav_bar_info_policy">
@@ -135,9 +171,13 @@ const Payment = () => {
                                 tư.
                             </div>
                             <div className="nav_bar_info_pay">
-                                <button>
-                                    Thanh toán Paypal
-                                </button>
+                                <div className="paypal-button-container">
+                                    {
+                                        paymentInfo.amount === 0 ? "" :
+                                            <PaypalCheckoutButton transactionId={transactionId} product={paymentInfo}/>
+                                    }
+
+                                </div>
 
                             </div>
                         </div>
@@ -147,11 +187,11 @@ const Payment = () => {
                 <div className="content__right">
                     <header className="booking-code">
                         <h4>Mã đặt chỗ</h4>
-                        <span>815200154</span>
+                        <span>{transactionId}</span>
                     </header>
                     <div className="booking-content">
                         <h5>Kiểm tra thông tin voucher</h5>
-                        <span>Đơn hàng trị giá trên 500.000 VND được giảm 20% không quá 100.000VND</span>
+                        <span>{paymentInfo.description}</span>
                     </div>
                 </div>
             </div>
