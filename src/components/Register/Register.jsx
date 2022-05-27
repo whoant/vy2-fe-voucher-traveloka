@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from "react-toastify";
@@ -14,23 +14,23 @@ const Register = () => {
             return;
         }
         const typeVouchers = [];
-        if (data['biet-thu']) typeVouchers.push('biet-thu');
-        if (data['chuyen-bay']) typeVouchers.push('chuyen-bay');
-        if (data['dua-don']) typeVouchers.push('dua-don');
-        if (data['khach-san']) typeVouchers.push('khach-san');
-        if (data['nha-hang']) typeVouchers.push('nha-hang');
-        if (data['thue-xe']) typeVouchers.push('thue-xe');
-        if (data['tour']) typeVouchers.push('tour');
+        if (data['FLIGHT']) typeVouchers.push('FLIGHT');
+        if (data['HOTEL']) typeVouchers.push('HOTEL');
+        if (data['AIRPORT']) typeVouchers.push('AIRPORT');
+        if (data['APART']) typeVouchers.push('APART');
+        if (data['XPERIENCE']) typeVouchers.push('XPERIENCE');
+        if (data['CARRENTAL']) typeVouchers.push('CARRENTAL');
+        if (data['EATS']) typeVouchers.push('EATS');
+        if (data['COMBO']) typeVouchers.push('COMBO');
 
         const { username, password, name, email } = data;
         try {
             await AuthAPI.registerPartner({ username, password, name, email, typeVouchers });
             toast.success("Tạo tài khoản thành công !");
-            navigate('/auth', { replace: true });
+            navigate('/partner/auth', { replace: true });
         } catch (e) {
             toast.error(e.response.data.message);
         }
-
     };
 
     return (
@@ -74,46 +74,45 @@ const Register = () => {
                             <div className='form-group'>
                                 <div className="checkbox-inline">
                                     <label className="checkbox">
-                                        <input type="checkbox" name="typeVouchers"{...register('chuyen-bay')} />
+                                        <input type="checkbox" name="typeVouchers"{...register('FLIGHT')} />
                                         <span></span>
                                         Chuyến bay
                                     </label>
                                     <label className="checkbox">
-                                        <input type="checkbox" name="typeVouchers"{...register('khach-san')} />
+                                        <input type="checkbox" name="typeVouchers"{...register('HOTEL')} />
                                         <span></span>
                                         Khách sạn
                                     </label>
                                     <label className="checkbox">
-                                        <input type="checkbox" name="typeVouchers"{...register('dua-don')} />
+                                        <input type="checkbox" name="typeVouchers"{...register('AIRPORT')} />
                                         <span></span>
                                         Đưa đón sân bay
                                     </label>
-
-                                </div>
-                            </div>
-                            <div className='form-group'>
-                                <div className="checkbox-inline">
                                     <label className="checkbox">
-                                        <input type="checkbox" name="typeVouchers" {...register('biet-thu')} />
+                                        <input type="checkbox" name="typeVouchers" {...register('APART')} />
                                         <span></span>
                                         Biệt thự và căn hộ
                                     </label>
                                     <label className="checkbox">
-                                        <input type="checkbox" name="typeVouchers" {...register('tour')} />
+                                        <input type="checkbox" name="typeVouchers" {...register('XPERIENCE')} />
                                         <span></span>
-                                        Tour du lịch
+                                        Tour
                                     </label>
                                     <label className="checkbox">
-                                        <input type="checkbox" name="typeVouchers" {...register('thue-xe')} />
+                                        <input type="checkbox" name="typeVouchers" {...register('CARRENTAL')} />
                                         <span></span>
                                         Thuê xe
                                     </label>
                                     <label className="checkbox">
-                                        <input type="checkbox" name="typeVouchers"{...register('nha-hang')} />
+                                        <input type="checkbox" name="typeVouchers"{...register('EATS')} />
                                         <span></span>
                                         Nhà hàng
                                     </label>
-
+                                    <label className="checkbox">
+                                        <input type="checkbox" name="typeVouchers"{...register('COMBO')} />
+                                        <span></span>
+                                        Combo tiết kiệm
+                                    </label>
                                 </div>
                             </div>
                             <div className='row'>

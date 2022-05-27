@@ -109,13 +109,14 @@ const Home = props => {
 
                                             <div className="form-group">
                                                 <select className="form-control" onChange={handleOnChange}>
-                                                    <option value='chuyen-bay'>Chuyến bay</option>
-                                                    <option value='khach-san'>Khách sạn</option>
-                                                    <option value='dua-don'>Đưa đón sân bay</option>
-                                                    <option value='biet-thu'>Biệt thự và căn hộ</option>
-                                                    <option value='tour'>Tour du lịch(Trải nghiệm)</option>
-                                                    <option value='thue-xe'>Thuê xe</option>
-                                                    <option value='nha-hang'>Nhà hàng</option>
+                                                    <option value='FLIGHT'>Chuyến bay</option>
+                                                    <option value='HOTEL'>Khách sạn</option>
+                                                    <option value='AIRPORT'>Đưa đón sân bay</option>
+                                                    <option value='APART'>Biệt thự và căn hộ</option>
+                                                    <option value='XPERIENCE'>Tour du lịch(Trải nghiệm)</option>
+                                                    <option value='CARRENTAL'>Thuê xe</option>
+                                                    <option value='EATS'>Nhà hàng</option>
+                                                    <option value='COMBO'>Nhà hàng</option>
                                                 </select>
                                             </div>
 

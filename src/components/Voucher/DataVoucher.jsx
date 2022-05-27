@@ -64,25 +64,25 @@ const DataVoucher = props => {
                             <div className="card-toolbar">
                                 <div className="dropdown dropdown-inline show">
                                     <a href="#"
-                                        className="btn btn-light-primary btn-sm font-weight-bolder dropdown-toggle"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                        onClick={handleClickSelect}>Loại dịch vụ</a>
+                                       className="btn btn-light-primary btn-sm font-weight-bolder dropdown-toggle"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                       onClick={handleClickSelect}>Loại dịch vụ</a>
                                     <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right"
-                                        style={isShow ? {
-                                            position: 'absolute',
-                                            transform: 'translate3d(-95px, 33px, 0px)',
-                                            top: 0,
-                                            left: 0,
-                                            willChange: 'transform',
-                                            display: 'block'
-                                        } : { display: "none" }}>
+                                         style={isShow ? {
+                                             position: 'absolute',
+                                             transform: 'translate3d(-95px, 33px, 0px)',
+                                             top: 0,
+                                             left: 0,
+                                             willChange: 'transform',
+                                             display: 'block'
+                                         } : { display: "none" }}>
                                         <ul className="navi navi-hover">
                                             {
                                                 typeVouchers && typeVouchers.map(type => {
                                                     return <li className="navi-item">
                                                         <a href="#" className="navi-link">
                                                             <span className="navi-text"
-                                                                onClick={() => handleClickType(type.type)}>{type.name}</span>
+                                                                  onClick={() => handleClickType(type.type)}>{type.name}</span>
                                                         </a>
                                                     </li>
                                                 })
@@ -96,7 +96,7 @@ const DataVoucher = props => {
                             <div className="row">
                                 {
                                     vouchers && vouchers.map(voucher => <VoucherItem key={voucher.id} type={typeVoucher}
-                                        voucher={voucher} />)
+                                                                                     voucher={voucher}/>)
                                 }
                             </div>
                         </div>

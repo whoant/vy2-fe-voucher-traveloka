@@ -1400,42 +1400,6 @@ button .close:hover {
     transform: rotate(45deg);
 }
 
-@font-face {
-    font-family: MuseoSans;
-    src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-db9dceebf1bfe5f24fe18640b1b9b4aa.eot);
-    src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-db9dceebf1bfe5f24fe18640b1b9b4aa.eot?#iefix) format("embedded-opentype"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-b4fb17d8e5f5fcff2224b39e458d0f11.woff2) format("woff2"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-e8bbda10393938b6c27059fdf08efdbd.woff) format("woff"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans300/MuseoSans300-30c419fdb275d1a26c6358c33e17c719.ttf) format("truetype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: MuseoSans;
-    src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-6d393e43fd957c3fbf07ca421fe98143.eot);
-    src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-6d393e43fd957c3fbf07ca421fe98143.eot?#iefix) format("embedded-opentype"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-5024002329ddd97b9e5416fcb3840997.woff2) format("woff2"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-f700d980817210d2aed150e9fe9024ad.woff) format("woff"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans500/MuseoSans500-800795147bf5d888a953eb6918f85708.ttf) format("truetype");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: MuseoSans;
-    src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-c975965a016be2af822b0d21829cc13e.eot);
-    src: url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-c975965a016be2af822b0d21829cc13e.eot?#iefix) format("embedded-opentype"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-d16991a0d28821e10e461156a9fc319e.woff2) format("woff2"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-88f423ceb61a3ae4bae515160ac15c4c.woff) format("woff"),
-    url(https://d1785e74lyxkqq.cloudfront.net/godwit/lib/css/fonts/MuseoSans700/MuseoSans700-7df80f7c3dce10c92940be374898caa5.ttf) format("truetype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
 #__next {
     display: flex;
     flex-direction: column;
