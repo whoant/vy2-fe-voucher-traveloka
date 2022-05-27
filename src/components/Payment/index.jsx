@@ -6,19 +6,21 @@ import { toast } from "react-toastify";
 import { useCountdown } from "../../hooks/useCountdown";
 import PaypalCheckoutButton from "../PaypalCheckoutButton";
 
+const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
+
 const Payment = () => {
-    const THREE_DAYS_IN_MS = 5 * 60 * 1000;
-    const NOW_IN_MS = new Date().getTime();
-
-    const dateTimeAfterThreeDays = NOW_IN_MS + THREE_DAYS_IN_MS;
-
-    console.log(dateTimeAfterThreeDays);
-
+    const dateTimeAfter = useRef(new Date().getTime() + FIVE_MINUTES_IN_MS)
     const { transactionId } = useParams();
     const navigate = useNavigate();
     const [paymentInfo, setPaymentInfo] = useState({ amount: 0, title: '', description: '', email: '' });
 
-    // const [days, hours, minutes, seconds] = useCountdown(dateTimeAfterThreeDays);
+    const [days, hours, minutes, seconds] = useCountdown(dateTimeAfter.current);
+
+
+    if (hours + minutes + seconds <= 0) {
+        toast.error("Giao dịch đã hết hạn !");
+        navigate(-1);
+    }
 
     useEffect(() => {
         const checkBuyVoucher = async () => {
@@ -40,6 +42,10 @@ const Payment = () => {
             style: 'currency',
             currency: 'VND'
         }).format(value);
+    }
+
+    const addLeadingZeros = (num, totalLength = 2) => {
+        return String(num).padStart(totalLength, '0');
     }
 
     return (
@@ -143,7 +149,7 @@ const Payment = () => {
                     <div className="nav_bar_info">
                         <div className="nav_bar_info_count">
                             <span>
-                            Tiến hành thanh toán trong vòng
+                            Tiến hành thanh toán trong vòng {addLeadingZeros(hours)}:{addLeadingZeros(minutes)}:{addLeadingZeros(seconds)}
                                 <img className="_2tukb"
                                      src="https://ik.imagekit.io/tvlk/image/imageResource/2018/07/16/1531740826838-b56ff1fbeebd63e65287af273888880d.png?tr=q-75"/>
                             </span>

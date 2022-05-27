@@ -16,7 +16,6 @@ const PaypalCheckoutButton = (props) => {
         } catch (e) {
             console.error(e);
         }
-
     }
 
     return (

@@ -10,7 +10,8 @@ const DetailVoucher = props => {
     const [info, setInfo] = useState([]);
     const [analyze, setAnalyze] = useState({
         totalAmount: 0,
-        totalUsed: 0
+        totalUsed: 0,
+        totalBuy: 0
     });
 
     useEffect(() => {
@@ -44,7 +45,7 @@ const DetailVoucher = props => {
     return (
         <div>
             <div className="card-deck">
-                <div className="card mb-6 overflow-hidden" style={{ minWidth: '12rem', color: 'black' }}>
+                <div className="card mb-4 overflow-hidden" style={{ minWidth: '12rem', color: 'black' }}>
                     <div className="bg-holder bg-card"
                          style={{ backgroundImage: 'url(/assets/img/illustrations/corner-1.png)' }}>
                     </div>
@@ -55,16 +56,24 @@ const DetailVoucher = props => {
 
                     </div>
                 </div>
-                <div className="card mb-6 overflow-hidden" style={{ minWidth: '12rem' }}>
+                <div className="card mb-4 overflow-hidden" style={{ minWidth: '12rem' }}>
                     <div className="bg-holder bg-card"
                          style={{ backgroundImage: 'url(/assets/img/illustrations/corner-3.png)' }}>
                     </div>
                     <div className="card-body position-relative">
-                        <h6>Tổng số tiền </h6>
+                        <h6>Tổng số user mua </h6>
+                        <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif"
+                             data-countup="{&quot;count&quot;:25,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{analyze.totalBuy}</div>
+                    </div>
+                </div>
+                <div className="card mb-4 overflow-hidden" style={{ minWidth: '12rem' }}>
+                    <div className="bg-holder bg-card"
+                         style={{ backgroundImage: 'url(/assets/img/illustrations/corner-3.png)' }}>
+                    </div>
+                    <div className="card-body position-relative">
+                        <h6>Tổng số tiền giao dịch </h6>
                         <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif"
                              data-countup="{&quot;count&quot;:25,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{numberFormat(analyze.totalAmount)}</div>
-                        <a className="font-weight-semi-bold fs--1 text-nowrap" href="#!">Xem toàn bộ<span
-                            className="fas fa-angle-right ml-1" data-fa-transform="down-1"/></a>
                     </div>
                 </div>
             </div>

@@ -42,8 +42,7 @@ const Dashboard = props => {
                         <h6>Tổng voucher đang có</h6>
                         <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif text-warning"
                              data-countup="{&quot;count&quot;:50,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{count.countVoucher}</div>
-                        <a className="font-weight-semi-bold fs--1 text-nowrap" href="#!">Xem toàn bộ<span
-                            className="fas fa-angle-right ml-1" data-fa-transform="down-1"/></a>
+
                     </div>
                 </div>
                 <div className="card mb-3 overflow-hidden" style={{ minWidth: '12rem' }}>
@@ -54,8 +53,7 @@ const Dashboard = props => {
                         <h6>Tổng gift đang có</h6>
                         <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif text-info"
                              data-countup="{&quot;count&quot;:25,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{count.countGiff}</div>
-                        <a className="font-weight-semi-bold fs--1 text-nowrap" href="#!">Xem toàn bộ<span
-                            className="fas fa-angle-right ml-1" data-fa-transform="down-1"/></a>
+                     
                     </div>
                 </div>
             </div>

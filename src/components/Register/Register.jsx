@@ -26,7 +26,7 @@ const Register = () => {
         try {
             await AuthAPI.registerPartner({ username, password, name, email, typeVouchers });
             toast.success("Tạo tài khoản thành công !");
-            navigate('/auth', { replace: true });
+            navigate('/partner/auth', { replace: true });
         } catch (e) {
             toast.error(e.response.data.message);
         }
