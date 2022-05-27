@@ -5,13 +5,21 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(function (config) {
+    const storagePartner = localStorage.getItem('partner');
     const storageUser = localStorage.getItem('user');
-    const userId = '789';
+
     if (storageUser) {
-        const { token } = JSON.parse(storageUser);
+        const { userId } = JSON.parse(storageUser);
         config.headers = {
             ...config.headers,
             'user_id': userId,
+        };
+    }
+    
+    if (storagePartner) {
+        const { token } = JSON.parse(storagePartner);
+        config.headers = {
+            ...config.headers,
             Authorization: `Bearer ${token}`
         };
     }

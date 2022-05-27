@@ -15,8 +15,8 @@ const Login = props => {
         }
 
         try {
-            const { data } = await AuthApi.login(body);
-            localStorage.setItem('user', JSON.stringify(data.data));
+            const { data } = await AuthApi.loginPartner(body);
+            localStorage.setItem('partner', JSON.stringify(data.data));
             navigate('/partner/create-voucher', { replace: true });
         } catch (e) {
             console.log(e);
