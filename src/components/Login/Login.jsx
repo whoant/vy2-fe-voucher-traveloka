@@ -1,12 +1,33 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from "react-toastify";
 import AuthApi from "../../api/auth.api";
 
 const Login = props => {
     const { register, handleSubmit } = useForm();
+    const [authParam] = useSearchParams()
     const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const loginToken = async () => {
+            try {
+                const { data } = await AuthApi.loginPartnerUsingToken(token);
+                localStorage.setItem('partner', JSON.stringify(data.data));
+                navigate('/partner/create-voucher', { replace: true });
+            } catch (e) {
+                console.log(e);
+                toast.error(e.response.data.message);
+            }
+        }
+
+
+        const token = authParam.get('token');
+        if (!token) return;
+        loginToken();
+        
+    }, []);
 
     const onSubmit = async body => {
         if (!body) {

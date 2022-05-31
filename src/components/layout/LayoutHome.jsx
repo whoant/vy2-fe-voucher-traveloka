@@ -12,8 +12,6 @@ const LayoutHome = props => {
 
     const [visible, setVisible] = useState(false)
     const [visibleRegister, setVisibleRegister] = useState(false)
-
-    const [isShow, setIsShow] = useState(true)
     const [showDropdown, setShowDropdown] = useState(false)
 
     const [user, setUser] = useState({});
@@ -60,7 +58,6 @@ const LayoutHome = props => {
 
 
     const handleLogout = () => {
-        setIsShow(true);
         localStorage.removeItem('user');
         toast.success("Đăng xuất thành công !");
         setUser(null);
