@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useSearchParams } from 'react-router-dom';
 import '../Discounts/style.css';
 import './styleHome.css';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const LayoutHome = props => {
     const navigate = useNavigate();
-
+    const [authParam] = useSearchParams()
     const [visible, setVisible] = useState(false)
     const [visibleRegister, setVisibleRegister] = useState(false)
     const [showDropdown, setShowDropdown] = useState(false)
@@ -47,6 +47,25 @@ const LayoutHome = props => {
             toast.error(e.response.data.message);
         }
     }
+
+    useEffect(() => {
+        const loginToken = async () => {
+            try {
+                const { data } = await AuthApi.loginUserUsingToken(token);
+                localStorage.setItem('user', JSON.stringify(data.data));
+                setUser(data.data);
+            } catch (e) {
+                console.log(e);
+                toast.error(e.response.data.message);
+            }
+        }
+
+
+        const token = authParam.get('token');
+        if (!token) return;
+        loginToken();
+
+    }, []);
 
     useEffect(() => {
         const storageUser = localStorage.getItem('user');
