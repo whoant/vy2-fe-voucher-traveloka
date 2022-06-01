@@ -23,10 +23,15 @@ const loginUser = (email, password) => {
     });
 };
 
+const loginUserUsingToken = (token) => {
+    return axios.get(`/api/v1/user/auth/login-token?token=${token}`);
+};
+
 export default {
     registerPartner,
     loginPartner,
     loginPartnerUsingToken,
     registerUser,
-    loginUser
+    loginUser,
+    loginUserUsingToken
 };
