@@ -26,10 +26,13 @@ const Login = props => {
         const token = authParam.get('token');
         if (!token) return;
         loginToken();
-        
+
     }, []);
 
     const onSubmit = async body => {
+        window.location = "https://profile.vinhphancommunity.xyz/Login?redirect=https://voucher.votuan.xyz/partner/auth";
+        return;
+        /*
         if (!body) {
             toast.error("Vui lòng kiểm tra lại thông tin !");
             return;
@@ -43,6 +46,7 @@ const Login = props => {
             console.log(e);
             toast.error(e.response.data.message);
         }
+         */
     };
 
     return (
@@ -77,7 +81,8 @@ const Login = props => {
                             </div>
                             <div className='row'>
                                 <div className='col-md-3'>
-                                    <Link to='/partner/register'>Tạo tài khoản</Link>
+                                    <a href="https://profile.vinhphancommunity.xyz/signup">Tạo tài khoản</a>
+                                    {/*<Link to='/partner/register'>Tạo tài khoản</Link>*/}
                                 </div>
                             </div>
                         </div>

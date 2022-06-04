@@ -17,11 +17,14 @@ const LayoutHome = props => {
     const [user, setUser] = useState({});
 
     const handleClick = () => {
-        setVisible(prev => !prev)
-        setVisibleRegister(false)
+        window.location = 'https://profile.vinhphancommunity.xyz/Login?redirect=https://voucher.votuan.xyz/user/home';
+        // setVisible(prev => !prev)
+        // setVisibleRegister(false)
     }
     const handleShowSignup = () => {
-        setVisibleRegister(prev => !prev)
+        window.location = 'https://profile.vinhphancommunity.xyz/signup';
+
+        // setVisibleRegister(prev => !prev)
     }
     const handleChangeForm = () => {
         setVisible(prev => !prev)
@@ -38,10 +41,13 @@ const LayoutHome = props => {
         try {
 
             if (visible) {
+                /*
                 const { data } = await AuthApi.loginUser(e.Account, e.Password);
                 toast.success(data.message);
                 localStorage.setItem('user', JSON.stringify(data.data));
                 setUser(data.data);
+
+                 */
             }
         } catch (e) {
             toast.error(e.response.data.message);
