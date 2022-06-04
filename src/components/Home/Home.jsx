@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
 const Home = props => {
-    const [type, setType] = useState('');
+    const [type, setType] = useState('FLIGHT');
     const navigate = useNavigate();
 
     const handleOnChange = (e) => {
