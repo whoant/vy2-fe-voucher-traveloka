@@ -1,8 +1,24 @@
 import React from 'react';
 import '../Discounts/style.css';
+import { confirm } from "react-confirm-box";
 
 const Bonus = props => {
+    const options = {
+        labels: {
+            confirmable: "OK",
+            cancellable: "Hủy"
+        },
+        closeOnOverlayClick: true
+      };
 
+    const onClick = async (options  ) => {
+        const result = await confirm("Đồng ý đổi điểm?", options);
+        if (result) {
+          console.log("Confirmed!");
+          return;
+        }
+        console.log("Cancel!");
+      };
 
     return (
         <div className="oneColumnWebDesktop">
@@ -93,7 +109,11 @@ const Bonus = props => {
                                                     </span> đ
                                                 </p>
                                             </div>
-                                            <span className="btn-secondary btn-block">Đổi ngay</span>
+                                            <span 
+                                                className="btn-secondary btn-block"
+                                                onClick={() => {onClick(options)}}
+                                            >
+                                                Đổi ngay</span>
                                         </div>
                                     </div>
                                 </div>
