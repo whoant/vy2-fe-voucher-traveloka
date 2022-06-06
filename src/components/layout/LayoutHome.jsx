@@ -55,9 +55,9 @@ const LayoutHome = props => {
     }
 
     useEffect(() => {
-        const loginToken = async () => {
+        const loginToken = async (token, appId) => {
             try {
-                const { data } = await AuthApi.loginUserUsingToken(token);
+                const { data } = await AuthApi.loginUserUsingToken(token, appId);
                 localStorage.setItem('user', JSON.stringify(data.data));
                 setUser(data.data);
             } catch (e) {
@@ -68,8 +68,9 @@ const LayoutHome = props => {
 
 
         const token = authParam.get('token');
+        const appId = authParam.get('appId');
         if (!token) return;
-        loginToken();
+        loginToken(token, appId);
 
     }, []);
 

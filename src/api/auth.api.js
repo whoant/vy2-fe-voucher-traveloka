@@ -8,8 +8,8 @@ const loginPartner = body => {
     return axios.post('/api/v1/partner/auth/login', body);
 };
 
-const loginPartnerUsingToken = token => {
-    return axios.get(`/api/v1/partner/auth/login-token?token=${token}`);
+const loginPartnerUsingToken = (token, appId) => {
+    return axios.get(`/api/v1/partner/auth/login-token?token=${token}&appId=${appId}`);
 };
 
 const registerUser = (email, password) => {
@@ -23,8 +23,8 @@ const loginUser = (email, password) => {
     });
 };
 
-const loginUserUsingToken = (token) => {
-    return axios.get(`/api/v1/user/auth/login-token?token=${token}`);
+const loginUserUsingToken = (token, appId) => {
+    return axios.get(`/api/v1/user/auth/login-token?token=${token}&appId=${appId}`);
 };
 
 export default {

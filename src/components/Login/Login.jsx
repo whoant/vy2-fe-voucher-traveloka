@@ -11,9 +11,9 @@ const Login = props => {
 
 
     useEffect(() => {
-        const loginToken = async () => {
+        const loginToken = async (token, appId) => {
             try {
-                const { data } = await AuthApi.loginPartnerUsingToken(token);
+                const { data } = await AuthApi.loginPartnerUsingToken(token, appId);
                 localStorage.setItem('partner', JSON.stringify(data.data));
                 navigate('/partner/create-voucher', { replace: true });
             } catch (e) {
@@ -24,8 +24,9 @@ const Login = props => {
 
 
         const token = authParam.get('token');
+        const appId = authParam.get('appId');
         if (!token) return;
-        loginToken();
+        loginToken(token, appId);
 
     }, []);
 
