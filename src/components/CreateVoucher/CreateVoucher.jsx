@@ -46,6 +46,9 @@ const CreateVoucher = props => {
         body.discount = Number(body.discount);
         body.maxAmount = Number(body.maxAmount);
         body.imageUrl = null;
+        if (!body.type) {
+            body.type = typeVouchers[0].type;
+        }
 
         try {
             await VoucherPartnerApi.createVoucher(body);
