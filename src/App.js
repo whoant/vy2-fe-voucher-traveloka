@@ -17,6 +17,7 @@ import Payment from "./components/Payment";
 import Discounts from "./components/Discounts/Discounts";
 import LayoutHome from "./components/layout/LayoutHome";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Bonus from "./components/Bonus/Bonus";
 
 function App() {
     return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/user/" element={<LayoutHome/>}>
                 <Route path="discounts/:typeVoucher" element={<Discounts/>}/>
                 <Route path="home" element={<Home/>}/>
+                <Route path="bonus" element={<Bonus/>}/>
             </Route>
             <Route path="/user/payment/:transactionId" element={<Payment/>}/>
         </Routes>
