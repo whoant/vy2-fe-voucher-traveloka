@@ -83,7 +83,7 @@ const Layout = props => {
                                     </li>
                                     <li className="menu-item" aria-haspopup="true">
                                         <Link to="/partner/create-gift-partner" className="menu-link"><span
-                                            className="menu-text">Create Gift Partner</span></Link>
+                                            className="menu-text">Tạo thẻ quà tặng</span></Link>
                                     </li>
                                 </ul>
                             </div>

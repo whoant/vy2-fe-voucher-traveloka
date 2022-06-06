@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useForm } from 'react-hook-form';
 import "react-toastify/dist/ReactToastify.min.css"
 import { toast, ToastContainer } from 'react-toastify';
+
 const DataCreateGift = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -22,7 +23,8 @@ const DataCreateGift = () => {
             setTypedown(true);
         } else {
             setTypedown(false);
-        };
+        }
+        ;
     }
 
     return (
@@ -30,20 +32,23 @@ const DataCreateGift = () => {
             <div className="card-body">
 
                 <div className="form-group">
-                    <label>Tên gift card
+                    <label>Tiêu đề thẻ quà tặng
                         <span className="text-danger">*</span></label>
-                    <input type="text" className="form-control" placeholder="Nhập tên voucher" {...register("nameGift", { required: true })} />
+                    <input type="text" className="form-control"
+                           placeholder="Nhập tên voucher" {...register("nameGift", { required: true })} />
                     {errors.pointGift && <span>This field is required</span>}
                 </div>
                 <div className="form-group">
                     <label>Nội dung
                         <span className="text-danger">*</span></label>
-                    <textarea type="text" className="form-control" placeholder="Nhập nội dung voucher" {...register("des")} />
+                    <textarea type="text" className="form-control"
+                              placeholder="Nhập nội dung voucher" {...register("des")} />
                 </div>
                 <div className="form-group">
-                    <label>Mã gift
+                    <label>Mã thẻ quà tặng
                         <span className="text-danger">*</span></label>
-                    <input type="text" className="form-control" placeholder="Nhập tên voucher" {...register("codeGift", { required: true })} />
+                    <input type="text" className="form-control"
+                           placeholder="Nhập tên voucher" {...register("codeGift", { required: true })} />
                     {errors.codeGift && <span>This field is required</span>}
                 </div>
                 <div className='form-group'>
@@ -53,25 +58,25 @@ const DataCreateGift = () => {
                     <input type="file" className="form-control" accept=".png, .jpg, .jpeg*"{...register("imageName")} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="exampleSelect1">Chọn loại
+                    <label htmlFor="exampleSelect1">Loại dịch vụ
                         <span className="text-danger">*</span></label>
                     <select className="form-control" id="exampleSelect1" {...register("category", { required: true })}>
-                        <option value="Chuyenbay" >Chuyến bay</option>
-                        <option value="Khachsan" >Khách sạn</option>
-                        <option value="DuaDon" >Đưa đón sân bay</option>
-                        <option value="BietThu" >Biệt thự và căn hộ</option>
-                        <option value="TraiNghiem" >Tour du lịch(Trải nghiệm)</option>
-                        <option value="Thuexe" >Thuê xe</option>
-                        <option value="NhaHan" >Nhà hàng</option>
+                        <option value="Chuyenbay">Chuyến bay</option>
+                        <option value="Khachsan">Khách sạn</option>
+                        <option value="DuaDon">Đưa đón sân bay</option>
+                        <option value="BietThu">Biệt thự và căn hộ</option>
+                        <option value="TraiNghiem">Tour du lịch(Trải nghiệm)</option>
+                        <option value="Thuexe">Thuê xe</option>
+                        <option value="NhaHan">Nhà hàng</option>
                     </select>
                     {errors.category && <span>This field is required</span>}
                 </div>
                 <div className="form-group">
-                    <label htmlFor="exampleSelect1">Chọn loại
+                    <label htmlFor="exampleSelect1">Chọn loại giảm giá
                         <span className="text-danger">*</span></label>
                     <select className="form-control" id="exampleSelect1" onChange={handleChangeType}>
-                        <option value="True" >Monney Percent</option>
-                        <option value="False" >Percent</option>
+                        <option value="True">Monney Percent</option>
+                        <option value="False">Percent</option>
                     </select>
                 </div>
                 <div className="row">
@@ -82,7 +87,8 @@ const DataCreateGift = () => {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">đ</span>
                                 </div>
-                                <input type="text" className="form-control form-control-solid" placeholder="Nhập số tiền giảm"{...register("MoneyDiscount")} />
+                                <input type="text" className="form-control form-control-solid"
+                                       placeholder="Nhập số tiền giảm"{...register("MoneyDiscount")} />
                             </div>
                         </div>
                     </div>) : (<div className="col-md-6">
@@ -92,7 +98,8 @@ const DataCreateGift = () => {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">%</span>
                                 </div>
-                                <input type="text" className="form-control form-control-solid" placeholder="Nhập số phần trăm giảm"{...register("PercentDiscount")} />
+                                <input type="text" className="form-control form-control-solid"
+                                       placeholder="Nhập số phần trăm giảm"{...register("PercentDiscount")} />
                             </div>
                         </div>
                     </div>)}
@@ -105,7 +112,8 @@ const DataCreateGift = () => {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text">P</span>
                                 </div>
-                                <input type="text" className="form-control form-control-solid" placeholder="Nhập số điểm" {...register("pointGift", { required: true })} />
+                                <input type="text" className="form-control form-control-solid"
+                                       placeholder="Nhập số điểm" {...register("pointGift", { required: true })} />
                                 {errors.pointGift && <span>This field is required</span>}
                             </div>
                         </div>
@@ -115,20 +123,22 @@ const DataCreateGift = () => {
                 <div className="form-group row">
                     <label htmlFor="example-date-input" className="col-2 col-form-label">Start Date</label>
                     <div className="col-10">
-                        <input className="form-control" type="date" defaultValue={Date.UTC} id="example-date-input"{...register('startDate', { required: true })} />
+                        <input className="form-control" type="date" defaultValue={Date.UTC}
+                               id="example-date-input"{...register('startDate', { required: true })} />
                         {errors.startDate && <span>This field is required</span>}
                     </div>
                 </div>
                 <div className="form-group row">
                     <label htmlFor="example-date-input" className="col-2 col-form-label">End Date</label>
                     <div className="col-10">
-                        <input className="form-control" type="date" defaultValue={Date.UTC} id="example-date-input"{...register('endDate', { required: true })} />
+                        <input className="form-control" type="date" defaultValue={Date.UTC}
+                               id="example-date-input"{...register('endDate', { required: true })} />
                         {errors.endDate && <span>This field is required</span>}
                     </div>
                 </div>
             </div>
             <div className="card-footer">
-                <button type="submit" className="btn btn-primary mr-2" >Tạo Gift Card</button>
+                <button type="submit" className="btn btn-primary mr-2">Tạo Gift Card</button>
                 <button type="reset" className="btn btn-secondary">Hủy</button>
             </div>
         </form>

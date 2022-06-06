@@ -31,7 +31,7 @@ const Login = props => {
     }, []);
 
     const onSubmit = async body => {
-        window.location = "https://profile.vinhphancommunity.xyz/Login?redirect=https://voucher.votuan.xyz/partner/auth";
+        window.location = `https://profile.vinhphancommunity.xyz/Login?redirect=${window.location.href}`;
         return;
         /*
         if (!body) {
