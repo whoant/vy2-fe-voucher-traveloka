@@ -1,31 +1,63 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
 import { useForm } from 'react-hook-form';
 import "react-toastify/dist/ReactToastify.min.css"
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import GiftCardPartnerApi from "../../api/giftCardPartner.api";
+import combineDescription from '../../helpers/combineDescription';
+import VoucherPartnerApi from "../../api/voucherPartner.api";
 
 const DataCreateGift = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data) => {
-        toast.success("ban dang dang ki thanh cong");
-        if (type === true) {
-            data.PercentDiscount = 0;
-        } else {
-            data.MoneyDiscount = 0;
+    const [description, setDescription] = useState('');
+    const [typeVouchers, setTypeVouchers] = useState([]);
+    const [condition, setCondition] = useState({
+        threshold: 0,
+        discount: 0,
+        maxAmount: 0
+    });
+
+    useEffect(() => {
+        const listTypeVoucher = async () => {
+            try {
+                const { data } = await VoucherPartnerApi.getListTypeVouchers();
+                setTypeVouchers(data.data.typeVouchers)
+
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        listTypeVoucher();
+
+    }, []);
+
+    useEffect(() => {
+        setDescription(combineDescription(condition));
+    }, [condition])
+
+    const onSubmit = async (body) => {
+        body.limitUse = Number(body.limitUse);
+        body.threshold = Number(body.threshold);
+        body.discount = Number(body.discount);
+        body.pointExchange = Number(body.pointExchange);
+        body.maxAmount = Number(body.maxAmount);
+        body.imageUrl = null;
+        if (!body.type) {
+            body.type = typeVouchers[0].type;
         }
 
-        console.log(data);
-    }
-    const [type, setTypedown] = useState(true);
-    const handleChangeType = (e) => {
-        if (e.target.value === "True") {
-            setTypedown(true);
-        } else {
-            setTypedown(false);
+        try {
+            await GiftCardPartnerApi.createGiftCard(body);
+            toast.success("Tạo thẻ thành công !");
+        } catch (e) {
+            toast.error(e.response.data.message);
         }
-        ;
+
+        console.log(body);
     }
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -35,111 +67,155 @@ const DataCreateGift = () => {
                     <label>Tiêu đề thẻ quà tặng
                         <span className="text-danger">*</span></label>
                     <input type="text" className="form-control"
-                           placeholder="Nhập tên voucher" {...register("nameGift", { required: true })} />
+                           placeholder="Nhập tên voucher" {...register("title", { required: true })} />
                     {errors.pointGift && <span>This field is required</span>}
                 </div>
                 <div className="form-group">
                     <label>Nội dung
                         <span className="text-danger">*</span></label>
                     <textarea type="text" className="form-control"
-                              placeholder="Nhập nội dung voucher" {...register("des")} />
+                              placeholder="Nhập nội dung voucher" {...register("content")} />
                 </div>
                 <div className="form-group">
                     <label>Mã thẻ quà tặng
                         <span className="text-danger">*</span></label>
                     <input type="text" className="form-control"
-                           placeholder="Nhập tên voucher" {...register("codeGift", { required: true })} />
-                    {errors.codeGift && <span>This field is required</span>}
+                           placeholder="Nhập tên voucher" {...register("giftCardCode", { required: true })} />
                 </div>
                 <div className='form-group'>
                     <label>Ảnh
                         <span className="text-danger">*</span>
                     </label>
-                    <input type="file" className="form-control" accept=".png, .jpg, .jpeg*"{...register("imageName")} />
+                    <input type="file" className="form-control" accept=".png, .jpg, .jpeg*"{...register("imageUrl")} />
+                </div>
+                {<div className="form-group">
+                    <label>Chọn loại dịch vụ</label>
+                    <select className="form-control" {...register("type")}>
+                        {
+                            typeVouchers && typeVouchers.map(type => <option
+                                value={type.type}>{type.name}</option>)
+                        }
+                    </select>
+                </div>}
+                <div className="form-group">
+                    <label>
+                        Số người có thể sử dụng
+                        <span className="text-danger">*</span>
+                    </label>
+                    <input type="number" value="100000" className="form-control"
+                           placeholder="" {...register('limitUse')} required/>
+
                 </div>
                 <div className="form-group">
-                    <label htmlFor="exampleSelect1">Loại dịch vụ
-                        <span className="text-danger">*</span></label>
-                    <select className="form-control" id="exampleSelect1" {...register("category", { required: true })}>
-                        <option value="Chuyenbay">Chuyến bay</option>
-                        <option value="Khachsan">Khách sạn</option>
-                        <option value="DuaDon">Đưa đón sân bay</option>
-                        <option value="BietThu">Biệt thự và căn hộ</option>
-                        <option value="TraiNghiem">Tour du lịch(Trải nghiệm)</option>
-                        <option value="Thuexe">Thuê xe</option>
-                        <option value="NhaHan">Nhà hàng</option>
-                    </select>
-                    {errors.category && <span>This field is required</span>}
+                    <label htmlFor="exampleSelect1">
+                        Số điểm để đổi voucher
+                        <span className="text-danger">*</span>
+                    </label>
+                    <input
+                        {...register('pointExchange')}
+                        className="form-control"
+                        placeholder="Nhập số điểm..."
+                        min='10000'/>
                 </div>
+
                 <div className="form-group">
-                    <label htmlFor="exampleSelect1">Chọn loại giảm giá
-                        <span className="text-danger">*</span></label>
-                    <select className="form-control" id="exampleSelect1" onChange={handleChangeType}>
-                        <option value="True">Monney Percent</option>
-                        <option value="False">Percent</option>
-                    </select>
+                    <label htmlFor="exampleSelect1">
+                        Ngưỡng tiền để thỏa điều kiện voucher
+                        <span className="text-danger">*</span>
+                    </label>
+                    <input type="number" className="form-control form-control-solid" required
+                           placeholder="Ngưỡng tiền để thỏa điều kiện thẻ"
+                           min='0' {...register('threshold', {
+                        onChange: (e) => {
+
+                            setCondition(prevState => {
+                                return {
+                                    ...prevState,
+                                    threshold: e.target.value
+                                }
+                            });
+
+                        }
+                    })} />
                 </div>
-                <div className="row">
-                    {type === true ? (<div className="col-md-6">
-                        <div className="form-group">
-                            <label>Số tiền tối đa được giảm</label>
-                            <div className="input-group input-group-solid">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">đ</span>
-                                </div>
-                                <input type="text" className="form-control form-control-solid"
-                                       placeholder="Nhập số tiền giảm"{...register("MoneyDiscount")} />
+                <div className="col-md-6">
+                    <div className="form-group">
+                        <label>Số tiền tối đa được giảm
+                            <span className="text-danger">*</span>
+                        </label>
+                        <div className="input-group input-group-solid">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">đ</span>
                             </div>
+                            <input type="number" className="form-control form-control-solid" required
+                                   placeholder="Nhập số tiền giảm"
+                                   min='0' {...register('maxAmount', {
+                                onChange: (e) => {
+                                    setCondition(prevState => {
+                                        const maxAmount = e.target.value;
+                                        return {
+                                            ...prevState,
+                                            maxAmount,
+                                        }
+                                    });
+                                }
+                            })} />
                         </div>
-                    </div>) : (<div className="col-md-6">
-                        <div className="form-group">
-                            <label>Số phần trăm được giảm</label>
-                            <div className="input-group input-group-solid">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">%</span>
-                                </div>
-                                <input type="text" className="form-control form-control-solid"
-                                       placeholder="Nhập số phần trăm giảm"{...register("PercentDiscount")} />
+                    </div>
+                </div>
+                <div className="col-md-6">
+                    <div className="form-group">
+                        <label>Số phần trăm được giảm
+                            <span className="text-danger">*</span>
+                        </label>
+                        <div className="input-group input-group-solid">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text">%</span>
                             </div>
-                        </div>
-                    </div>)}
-
-
-                    <div className="col-md-6">
-                        <div className="form-group">
-                            <label>Điểm để đổi gift card</label>
-                            <div className="input-group input-group-solid">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text">P</span>
-                                </div>
-                                <input type="text" className="form-control form-control-solid"
-                                       placeholder="Nhập số điểm" {...register("pointGift", { required: true })} />
-                                {errors.pointGift && <span>This field is required</span>}
-                            </div>
+                            <input type="number" className="form-control form-control-solid" required
+                                   placeholder="Nhập số phần trăm giảm" min='0'
+                                   max='100' {...register('discount', {
+                                onChange: e => {
+                                    const discount = e.target.value;
+                                    if (discount > 100 || discount < 0) {
+                                        toast.error("Phần trăm được giảm không hợp lệ !");
+                                        return;
+                                    }
+                                    setCondition(prevState => {
+                                        return {
+                                            ...prevState,
+                                            discount
+                                        }
+                                    });
+                                }
+                            })} />
                         </div>
                     </div>
                 </div>
 
                 <div className="form-group row">
-                    <label htmlFor="example-date-input" className="col-2 col-form-label">Start Date</label>
+                    <label className="col-2 col-form-label">Mô tả điều kiện</label>
                     <div className="col-10">
-                        <input className="form-control" type="date" defaultValue={Date.UTC}
-                               id="example-date-input"{...register('startDate', { required: true })} />
-                        {errors.startDate && <span>This field is required</span>}
+                        <textarea className="form-control" rows={2} disabled value={description}/>
                     </div>
                 </div>
                 <div className="form-group row">
-                    <label htmlFor="example-date-input" className="col-2 col-form-label">End Date</label>
-                    <div className="col-10">
-                        <input className="form-control" type="date" defaultValue={Date.UTC}
-                               id="example-date-input"{...register('endDate', { required: true })} />
-                        {errors.endDate && <span>This field is required</span>}
+                    <label class="col-2 col-form-label">Ngày bắt đầu</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" {...register('effectiveAt')} />
                     </div>
                 </div>
+                <div className="form-group row">
+                    <label class="col-2 col-form-label">Ngày hết hạn</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" {...register('expirationAt')} />
+                    </div>
+                </div>
+
             </div>
             <div className="card-footer">
-                <button type="submit" className="btn btn-primary mr-2">Tạo Gift Card</button>
-                <button type="reset" className="btn btn-secondary">Hủy</button>
+                <button type="submit" className="btn btn-primary mr-2">Tạo thẻ quà tặng</button>
+
             </div>
         </form>
 

@@ -3,11 +3,18 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import VoucherPartnerApi from '../../api/voucherPartner.api';
 import { toast } from "react-toastify";
+import combineDescription from "../../helpers/combineDescription";
 
 const CreateVoucher = props => {
 
     const [visible, setVisible] = useState(false);
     const [typeVouchers, setTypeVouchers] = useState([]);
+    const [description, setDescription] = useState('');
+    const [condition, setCondition] = useState({
+        threshold: 0,
+        discount: 0,
+        maxAmount: 0
+    });
 
 
     useEffect(() => {
@@ -24,6 +31,10 @@ const CreateVoucher = props => {
         listTypeVoucher();
 
     }, []);
+
+    useEffect(() => {
+        setDescription(combineDescription(condition));
+    }, [condition])
 
     const handleCharge = (e) => {
         // setVisible(e.target.value)
@@ -131,7 +142,17 @@ const CreateVoucher = props => {
                                         </label>
                                         <input type="number" className="form-control form-control-solid" required
                                                placeholder="Ngưỡng tiền để thỏa điều kiện voucher"
-                                               min='0' {...register('threshold')} />
+                                               min='0' {...register('threshold', {
+                                            onChange: (e) => {
+                                                setCondition(prevState => {
+                                                    return {
+                                                        ...prevState,
+                                                        threshold: e.target.value
+                                                    }
+                                                });
+
+                                            }
+                                        })} />
 
                                     </div>
                                 </div>
@@ -146,7 +167,17 @@ const CreateVoucher = props => {
                                             </div>
                                             <input type="number" className="form-control form-control-solid" required
                                                    placeholder="Nhập số tiền giảm"
-                                                   min='0' {...register('maxAmount')} />
+                                                   min='0' {...register('maxAmount', {
+                                                onChange: (e) => {
+                                                    setCondition(prevState => {
+                                                        const maxAmount = e.target.value;
+                                                        return {
+                                                            ...prevState,
+                                                            maxAmount,
+                                                        }
+                                                    });
+                                                }
+                                            })} />
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +192,21 @@ const CreateVoucher = props => {
                                             </div>
                                             <input type="number" className="form-control form-control-solid" required
                                                    placeholder="Nhập số phần trăm giảm" min='0'
-                                                   max='100' {...register('discount')} />
+                                                   max='100' {...register('discount', {
+                                                onChange: e => {
+                                                    const discount = e.target.value;
+                                                    if (discount > 100 || discount < 0) {
+                                                        toast.error("Phần trăm được giảm không hợp lệ !");
+                                                        return;
+                                                    }
+                                                    setCondition(prevState => {
+                                                        return {
+                                                            ...prevState,
+                                                            discount
+                                                        }
+                                                    });
+                                                }
+                                            })} />
                                         </div>
                                     </div>
                                 </div>
@@ -191,6 +236,12 @@ const CreateVoucher = props => {
                                                 min='10000'/>
                                         </div>)
                                     }
+                                </div>
+                            </div>
+                            <div className="form-group row">
+                                <label className="col-2 col-form-label">Mô tả điều kiện</label>
+                                <div className="col-10">
+                                    <textarea className="form-control" rows={2} disabled value={description}/>
                                 </div>
                             </div>
                             <div className="form-group row">
