@@ -8,7 +8,6 @@ import AuthApi from '../../api/auth.api';
 import { toast } from "react-toastify";
 
 const LayoutHome = props => {
-    console.log(window.location.href);
     const navigate = useNavigate();
     const [authParam] = useSearchParams()
     const [visible, setVisible] = useState(false)

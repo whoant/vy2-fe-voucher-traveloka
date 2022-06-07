@@ -40,6 +40,7 @@ function App() {
                 <Route path="discounts/:typeVoucher" element={<Discounts/>}/>
                 <Route path="home" element={<Home/>}/>
                 <Route path="bonus" element={<Bonus/>}/>
+                <Route path="bonus/:typeVoucher" element={<Bonus/>}/>
             </Route>
             <Route path="/user/payment/:transactionId" element={<Payment/>}/>
         </Routes>
