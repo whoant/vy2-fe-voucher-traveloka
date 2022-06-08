@@ -11,6 +11,7 @@ const Bonus = props => {
 
     let { typeVoucher } = useParams();
     const [giftCards, setGiftCards] = useState(null);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     useEffect(() => {
         const listGiftCardCanExchange = async () => {
@@ -26,11 +27,9 @@ const Bonus = props => {
         };
 
         listGiftCardCanExchange();
-    }, [typeVoucher]);
+    }, [typeVoucher, isSuccess]);
 
     const handleClickExchange = (giftCardCode) => {
-        console.log(giftCardCode);
-
         confirmAlert({
             title: 'Đổi điểm thưởng',
             message: 'Bạn có chắc chắn đổi điểm không ?',
@@ -41,6 +40,7 @@ const Bonus = props => {
                         try {
                             await GiftCardUserApi.postGiftCardExchange(giftCardCode);
                             toast.success("Đổi thành công !");
+                            setIsSuccess(true);
                         } catch (e) {
                             toast.error(e.response.data.message);
                         }
