@@ -10,9 +10,9 @@ const CreateGiftPartner = () => {
             <div className="col-md-8">
                 <div className="card card-custom gutter-b example example-compact">
                     <div className="card-header">
-                        <h3 className="card-title">Tạo gift card</h3>
+                        <h3 className="card-title">Tạo thẻ quà tặng</h3>
                     </div>
-                    <DataCreateGift />
+                    <DataCreateGift/>
                 </div>
 
             </div>

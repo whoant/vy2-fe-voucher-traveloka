@@ -30,7 +30,8 @@ function App() {
                 <Route path="voucher/:typeVoucher" element={<UserVoucher/>}/>
                 <Route path="voucher" element={<UserVoucher/>}/>
                 <Route path="voucher/:typeVoucher/:code" element={<DetailVoucher/>}/>
-                <Route path="list-gift-partner" element={<Gift/>}/>
+                <Route path="gift-card" element={<Gift/>}/>
+                <Route path="gift-card/:typeVoucher" element={<Gift/>}/>
                 <Route path="dashboard" element={<Dashboard/>}/>
                 <Route path="create-gift-partner" element={<CreateGiftPartner/>}/>
             </Route>
@@ -39,6 +40,7 @@ function App() {
                 <Route path="discounts/:typeVoucher" element={<Discounts/>}/>
                 <Route path="home" element={<Home/>}/>
                 <Route path="bonus" element={<Bonus/>}/>
+                <Route path="bonus/:typeVoucher" element={<Bonus/>}/>
             </Route>
             <Route path="/user/payment/:transactionId" element={<Payment/>}/>
         </Routes>

@@ -17,7 +17,7 @@ const LayoutHome = props => {
     const [user, setUser] = useState({});
 
     const handleClick = () => {
-        window.location = 'https://profile.vinhphancommunity.xyz/Login?redirect=https://voucher.votuan.xyz/user/home';
+        window.location = `https://profile.vinhphancommunity.xyz/Login?redirect=${window.location.href}`;
         // setVisible(prev => !prev)
         // setVisibleRegister(false)
     }
@@ -662,20 +662,21 @@ const LayoutHome = props => {
                                                                     style={{ objectFit: 'fill', objectPosition: '50% 50%' }}/>
                                                                     <div dir="auto"
                                                                          className="css-901oao r-cwxd7f r-1sixt3s r-ubezar r-majxgm r-135wba7 r-fdjqy7">Passenger
-                                                                         Quick
-                                                                         Pick
+                                                                        Quick
+                                                                        Pick
                                                                     </div>
                                                                 </a><Link to="/user/bonus"
-                                                                       className="css-4rbku5 r-1awozwy r-6koalj r-ymttw5 r-5njf8e"><img
+                                                                          className="css-4rbku5 r-1awozwy r-6koalj r-ymttw5 r-5njf8e"><img
                                                                     importance="low" loading="lazy"
                                                                     src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/d/db4d9fb6f6a0aa3c5e8827a8b0f1e28e.svg"
                                                                     decoding="async" className="r-88pszg"
                                                                     style={{ objectFit: 'fill', objectPosition: '50% 50%' }}/>
                                                                     <div dir="auto"
-                                                                         className="css-901oao r-cwxd7f r-1sixt3s r-ubezar r-majxgm r-135wba7 r-fdjqy7">Đổi điểm thưởng
+                                                                         className="css-901oao r-cwxd7f r-1sixt3s r-ubezar r-majxgm r-135wba7 r-fdjqy7">Đổi
+                                                                        điểm thưởng
                                                                     </div>
                                                                 </Link><a href="/vi-vn/user/account?menu=newsletter"
-                                                                       className="css-4rbku5 r-1awozwy r-6koalj r-ymttw5 r-5njf8e"><img
+                                                                          className="css-4rbku5 r-1awozwy r-6koalj r-ymttw5 r-5njf8e"><img
                                                                     importance="low" loading="lazy"
                                                                     src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/c/cef9778118bdd85e1062cdd0b6196362.svg"
                                                                     decoding="async" className="r-88pszg"
