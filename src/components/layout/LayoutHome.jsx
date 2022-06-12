@@ -63,6 +63,7 @@ const LayoutHome = props => {
         localStorage.removeItem('user');
         toast.success("Đăng xuất thành công !");
         setUser(null);
+        navigate('/user/home', { replace: true });
     };
 
     const handleChangeApp = (e) => {
@@ -200,18 +201,21 @@ const LayoutHome = props => {
                                 </a></div>
                                 <div className="css-1dbjc4n r-88pszg">
                                     <div data-testid="language-currency-dropdown" style={{ cursor: 'pointer' }}>
-
-                                        <div dir="auto"
-                                             className="css-901oao r-1sixt3s r-1b43r93 r-majxgm r-rjixqe r-fdjqy7"
-                                             style={{ color: 'rgba(3,18,26,1.00)' }}>
-                                            <select className="form-control" onChange={handleChangeApp}>
-                                                <option value='VY03'>VY 03</option>
-                                                <option value='VY04'>VY 04</option>
-                                                <option value='VY01'>VY 01</option>
-                                                <option value='VY02'>VY 02</option>
-                                            </select>
-                                        </div>
-
+                                        {
+                                            !user && (
+                                                <div dir="auto"
+                                                     className="css-901oao r-1sixt3s r-1b43r93 r-majxgm r-rjixqe r-fdjqy7"
+                                                     style={{ color: 'rgba(3,18,26,1.00)' }}>
+                                                    <select className="form-control" onChange={handleChangeApp}
+                                                            value={appId}>
+                                                        <option value='VY03'>VY 03</option>
+                                                        <option value='VY04'>VY 04</option>
+                                                        <option value='VY01'>VY 01</option>
+                                                        <option value='VY02'>VY 02</option>
+                                                    </select>
+                                                </div>
+                                            )
+                                        }
                                     </div>
                                     <div className="css-1dbjc4n r-1euycsn r-633pao r-u8s1d r-j76wpu"
                                          style={{ marginTop: '4px', right: '0px' }}>

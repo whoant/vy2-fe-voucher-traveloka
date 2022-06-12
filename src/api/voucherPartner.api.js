@@ -1,27 +1,27 @@
-import axios from './axiosInstance';
+import axiosPartner from './axiosInstancePartner';
 
 const getListTypeVouchers = () => {
-    return axios.get('/api/v1/partner/voucher/type-voucher');
+    return axiosPartner.get('/api/v1/partner/voucher/type-voucher');
 };
 
 const createVoucher = body => {
-    return axios.post('/api/v1/partner/voucher', body);
+    return axiosPartner.post('/api/v1/partner/voucher', body);
 };
 
 const getListVoucher = type => {
-    return axios.get(`/api/v1/partner/voucher?type=${type}`);
+    return axiosPartner.get(`/api/v1/partner/voucher?type=${type}`);
 };
 
 const getDetailVoucher = (type, code) => {
-    return axios.get(`/api/v1/partner/voucher/detail?type=${type}&code=${code}`);
+    return axiosPartner.get(`/api/v1/partner/voucher/detail?type=${type}&code=${code}`);
 };
 
 const getAnalyzeVoucher = (type, code) => {
-    return axios.get(`/api/v1/partner/voucher/analyze?type=${type}&code=${code}`);
+    return axiosPartner.get(`/api/v1/partner/voucher/analyze?type=${type}&code=${code}`);
 };
 
 const getCountVoucher = () => {
-    return axios.get(`/api/v1/partner/voucher/count`);
+    return axiosPartner.get(`/api/v1/partner/voucher/count`);
 };
 
 export default {
