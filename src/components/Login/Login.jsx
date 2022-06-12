@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from "react-toastify";
 import AuthApi from "../../api/auth.api";
+import Constants from "../../constants";
 
 const Login = props => {
-    const { register, handleSubmit } = useForm();
+    const [appId, setAppId] = useState('VY03');
     const [authParam] = useSearchParams()
     const navigate = useNavigate();
-
 
     useEffect(() => {
         const loginToken = async (token, appId) => {
@@ -30,25 +30,19 @@ const Login = props => {
 
     }, []);
 
-    const onSubmit = async body => {
-        window.location = `https://profile.vinhphancommunity.xyz/Login?redirect=${window.location.href}`;
-        return;
-        /*
-        if (!body) {
-            toast.error("Vui lòng kiểm tra lại thông tin !");
-            return;
-        }
+    const handleChangeApp = (e) => {
+        setAppId(e.target.value)
+    }
 
-        try {
-            const { data } = await AuthApi.loginPartner(body);
-            localStorage.setItem('partner', JSON.stringify(data.data));
-            navigate('/partner/create-voucher', { replace: true });
-        } catch (e) {
-            console.log(e);
-            toast.error(e.response.data.message);
-        }
-         */
-    };
+    const handleClickLogin = () => {
+        window.location.href = Constants.END_POINT_APP[appId].PARTNER.LOGIN;
+        return;
+    }
+
+    const handleClickRegister = () => {
+        window.location.href = Constants.END_POINT_APP[appId].PARTNER.REGISTER;
+        return;
+    }
 
     return (
         <div className="row">
@@ -58,37 +52,36 @@ const Login = props => {
                     <div className="card-header">
                         <h3 className="card-title">Đăng nhập tài khoản</h3>
                     </div>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="card-body">
-                            <div className="form-group">
-                                <label>
-                                    Tài khoản
-                                    <span className="text-danger">*</span>
-                                </label>
-                                <input type='text' className="form-control" required {...register('username')} />
-                            </div>
-                            <div className="form-group">
-                                <label>
-                                    Mật khẩu
-                                    <span className="text-danger">*</span>
-                                </label>
-                                <input type="password" className="form-control" required {...register('password')} />
-                            </div>
-                            <div className='row'>
-                                <div className='col-md-3'>
-                                    <input type='submit' className="btn btn-primary mr-2"
-                                           value='Đăng nhập'/>
-                                </div>
-                            </div>
-                            <div className='row'>
-                                <div className='col-md-3'>
-                                    <a href="https://profile.vinhphancommunity.xyz/signup">Tạo tài khoản</a>
-                                    {/*<Link to='/partner/register'>Tạo tài khoản</Link>*/}
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <div className="form-group">
+                                    <label htmlFor="exampleSelect1">
+                                        App ID
+                                        <span className="text-danger">*</span>
+                                    </label>
+                                    <select className="form-control" onChange={handleChangeApp}>
+                                        <option value='VY03'>VY 03</option>
+                                        <option value='VY04'>VY 04</option>
+                                        <option value='VY01'>VY 01</option>
+                                        <option value='VY02'>VY 02</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-
-                    </form>
+                        <div className='row'>
+                            <div className='col-md-3'>
+                                <input type='submit' className="btn btn-primary mr-2"
+                                       value='Đăng nhập' onClick={handleClickLogin}/>
+                            </div>
+                        </div>
+                        <div className='row'>
+                            <div className='col-md-3'>
+                                <a href="#" onClick={handleClickRegister}>Tạo
+                                    tài khoản</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className='col-md-3'></div>
