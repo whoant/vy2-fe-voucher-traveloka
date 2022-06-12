@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { toast } from "react-toastify";
 import AuthApi from "../../api/auth.api";
 import Constants from "../../constants";
@@ -10,25 +9,23 @@ const Login = props => {
     const [authParam] = useSearchParams()
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const loginToken = async (token, appId) => {
-            try {
-                const { data } = await AuthApi.loginPartnerUsingToken(token, appId);
-                localStorage.setItem('partner', JSON.stringify(data.data));
-                navigate('/partner/create-voucher', { replace: true });
-            } catch (e) {
-                console.log(e);
-                toast.error(e.response.data.message);
-            }
+    const loginToken = async (token, appId) => {
+        try {
+            const { data } = await AuthApi.loginPartnerUsingToken(token, appId);
+            localStorage.setItem('partner', JSON.stringify(data.data));
+            navigate('/partner/create-voucher', { replace: true });
+        } catch (e) {
+            console.log(e);
+            toast.error(e.response.data.message);
         }
+    }
 
 
-        const token = authParam.get('token');
-        const appId = authParam.get('appId');
-        if (!token) return;
-        loginToken(token, appId);
-
-    }, []);
+    const token = authParam.get('token');
+    const appIdRedirect = authParam.get('appId');
+    if (token && appIdRedirect) {
+        loginToken(token, appIdRedirect);
+    }
 
     const handleChangeApp = (e) => {
         setAppId(e.target.value)
