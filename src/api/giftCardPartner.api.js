@@ -1,4 +1,4 @@
-import axios from './axiosInstance';
+import axios from './axiosInstancePartner';
 
 const createGiftCard = body => {
     return axios.post('/api/v1/partner/gift-card', body);

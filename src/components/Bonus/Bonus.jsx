@@ -10,6 +10,7 @@ import GiftCardUserApi from "../../api/giftCardUser.api";
 const Bonus = props => {
 
     let { typeVoucher } = useParams();
+    const [point, setPoint] = useState(0);
     const [giftCards, setGiftCards] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
 
@@ -28,6 +29,21 @@ const Bonus = props => {
 
         listGiftCardCanExchange();
     }, [typeVoucher, isSuccess]);
+
+    useEffect(() => {
+        const getPointAvailable = async () => {
+            try {
+                const { data } = await GiftCardUserApi.getPointAvailable();
+                setPoint(data.data.point)
+
+            } catch (e) {
+                toast.error(e.response.data.message);
+                console.error(e);
+            }
+        };
+
+        getPointAvailable();
+    }, []);
 
     const handleClickExchange = (giftCardCode) => {
         confirmAlert({
@@ -74,7 +90,7 @@ const Bonus = props => {
                     <div className="component-overflow simple-text   " data-component="true"
                          data-name="LandingPromotion_Intro" data-id={1474618931100}>
                         <h1>Đổi điểm thưởng!!</h1>
-                        <h3>Điểm hiện có: 30000</h3>
+                        <h3>Điểm hiện có: {point}</h3>
                     </div>
                 </div>
             </div>

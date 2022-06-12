@@ -6,10 +6,12 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AuthApi from '../../api/auth.api';
 import { toast } from "react-toastify";
+import Constants from "../../constants";
 
 const LayoutHome = props => {
     const navigate = useNavigate();
     const [authParam] = useSearchParams()
+    const [appId, setAppId] = useState('VY03');
     const [visible, setVisible] = useState(false)
     const [visibleRegister, setVisibleRegister] = useState(false)
     const [showDropdown, setShowDropdown] = useState(false)
@@ -17,14 +19,10 @@ const LayoutHome = props => {
     const [user, setUser] = useState({});
 
     const handleClick = () => {
-        window.location = `https://profile.vinhphancommunity.xyz/Login?redirect=${window.location.href}`;
-        // setVisible(prev => !prev)
-        // setVisibleRegister(false)
+        window.location.href = Constants.END_POINT_APP[appId].USER.LOGIN;
     }
     const handleShowSignup = () => {
-        window.location = 'https://profile.vinhphancommunity.xyz/signup';
-
-        // setVisibleRegister(prev => !prev)
+        window.location.href = Constants.END_POINT_APP[appId].USER.REGISTER;
     }
     const handleChangeForm = () => {
         setVisible(prev => !prev)
@@ -35,44 +33,22 @@ const LayoutHome = props => {
         setShowDropdown(prev => !prev)
     }
 
-    const { register, handleSubmit } = useForm()
-
-    const onSubmit = async (e) => {
+    const loginToken = async (token, appId) => {
         try {
-
-            if (visible) {
-                /*
-                const { data } = await AuthApi.loginUser(e.Account, e.Password);
-                toast.success(data.message);
-                localStorage.setItem('user', JSON.stringify(data.data));
-                setUser(data.data);
-
-                 */
-            }
+            const { data } = await AuthApi.loginUserUsingToken(token, appId);
+            localStorage.setItem('user', JSON.stringify(data.data));
+            setUser(data.data);
         } catch (e) {
+            console.log(e);
             toast.error(e.response.data.message);
         }
     }
 
-    useEffect(() => {
-        const loginToken = async (token, appId) => {
-            try {
-                const { data } = await AuthApi.loginUserUsingToken(token, appId);
-                localStorage.setItem('user', JSON.stringify(data.data));
-                setUser(data.data);
-            } catch (e) {
-                console.log(e);
-                toast.error(e.response.data.message);
-            }
-        }
-
-
-        const token = authParam.get('token');
-        const appId = authParam.get('appId');
-        if (!token) return;
-        loginToken(token, appId);
-
-    }, []);
+    const token = authParam.get('token');
+    const appIdRedirect = authParam.get('appId');
+    if (token && appIdRedirect) {
+        loginToken(token, appIdRedirect);
+    }
 
     useEffect(() => {
         const storageUser = localStorage.getItem('user');
@@ -87,8 +63,12 @@ const LayoutHome = props => {
         localStorage.removeItem('user');
         toast.success("Đăng xuất thành công !");
         setUser(null);
+        navigate('/user/home', { replace: true });
     };
 
+    const handleChangeApp = (e) => {
+        setAppId(e.target.value)
+    }
 
     return (
         <div id="__next" data-reactroot>
@@ -221,34 +201,21 @@ const LayoutHome = props => {
                                 </a></div>
                                 <div className="css-1dbjc4n r-88pszg">
                                     <div data-testid="language-currency-dropdown" style={{ cursor: 'pointer' }}>
-                                        <div className="css-1dbjc4n r-1awozwy r-18u37iz r-tuq35u"><img importance="low"
-                                                                                                       loading="lazy"
-                                                                                                       src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/9/96f8c046147fb32a009ba122f35312aa.svg"
-                                                                                                       decoding="async"
-                                                                                                       width={16}
-                                                                                                       height={16}
-                                                                                                       style={{
-                                                                                                           border: '2px solid #0264C8',
-                                                                                                           borderTopLeftRadius: '9999px',
-                                                                                                           borderTopRightRadius: '9999px',
-                                                                                                           borderBottomRightRadius: '9999px',
-                                                                                                           borderBottomLeftRadius: '9999px',
-                                                                                                           marginRight: '8px',
-                                                                                                           objectFit: 'none',
-                                                                                                           objectPosition: '50% 50%'
-                                                                                                       }}/>
-                                            <div dir="auto"
-                                                 className="css-901oao r-1sixt3s r-1b43r93 r-majxgm r-rjixqe r-fdjqy7"
-                                                 style={{ color: 'rgba(3,18,26,1.00)' }}>VND
-                                            </div>
-                                            <img importance="low" loading="lazy"
-                                                 src="https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/7/725bdbbc829236edb107bb810038bd72.svg"
-                                                 decoding="async" width={12} height={12} style={{
-                                                marginLeft: '4px',
-                                                objectFit: 'fill',
-                                                objectPosition: '50% 50%'
-                                            }}/>
-                                        </div>
+                                        {
+                                            !user && (
+                                                <div dir="auto"
+                                                     className="css-901oao r-1sixt3s r-1b43r93 r-majxgm r-rjixqe r-fdjqy7"
+                                                     style={{ color: 'rgba(3,18,26,1.00)' }}>
+                                                    <select className="form-control" onChange={handleChangeApp}
+                                                            value={appId}>
+                                                        <option value='VY03'>VY 03</option>
+                                                        <option value='VY04'>VY 04</option>
+                                                        <option value='VY01'>VY 01</option>
+                                                        <option value='VY02'>VY 02</option>
+                                                    </select>
+                                                </div>
+                                            )
+                                        }
                                     </div>
                                     <div className="css-1dbjc4n r-1euycsn r-633pao r-u8s1d r-j76wpu"
                                          style={{ marginTop: '4px', right: '0px' }}>
@@ -319,7 +286,7 @@ const LayoutHome = props => {
                                                 {
                                                     visible && (
                                                         <form
-                                                            onSubmit={handleSubmit(onSubmit)}
+
                                                             className="css-1dbjc4n r-1euycsn r-105ug2t r-u8s1d r-zchlnj r-j76wpu"
                                                             style={{ marginTop: '4px' }}>
                                                             <div
@@ -367,7 +334,7 @@ const LayoutHome = props => {
                                                                                         autoComplete="on" autoCorrect="on"
                                                                                         dir="auto" spellCheck="true" type="text"
                                                                                         className="css-11aywtz r-cwxd7f r-13awgt0 r-1sixt3s r-ubezar r-135wba7 r-bcqeeo r-1ny4l3l r-10paoce r-13n6l4s"
-                                                                                        id="username" {...register('Account')} />
+                                                                                        id="username"/>
                                                                                 </div>
                                                                                 <div aria-live="polite"
                                                                                      className="css-1dbjc4n"/>
@@ -407,7 +374,7 @@ const LayoutHome = props => {
                                                                                             dir="auto" spellCheck="true"
                                                                                             type="password"
                                                                                             className="css-11aywtz r-cwxd7f r-13awgt0 r-1sixt3s r-ubezar r-135wba7 r-bcqeeo r-1ny4l3l r-10paoce r-13n6l4s"
-                                                                                            id="password" {...register('Password')} />
+                                                                                            id="password"/>
 
                                                                                     </div>
                                                                                     <div aria-live="polite"
@@ -450,7 +417,6 @@ const LayoutHome = props => {
                                                 {
                                                     visibleRegister && (
                                                         <form
-                                                            onSubmit={handleSubmit(onSubmit)}
                                                             className="css-1dbjc4n r-1euycsn r-105ug2t r-u8s1d r-zchlnj r-j76wpu"
                                                             style={{ marginTop: '4px' }}>
                                                             <div
@@ -499,7 +465,7 @@ const LayoutHome = props => {
                                                                                         spellCheck="true" type="text"
                                                                                         className="css-11aywtz r-cwxd7f r-13awgt0 r-1sixt3s r-ubezar r-135wba7 r-bcqeeo r-1ny4l3l r-10paoce r-13n6l4s"
                                                                                         id="username"
-                                                                                        {...register('RegisterAccount')}
+
                                                                                     />
                                                                                 </div>
                                                                                 <div aria-live="polite"
@@ -539,7 +505,6 @@ const LayoutHome = props => {
                                                                                             type="password"
                                                                                             className="css-11aywtz r-cwxd7f r-13awgt0 r-1sixt3s r-ubezar r-135wba7 r-bcqeeo r-1ny4l3l r-10paoce r-13n6l4s"
                                                                                             id="password"
-                                                                                            {...register('RegisterPassword')}
                                                                                         />
 
                                                                                     </div>

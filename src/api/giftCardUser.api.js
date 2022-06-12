@@ -1,4 +1,4 @@
-import axios from './axiosInstance';
+import axios from './axiosInstanceUser';
 
 const getGiftCardCanExchange = (type) => {
     return axios.get(`/api/v1/user/gift-card/can-exchange?typeVoucher=${type}`);
@@ -10,7 +10,12 @@ const postGiftCardExchange = (giftCardCode) => {
     });
 };
 
+const getPointAvailable = () => {
+    return axios.get(`/api/v1/user/gift-card/point`);
+};
+
 export default {
     getGiftCardCanExchange,
-    postGiftCardExchange
+    postGiftCardExchange,
+    getPointAvailable
 };
