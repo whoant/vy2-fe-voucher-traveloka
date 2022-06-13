@@ -18,6 +18,7 @@ import Discounts from "./components/Discounts/Discounts";
 import LayoutHome from "./components/layout/LayoutHome";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Bonus from "./components/Bonus/Bonus";
+import DetailGiftCard from "./components/DetailGiftCard";
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                 <Route path="voucher/:typeVoucher/:code" element={<DetailVoucher/>}/>
                 <Route path="gift-card" element={<Gift/>}/>
                 <Route path="gift-card/:typeVoucher" element={<Gift/>}/>
+                <Route path="gift-card/:typeVoucher/:code" element={<DetailGiftCard/>}/>
                 <Route path="dashboard" element={<Dashboard/>}/>
                 <Route path="create-gift-partner" element={<CreateGiftPartner/>}/>
             </Route>
