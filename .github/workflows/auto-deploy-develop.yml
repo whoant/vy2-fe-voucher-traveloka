@@ -16,6 +16,7 @@ jobs:
           touch .env
           echo REACT_APP_END_POINT=${{secrets.REACT_APP_END_POINT}} > .env
           echo REACT_APP_PAYPAL_CLIENT_ID=${{secrets.REACT_APP_PAYPAL_CLIENT_ID}} >> .env
+          echo REACT_APP_URL=${{secrets.REACT_APP_URL}} >> .env
       - name: Stop container
         continue-on-error: true
         run: docker-compose down
