@@ -6,9 +6,11 @@ import { toast } from 'react-toastify';
 import GiftCardPartnerApi from "../../api/giftCardPartner.api";
 import combineDescription from '../../helpers/combineDescription';
 import VoucherPartnerApi from "../../api/voucherPartner.api";
+import { useNavigate } from "react-router-dom";
 
 const DataCreateGift = () => {
 
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [description, setDescription] = useState('');
     const [typeVouchers, setTypeVouchers] = useState([]);
@@ -51,6 +53,7 @@ const DataCreateGift = () => {
         try {
             await GiftCardPartnerApi.createGiftCard(body);
             toast.success("Tạo thẻ thành công !");
+            navigate(`/partner/gift-card/${body.type}`, { replace: true });
         } catch (e) {
             toast.error(e.response.data.message);
         }
