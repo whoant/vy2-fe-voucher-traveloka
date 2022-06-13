@@ -12,8 +12,8 @@ const getListVoucher = type => {
     return axiosPartner.get(`/api/v1/partner/voucher?type=${type}`);
 };
 
-const getDetailVoucher = (type, code) => {
-    return axiosPartner.get(`/api/v1/partner/voucher/detail?type=${type}&code=${code}`);
+const getDetailVoucher = (type, code, typeView = "used") => {
+    return axiosPartner.get(`/api/v1/partner/voucher/detail?type=${type}&code=${code}&typeView=${typeView}`);
 };
 
 const getAnalyzeVoucher = (type, code) => {

@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import VoucherPartnerApi from "../../api/voucherPartner.api";
 import { toast } from "react-toastify";
 import moment from "moment";
+import GiftCardPartnerApi from "../../api/giftCardPartner.api";
 
 const DetailVoucher = props => {
     const { typeVoucher, code } = useParams();
     const [info, setInfo] = useState([]);
+    const [typeView, setTypeView] = useState('used');
     const [analyze, setAnalyze] = useState({
         totalAmount: 0,
         totalUsed: 0,
@@ -22,7 +24,7 @@ const DetailVoucher = props => {
                     VoucherPartnerApi.getDetailVoucher(typeVoucher, code),
                     VoucherPartnerApi.getAnalyzeVoucher(typeVoucher, code),
                 ]);
-                
+
                 setAnalyze(resp[1].data.data);
                 setInfo(resp[0].data.data.info);
                 toast.success(resp[0].data.message);
@@ -41,6 +43,18 @@ const DetailVoucher = props => {
         }).format(value);
     }
 
+    const handleChangeType = async (e) => {
+        const typeView = e.target.value;
+        setTypeView(typeView);
+        try {
+            const { data } = await VoucherPartnerApi.getDetailVoucher(typeVoucher, code, typeView);
+            setInfo(data.data.info);
+            toast.success(data.message);
+        } catch (e) {
+            toast.error(e.response.data.message);
+        }
+    }
+
 
     return (
         <div>
@@ -52,7 +66,7 @@ const DetailVoucher = props => {
                     <div className="card-body position-relative">
                         <h6>Tổng user sử dụng</h6>
                         <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif text-warning"
-                             data-countup="{&quot;count&quot;:50,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{analyze.totalUse}</div>
+                             data-countup="{&quot;count&quot;:50,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{analyze.totalUsed}</div>
 
                     </div>
                 </div>
@@ -77,11 +91,28 @@ const DetailVoucher = props => {
                     </div>
                 </div>
             </div>
+            <div className="row">
+                <div className="col-md-4">
+                    <div className="form-group">
+                        <label htmlFor="exampleSelect1">
+                            Loại
+                            <span className="text-danger">*</span>
+                        </label>
+                        <select className="form-control" onChange={handleChangeType}>
+                            <option value='used'>Danh sách sử dụng</option>
+                            <option value='buy'>Danh sách mua</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div className="card card-custom">
 
                 <div className="card-header flex-wrap border-0 pt-6 pb-0">
                     <div className="card-title">
-                        <h3 className="card-label">Danh sách người dùng đã sử dụng</h3>
+                        <h3 className="card-label">{
+                            typeView === 'used' ? "Danh sách sử dụng" : "Danh sách mua"
+                        }</h3>
                     </div>
                 </div>
 

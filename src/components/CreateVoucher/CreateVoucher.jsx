@@ -4,9 +4,11 @@ import { useForm } from 'react-hook-form';
 import VoucherPartnerApi from '../../api/voucherPartner.api';
 import { toast } from "react-toastify";
 import combineDescription from "../../helpers/combineDescription";
+import { useNavigate } from "react-router-dom";
 
 const CreateVoucher = props => {
 
+    const navigate = useNavigate();
     const [visible, setVisible] = useState(false);
     const [typeVouchers, setTypeVouchers] = useState([]);
     const [description, setDescription] = useState('');
@@ -63,6 +65,7 @@ const CreateVoucher = props => {
 
         try {
             await VoucherPartnerApi.createVoucher(body);
+            navigate(`/partner/voucher/${body.type}`, { replace: true });
             toast.success("Tạo voucher thành công !");
         } catch (e) {
             toast.error(e.response.data.message);

@@ -13,8 +13,8 @@ const getCountGiftCards = () => {
     return axios.get(`/api/v1/partner/gift-card/count`);
 };
 
-const getDetailGiftCard = (type, code) => {
-    return axiosPartner.get(`/api/v1/partner/gift-card/detail?type=${type}&code=${code}`);
+const getDetailGiftCard = (type, code, typeView = 'used') => {
+    return axiosPartner.get(`/api/v1/partner/gift-card/detail?type=${type}&code=${code}&typeView=${typeView}`);
 };
 
 const getAnalyzeGiftCard = (type, code) => {
