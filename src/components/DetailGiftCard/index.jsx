@@ -61,7 +61,7 @@ const DetailVoucher = props => {
                          style={{ backgroundImage: 'url(/assets/img/illustrations/corner-3.png)' }}>
                     </div>
                     <div className="card-body position-relative">
-                        <h6>Tổng số user sử dụng </h6>
+                        <h6>Tổng số user đã đổi </h6>
                         <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif"
                              data-countup="{&quot;count&quot;:25,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{analyze.totalExchange}</div>
                     </div>

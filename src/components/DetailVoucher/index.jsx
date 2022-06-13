@@ -52,7 +52,7 @@ const DetailVoucher = props => {
                     <div className="card-body position-relative">
                         <h6>Tổng user sử dụng</h6>
                         <div className="display-4 fs-4 mb-2 font-weight-normal text-sans-serif text-warning"
-                             data-countup="{&quot;count&quot;:50,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{analyze.totalUse}</div>
+                             data-countup="{&quot;count&quot;:50,&quot;format&quot;:&quot;comma&quot;,&quot;prefix&quot;:&quot;&quot;}">{analyze.totalUsed}</div>
 
                     </div>
                 </div>
