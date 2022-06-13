@@ -1,4 +1,5 @@
 import axios from './axiosInstancePartner';
+import axiosPartner from "./axiosInstancePartner";
 
 const createGiftCard = body => {
     return axios.post('/api/v1/partner/gift-card', body);
@@ -12,8 +13,18 @@ const getCountGiftCards = () => {
     return axios.get(`/api/v1/partner/gift-card/count`);
 };
 
+const getDetailGiftCard = (type, code) => {
+    return axiosPartner.get(`/api/v1/partner/gift-card/detail?type=${type}&code=${code}`);
+};
+
+const getAnalyzeGiftCard = (type, code) => {
+    return axiosPartner.get(`/api/v1/partner/gift-card/analyze?type=${type}&code=${code}`);
+};
+
 export default {
     createGiftCard,
     getListGiftCard,
-    getCountGiftCards
+    getCountGiftCards,
+    getDetailGiftCard,
+    getAnalyzeGiftCard
 };
