@@ -24,11 +24,16 @@ const getCountVoucher = () => {
     return axiosPartner.get(`/api/v1/partner/voucher/count`);
 };
 
+const getAnalyzeData = () => {
+    return axiosPartner.get(`/api/v1/partner/voucher/analyze-data`);
+};
+
 export default {
     getListTypeVouchers,
     createVoucher,
     getListVoucher,
     getDetailVoucher,
     getAnalyzeVoucher,
-    getCountVoucher
+    getCountVoucher,
+    getAnalyzeData
 };
