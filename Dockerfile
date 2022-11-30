@@ -6,6 +6,7 @@ ENV NODE_ENV $NODE_ENV
 
 WORKDIR /opt
 COPY package.json package-lock.json yarn.lock ./
+COPY nginx.conf ./
 RUN npm install && npm cache clean --force
 
 WORKDIR /opt/app
