@@ -10,7 +10,7 @@ COPY nginx.conf ./
 RUN npm install && npm cache clean --force
 
 WORKDIR /opt/app
-COPY ./src/ /opt/app
+COPY ./build ./
 
 FROM nginx:alpine
 
