@@ -7,7 +7,7 @@ spec:
   selector:
     app: fe-voucher-traveloka
   ports:
-    - port: 80
-      targetPort: 81
+    - port: 81
+      targetPort: 80
       nodePort: 30003
   type: NodePort
