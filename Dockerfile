@@ -5,8 +5,8 @@ ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 
 WORKDIR /opt
-COPY package.json package-lock.json ./
-RUN npm install && npm cache clean --force
+COPY package.json package-lock.json yarn.lock ./
+RUN yarn install && yarn build
 
 WORKDIR /opt/app
 COPY ./src/ /opt/app
