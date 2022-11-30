@@ -6,7 +6,7 @@ ENV NODE_ENV $NODE_ENV
 
 WORKDIR /opt
 COPY package.json package-lock.json yarn.lock ./
-RUN yarn install && yarn build
+RUN npm install && npm cache clean --force
 
 WORKDIR /opt/app
 COPY ./src/ /opt/app
