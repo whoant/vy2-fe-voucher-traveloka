@@ -46,5 +46,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "react-dotenv": {
+    "whitelist": [
+      "REACT_APP_END_POINT",
+      "REACT_APP_URL",
+      "REACT_APP_PAYPAL_CLIENT_ID"
+    ]
   }
 }
