@@ -21,11 +21,11 @@ const END_POINT_APP = {
     },
     VY03: {
         USER: {
-            LOGIN: `https://profile.vinhphancommunity.xyz/Login?redirect=${process.env.REACT_APP_URL}/user/home`,
+            LOGIN: `https://profile.vinhphancommunity.xyz/Login?redirect=${window.env.REACT_APP_URL}/user/home`,
             REGISTER: 'https://profile.vinhphancommunity.xyz/signup'
         },
         PARTNER: {
-            LOGIN: `https://profile.vinhphancommunity.xyz/Login?redirect=${process.env.REACT_APP_URL}/partner/auth`,
+            LOGIN: `https://profile.vinhphancommunity.xyz/Login?redirect=${window.env.REACT_APP_URL}/partner/auth`,
             REGISTER: 'https://profile.vinhphancommunity.xyz/signup'
         }
     },

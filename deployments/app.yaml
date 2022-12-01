@@ -16,7 +16,7 @@ spec:
       nodeSelector:
         ram: high
       containers:
-        - name: be-voucher-traveloka
+        - name: fe-voucher-traveloka
           image: ghcr.io/whoant/vy2-fe-voucher-traveloka:VERSION
           imagePullPolicy: IfNotPresent
           ports:

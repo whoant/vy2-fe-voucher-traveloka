@@ -4,5 +4,5 @@ metadata:
   name: configmap.fe-voucher-traveloka
   namespace: traveloka-app
 data:
-  REACT_APP_END_POINT: http://194.233.92.2:30002
-  REACT_APP_URL: http://194.233.92.2:30002
+  REACT_APP_END_POINT: http://94.100.26.30:30002
+  REACT_APP_URL: http://94.100.26.30:30003
