@@ -6,11 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import env from "react-dotenv";
 
 ReactDOM.render(
     <React.StrictMode>
         <PayPalScriptProvider
-            options={{ "client-id": window.env.REACT_APP_PAYPAL_CLIENT_ID }}>
+            options={{ "client-id": env.REACT_APP_PAYPAL_CLIENT_ID }}>
             <BrowserRouter>
                 <App/>
             </BrowserRouter>
