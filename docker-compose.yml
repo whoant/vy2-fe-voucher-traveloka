@@ -5,7 +5,7 @@ services:
     container_name: vy02-fe-voucher-traveloka
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
     env_file:
       - .env
     volumes:
