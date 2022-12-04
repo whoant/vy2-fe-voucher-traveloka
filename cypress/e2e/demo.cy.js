@@ -4,7 +4,7 @@ context("Demo Test", () => {
   });
 
   //Kiểm tra tất cả thẻ H1
-  it("Kiem tra xem H1 có đúng text hay không ", () => {
+  it("Kiem tra xem H1 có đúng text hay không nef ", () => {
     cy.get("h1").should("contain.text", "Actions");
   });
 
