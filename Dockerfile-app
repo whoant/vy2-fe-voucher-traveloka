@@ -1,7 +1,7 @@
 FROM node:16-alpine as builder
 
 WORKDIR /app
-COPY . .
+COPY .. .
 RUN yarn install && yarn build
 
 FROM nginx:alpine
