@@ -10,6 +10,7 @@
     "apexcharts": "^3.35.0",
     "axios": "^0.26.1",
     "cypress": "^11.2.0",
+    "fs": "0.0.1-security",
     "moment": "^2.29.3",
     "react": "^17.0.2",
     "react-apexcharts": "^1.4.0",
@@ -20,7 +21,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "react-toastify": "^9.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -51,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "node-xlsx": "^0.21.0"
   }
 }
