@@ -5,6 +5,7 @@ const fs = require("fs"); // for file
 let dataExcel;
 
 module.exports = defineConfig({
+  projectId: "ekwdok",
   e2e: {
     chromeWebSecurity: false,
     setupNodeEvents(on, config) {
@@ -22,13 +23,6 @@ module.exports = defineConfig({
           });
         },
       });
-    },
-  },
-
-  component: {
-    devServer: {
-      framework: "create-react-app",
-      bundler: "webpack",
     },
   },
 });
