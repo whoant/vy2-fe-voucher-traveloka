@@ -4,6 +4,7 @@ const fs = require("fs"); // for file
 const XLSX = require("xlsx");
 
 const testData = require("../fixtures/xlsxData.json");
+const VoucherSuccess = require("../fixtures/VoucherSuccess.json");
 
 context("Read excel", () => {
   it("Read test case with excel", () => {
@@ -11,71 +12,9 @@ context("Read excel", () => {
       let dataOK = jsonData[0].data;
 
       if (testData.length != dataOK.length) {
-        cy.writeFile("cypress/fixtures/xlsxData.json", dataOK);
+        cy.writeFile("cypress/fixtures/VoucherSuccess.json", dataOK);
       }
     });
-  });
-});
-
-//Test Tạo Voucher
-describe("Test chức năng của trang web", () => {
-  beforeEach(() => {
-    cy.login("LeVanHieu123456@gmail.com", "123123123");
-  });
-
-  it("Test tạo voucher", () => {
-    testData.forEach((testCase, index) => {
-      switch (testCase[1]) {
-        case "check":
-          cy.get(".menu-nav")
-            .children("li")
-            .eq(index - 1)
-            .find("span")
-            .should("contain.text", testCase[5]);
-
-          break;
-        case "input":
-          cy.get(".card-body")
-            .find(".form-group")
-            .children("input[type=text]")
-            .eq(index - 6)
-            .type(testCase[5])
-            .should("contain.value", testCase[6]);
-
-          break;
-        case "input_number":
-          cy.get("input[type=number]")
-            .eq(index - 9)
-            .type(testCase[5])
-            .should("contain.value", testCase[6]);
-
-          break;
-        case "textarea":
-          cy.get(".card-body")
-            .find(".form-group")
-            .children("textarea")
-            .first()
-            .type(testCase[5])
-            .should("contain.value", testCase[6]);
-
-          break;
-        case "input_date":
-          cy.get("input[type=date]")
-            .eq(index - 13)
-            .type("2022-12-17");
-
-          break;
-        default:
-          "";
-      }
-    });
-    cy.get(".card-footer").children("input[type=submit]").click();
-    cy.wait(500);
-
-    cy.get(".Toastify__toast-body")
-      .children("div")
-      .last()
-      .should("contain.text", "Bạn không đủ quyền để truy cập !");
   });
 });
 
@@ -162,10 +101,183 @@ describe("Test giao diện và nội dung trên web", () => {
       default:
         "";
     }
-    console.log(testCase);
+  });
+});
 
-    // read first sheet (identified by first of SheetNames)
+//Test Tạo Voucher thất bại
+describe("Test chức năng của trang web", () => {
+  beforeEach(() => {
+    cy.login("LeVanHieu123456@gmail.com", "123123123");
+  });
 
-    // convert to JSON
+  it("Test tạo voucher", () => {
+    testData.forEach((testCase, index) => {
+      switch (testCase[1]) {
+        case "check":
+          cy.get(".menu-nav")
+            .children("li")
+            .eq(index - 1)
+            .find("span")
+            .should("contain.text", testCase[5]);
+
+          break;
+        case "input":
+          cy.get(".card-body")
+            .find(".form-group")
+            .children("input[type=text]")
+            .eq(index - 6)
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "input_number":
+          cy.get("input[type=number]")
+            .eq(index - 9)
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "textarea":
+          cy.get(".card-body")
+            .find(".form-group")
+            .children("textarea")
+            .first()
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "input_date":
+          cy.get("input[type=date]")
+            .eq(index - 13)
+            .type("2022-12-17");
+
+          break;
+        default:
+          "";
+      }
+    });
+    cy.get(".card-footer").children("input[type=submit]").click();
+    cy.wait(500);
+
+    cy.get(".Toastify__toast-body")
+      .children("div")
+      .last()
+      .should("contain.text", "Bạn không đủ quyền để truy cập !");
+  });
+});
+
+//Test Tạo Voucher thành công
+describe("Test chức năng của trang web", () => {
+  beforeEach(() => {
+    cy.login("LeVanHieu123456@gmail.com", "123123123");
+  });
+
+  it("Test tạo voucher", () => {
+    VoucherSuccess.forEach((testCase, index) => {
+      switch (testCase[1]) {
+        case "check":
+          cy.get(".menu-nav")
+            .children("li")
+            .eq(index - 1)
+            .find("span")
+            .should("contain.text", testCase[5]);
+
+          break;
+        case "input":
+          cy.get(".card-body")
+            .find(".form-group")
+            .children("input[type=text]")
+            .eq(index - 6)
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "input_number":
+          cy.get("input[type=number]")
+            .eq(index - 9)
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "textarea":
+          cy.get(".card-body")
+            .find(".form-group")
+            .children("textarea")
+            .first()
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "input_date":
+          cy.get("input[type=date]")
+            .eq(index - 13)
+            .type(testCase[6]);
+
+          break;
+        default:
+          "";
+      }
+    });
+    cy.get(".card-footer").children("input[type=submit]").click();
+    cy.wait(500);
+
+    cy.get(".Toastify__toast-body")
+      .children("div")
+      .last()
+      .should("contain.text", "Bạn không đủ quyền để truy cập !");
+  });
+});
+
+//Kiểm tra lấy danh sách Tour
+
+describe("Test chức năng của trang web", () => {
+  beforeEach(() => {
+    cy.login("LeVanHieu123456@gmail.com", "123123123");
+  });
+
+  it("Test Xem danh sách voucher của Nhà hàng", () => {
+    cy.get(".menu-nav")
+      .children("li")
+      .eq(1)
+      .find("span")
+      .should("contain.text", "Danh sách voucher")
+      .click();
+
+    cy.get(".card-toolbar").click();
+
+    cy.get(".navi")
+      .children("li")
+      .eq(0)
+      .find("span")
+      .should("contain.text", "Nhà hàng")
+      .click();
+
+    cy.get(".Toastify__toast-body")
+      .children("div")
+      .last()
+      .should("contain.text", "Lấy danh sách voucher thành công !");
+  });
+
+  it("Test Xem danh sách voucher của Chuyến bay", () => {
+    cy.get(".menu-nav")
+      .children("li")
+      .eq(1)
+      .find("span")
+      .should("contain.text", "Danh sách voucher")
+      .click();
+
+    cy.get(".card-toolbar").click();
+
+    cy.get(".navi")
+      .children("li")
+      .eq(1)
+      .find("span")
+      .should("contain.text", "Chuyến bay")
+      .click();
+
+    cy.get(".Toastify__toast-body")
+      .children("div")
+      .last()
+      .should("contain.text", "Lấy danh sách voucher thành công !");
   });
 });

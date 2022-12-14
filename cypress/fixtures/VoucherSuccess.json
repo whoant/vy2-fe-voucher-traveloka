@@ -1,0 +1,162 @@
+[
+  [
+    "Id",
+    "case",
+    "Test items",
+    "Test step",
+    "Test data",
+    "Expected result",
+    "Real result",
+    "Kết quả (P/F)"
+  ],
+  [
+    1,
+    "check",
+    "Kiểm tra nội dung side bar phần dashboard",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    null,
+    "Dashboard",
+    "Dashboard",
+    "P"
+  ],
+  [
+    2,
+    "check",
+    "Kiểm tra nội dung side bar mục danh sách voucher",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    null,
+    "Danh sách voucher",
+    "Danh sách voucher",
+    "P"
+  ],
+  [
+    3,
+    "check",
+    "Kiểm tra nội dung side bar mục tạo voucher",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    null,
+    "Tạo voucher",
+    "Tạo voucher",
+    "P"
+  ],
+  [
+    4,
+    "check",
+    "Kiểm tra nội dung side bar mục danh sách thẻ quà tặng",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    null,
+    "Danh sách thẻ quà tặng",
+    "Danh sách thẻ quà tặng",
+    "P"
+  ],
+  [
+    5,
+    "check",
+    "Kiểm tra nội dung side bar mục  tạo thẻ quà tặng",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    null,
+    "Tạo thẻ quà tặng",
+    "Tạo thẻ quà tặng",
+    "P"
+  ],
+  [
+    6,
+    "input",
+    "Kiểm tra nhập tiêu đề voucher",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "Giảm 20%",
+    "Giảm 20%",
+    "Giảm 20%",
+    "P"
+  ],
+  [
+    7,
+    "input",
+    "Kiểm tra nhập mã voucher",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    "ADDADSD",
+    "ADDADSD",
+    "P"
+  ],
+  [
+    8,
+    "textarea",
+    "Kiểm tra nhập nội dung của form",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    "Voucher này chỉ được giảm giá 20%",
+    "Voucher này chỉ được giảm giá 20%",
+    "P"
+  ],
+  [
+    9,
+    "input_number",
+    "Kiểm tra số người có thể sử dụng",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    100000,
+    100000,
+    "P"
+  ],
+  [
+    10,
+    "input_number",
+    "Kiểm tra nhập Ngưỡng tiền để thỏa điều kiện voucher*",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    200000,
+    200000,
+    "P"
+  ],
+  [
+    11,
+    "input_number",
+    "Kiểm tra nhập Số tiền tối đa được giảm*",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    20000,
+    20000,
+    "P"
+  ],
+  [
+    12,
+    "input_number",
+    "Kiểm tra nhập Số phần trăm được giảm*",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    20,
+    20,
+    "P"
+  ],
+  [
+    13,
+    "input_date",
+    "Kiểm tra nhập ngày bắt đầu",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    "2022-12-15",
+    "2022-12-17",
+    "P"
+  ],
+  [
+    14,
+    "input_date",
+    "Kiểm tra nhập ngày kết thúc",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    "2022-12-15",
+    "2022-12-17",
+    "P"
+  ],
+  [
+    14,
+    "input_ate",
+    "Kiểm tra nhập ngày kết thúc",
+    "B1: Nhập password\r\nB2: Ấn nút Button Đăng Nhập",
+    "ADDADSD",
+    "2022-12-15",
+    "2022-12-17",
+    "P"
+  ]
+]
