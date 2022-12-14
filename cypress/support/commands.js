@@ -27,3 +27,17 @@
 Cypress.Commands.add("parseXlsx", (inputFile) => {
   return cy.task("parseXlsx", { filePath: inputFile });
 });
+
+Cypress.Commands.add("login", (username, password) => {
+  cy.visit("https://voucher.votuan.xyz/partner/auth");
+
+  cy.get("select").select("VY03");
+  cy.get("select").should("have.value", "VY03");
+
+  cy.get(".btn").click();
+  cy.wait(500);
+
+  cy.get("#username").type(username);
+  cy.get("#password").type(password);
+  cy.get("button").click();
+});

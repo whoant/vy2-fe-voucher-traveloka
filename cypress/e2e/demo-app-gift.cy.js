@@ -17,9 +17,72 @@ context("Read excel", () => {
   });
 });
 
-describe("test case", () => {
+//Test Tạo Voucher
+describe("Test chức năng của trang web", () => {
+  beforeEach(() => {
+    cy.login("LeVanHieu123456@gmail.com", "123123123");
+  });
+
+  it("Test tạo voucher", () => {
+    testData.forEach((testCase, index) => {
+      switch (testCase[1]) {
+        case "check":
+          cy.get(".menu-nav")
+            .children("li")
+            .eq(index - 1)
+            .find("span")
+            .should("contain.text", testCase[5]);
+
+          break;
+        case "input":
+          cy.get(".card-body")
+            .find(".form-group")
+            .children("input[type=text]")
+            .eq(index - 6)
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "input_number":
+          cy.get("input[type=number]")
+            .eq(index - 9)
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "textarea":
+          cy.get(".card-body")
+            .find(".form-group")
+            .children("textarea")
+            .first()
+            .type(testCase[5])
+            .should("contain.value", testCase[6]);
+
+          break;
+        case "input_date":
+          cy.get("input[type=date]")
+            .eq(index - 13)
+            .type("2022-12-17");
+
+          break;
+        default:
+          "";
+      }
+    });
+    cy.get(".card-footer").children("input[type=submit]").click();
+    cy.wait(500);
+
+    cy.get(".Toastify__toast-body")
+      .children("div")
+      .last()
+      .should("contain.text", "Bạn không đủ quyền để truy cập !");
+  });
+});
+
+//Test UI
+describe("Test giao diện và nội dung trên web", () => {
   before(() => {
-    cy.visit("http://94.100.26.30:30003/partner/auth");
+    cy.visit("https://voucher.votuan.xyz/partner/auth");
   });
 
   it("Kiểm tra chọn App ID Vy 03", () => {
@@ -104,15 +167,5 @@ describe("test case", () => {
     // read first sheet (identified by first of SheetNames)
 
     // convert to JSON
-  });
-
-  it("Test click vào button tạo voucher", () => {
-    cy.get(".card-footer").children("input[type=submit]").click();
-    cy.wait(500);
-
-    cy.get(".Toastify__toast-body")
-      .children("div")
-      .last()
-      .should("contain.text", "Bạn không đủ quyền để truy cập !");
   });
 });
